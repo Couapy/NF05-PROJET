@@ -105,7 +105,7 @@ int chargerBagages(void) {
 
 int peutDecoller(void) {
   // V´erifier que l’avion peut d´ecoller en v´erifiant que tous les passagers enregistr´es ont
-embarqu´e et que tous les bagages sont charg´es.
+  // embarqu´e et que tous les bagages sont charg´es.
 
   return 0 || 1;
 }

@@ -84,7 +84,30 @@ int visaRequis(char destination[]) {
 }
 
 int passerSecurite(void) {
+  // règles sur les liquides pour le bagage en main
+  // règles sur les objets à prendre en cabine ?
+  // afficher les objets à retirer des bagages
+  return 1 || 0;
+}
 
+int embarquement(void) {
+  //Embarquer d'abord les passagers prioritaires
+  // Tant qu'il reste un passager prioritaire non embarqué, ne pas embarquer les autres passagers
+}
+
+int passagerPrioriatireNonEmbarquer(void) {
+  return 0 || 1;
+}
+
+int chargerBagages(void) {
+  return 0 || 1;
+}
+
+int peutDecoller(void) {
+  // V´erifier que l’avion peut d´ecoller en v´erifiant que tous les passagers enregistr´es ont
+embarqu´e et que tous les bagages sont charg´es.
+
+  return 0 || 1;
 }
 
 int main(void) {

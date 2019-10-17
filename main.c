@@ -1,30 +1,31 @@
 #include <stdio.h>
+#include <string.h>
+
+struct Bagage {
+  int ticket;
+  int poids;
+  int priority;
+  int depose;
+  int embarque;
+};
 
 struct Passager {
   char nom[64];
   char prenom[64];
-  Bagage bagages[2];
-  int prioritaire = 0;
+  struct Bagage bagages[2];
+  int prioritaire;
   char numero_billet[128];
   char date_naissance[64];
   char numero_siege[64];
-};
-
-struct Bagage {
-  int ticket;
-  int poids = 0;
-  int priority = 0;
-  int depose = 0;
-  int embarque = 0;
 };
 
 struct Vol {
   char heure_depart[64];
   char heure_arrivee[64];
   char destination[128];
-  Passager passagers[1024];
-  int places_reservees = 0;
-  int places_libres = 1024;
+  struct Passager passagers[1024];
+  int places_reservees;
+  int places_libres;
 };
 
 
@@ -38,7 +39,9 @@ struct Vol {
  */
 
 
-int ajouterPassager(Vol *vol) {
+int ajouterPassager(struct Vol *vol) {
+  //TEMP : nécéssaire pour compiler sinon il y a une erreur !
+  struct Passager passager;
   // TODO: créer passsager
   // TODO: générer n°billet
   // TODO: afficher toutes les informations
@@ -111,6 +114,11 @@ int peutDecoller(void) {
 }
 
 int main(void) {
+  char commande[64];
+  // while (strcomp(commande, "quitter") == 1) {
+  //   printf("Sys> ");
+  //   gets(commande);
+  // }
 
   return 0;
 }

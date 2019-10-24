@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
+#include "structures.c"
 
 void genererBillet(Passager *passager) {
   char billet[11];
@@ -34,8 +35,36 @@ void genererBillet(Passager *passager) {
 }
 
 int ajouterPassager(struct Vol *vol) {
+<<<<<<< HEAD
+  //TEMP : nécéssaire pour compiler sinon il y a une erreur !
+  Passager *passager;
+  char reponse[3];
+  char naissance[11];
+
+  printf("Enregistrement des informations sur les passagers.\n");
+  printf("Entrez le nom de votre passager :\n");
+  scanf("%c", &passager->nom);
+
+  printf("Entrez le prénom de votre passager :\n");
+  scanf("%c", &passager->prenom);
+
+  printf("Êtes vous prioritaire ? (oui ou non)\n");
+  scanf("%c", &reponse[]);
+
+  if ( strcmp(reponse, "oui") == 0 ){
+    passager->prioritaire = 0;
+  }
+  else {
+      passager->prioritaire = 1;
+  }
+
+  printf("Indiquez votre date de naissance en format JJ/MM/AAAA:\n");
+    fgets(naissance, 11);
+
+=======
   struct Passager passager;
   // TODO: créer passsager
+>>>>>>> 6bf1c3a615f6d0a23e12fc859391d34868e43caf
   // TODO: générer n°billet
   // TODO: afficher toutes les informations
   if (vol->places_libres > 0) {

@@ -9,7 +9,7 @@ struct Bagage {
   int embarque;
 };
 
-struct Passager {
+typedef struct {
   char nom[64];
   char prenom[64];
   struct Bagage bagages[2];
@@ -17,7 +17,7 @@ struct Passager {
   char numero_billet[11];
   char date_naissance[10];
   char numero_siege[64];
-};
+} Passager;
 
 struct Vol {
   char heure_depart[64];

@@ -35,8 +35,6 @@ void genererBillet(Passager *passager) {
 }
 
 int ajouterPassager(struct Vol *vol) {
-<<<<<<< HEAD
-  //TEMP : nécéssaire pour compiler sinon il y a une erreur !
   Passager *passager;
   char reponse[3];
   char naissance[11];

@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-struct Bagage {
+typedef struct {
   int ticket;
   int poids;
   int priority;
   int depose;
   int embarque;
-};
+} Bagage;
 
 typedef struct {
   char nom[64];
@@ -19,11 +19,11 @@ typedef struct {
   char numero_siege[64];
 } Passager;
 
-struct Vol {
+typedef struct {
   char heure_depart[64];
   char heure_arrivee[64];
   char destination[128];
   Passager passagers[1024];
   int places_reservees;
   int places_libres;
-};
+} Vol;

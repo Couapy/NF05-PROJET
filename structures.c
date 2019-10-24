@@ -12,7 +12,7 @@ typedef struct {
 typedef struct {
   char nom[64];
   char prenom[64];
-  struct Bagage bagages[2];
+  Bagage bagages[2];
   int prioritaire;
   char numero_billet[11];
   char date_naissance[10];

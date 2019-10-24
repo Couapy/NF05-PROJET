@@ -34,36 +34,36 @@ void genererBillet(Passager *passager) {
   passager->numero_billet = billet;
 }
 
-int ajouterPassager(struct Vol *vol) {
-  Passager *passager;
-  char reponse[3];
-  char naissance[11];
+void saisirPassager(Passager *passager) {
+  char reponse[10];
 
   printf("Enregistrement des informations sur les passagers.\n");
   printf("Entrez le nom de votre passager :\n");
-  scanf("%c", &passager->nom);
+  scanf(" %c", &passager->nom);
 
   printf("Entrez le prénom de votre passager :\n");
-  scanf("%c", &passager->prenom);
+  scanf(" %c", &passager->prenom);
 
   printf("Êtes vous prioritaire ? (oui ou non)\n");
-  scanf("%c", &reponse[]);
+  scanf(" %c", &reponse);
 
-  if ( strcmp(reponse, "oui") == 0 ){
+  if (strcmp(reponse, "oui") == 0) {
     passager->prioritaire = 0;
   }
   else {
-      passager->prioritaire = 1;
+    passager->prioritaire = 1;
   }
 
   printf("Indiquez votre date de naissance en format JJ/MM/AAAA:\n");
-    fgets(naissance, 11);
+  fgets(passager->naissance, 11); // TODO: a revoir le fgets
+}
 
-=======
-  struct Passager passager;
-  // TODO: créer passsager
->>>>>>> 6bf1c3a615f6d0a23e12fc859391d34868e43caf
-  // TODO: générer n°billet
+int ajouterPassager(struct Vol *vol) {
+  Passager *passager;
+
+  saisirPassager(passager);
+  genererBillet(passager);
+
   // TODO: afficher toutes les informations
   if (vol->places_libres > 0) {
     vol->passagers[vol->places_reservees] = passager;
@@ -72,6 +72,7 @@ int ajouterPassager(struct Vol *vol) {
     printf("[INFO]Ajout reussi du passager au vol\n");
     return 1;
   }
+  
   return 0;
 }
 

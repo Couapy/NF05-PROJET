@@ -33,13 +33,6 @@ void genererBillet(Passager *passager) {
   passager->numero_billet = billet;
 }
 
-void genererBillet(void) {
-
-
-
-
-}
-
 int ajouterPassager(struct Vol *vol) {
   struct Passager passager;
   // TODO: créer passsager

@@ -14,8 +14,8 @@ struct Passager {
   char prenom[64];
   struct Bagage bagages[2];
   int prioritaire;
-  char numero_billet[128];
-  char date_naissance[64];
+  char numero_billet[11];
+  char date_naissance[10];
   char numero_siege[64];
 };
 
@@ -23,7 +23,7 @@ struct Vol {
   char heure_depart[64];
   char heure_arrivee[64];
   char destination[128];
-  struct Passager passagers[1024];
+  Passager passagers[1024];
   int places_reservees;
   int places_libres;
 };

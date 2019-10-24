@@ -1,9 +1,46 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
 #include <string.h>
 
+void genererBillet(Passager *passager) {
+  char billet[11];
+  int continuer;
+  float nb_rand;
+
+  while (billet == 0 || continuer == 1) {
+    continuer = 0;
+
+    for (int i = 0; i < 13; i++) {
+      nb_rand = (float)rand()/RAND_MAX * 10.0;
+      billet[i] = (int)nb_rand + '0';$
+    }
+    billet[10] = '\0';
+
+    int i = 0, j;
+    while (i < nb_vols && continuer == 0) {
+      j = 0;
+      while (j < vols[i].places_reservees && continuer == 0) {
+        if (vols[i].passagers[j].numero_billet == billet) {
+          continuer = 1;
+        }
+        j++;
+      }
+      i++;
+    }
+  }
+
+  passager->numero_billet = billet;
+}
+
+void genererBillet(void) {
+
+
+
+
+}
+
 int ajouterPassager(struct Vol *vol) {
-  //TEMP : nécéssaire pour compiler sinon il y a une erreur !
   struct Passager passager;
   // TODO: créer passsager
   // TODO: générer n°billet
@@ -13,9 +50,9 @@ int ajouterPassager(struct Vol *vol) {
     vol->places_libres -= 1;
     vol->places_reservees += 1;
     printf("[INFO]Ajout reussi du passager au vol\n");
-    return 0;
+    return 1;
   }
-  return 1;
+  return 0;
 }
 
 void engeristrer(char nom[], char billet[]) {

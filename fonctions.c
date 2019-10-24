@@ -1,11 +1,34 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "structures.c"
 
 int ajouterPassager(struct Vol *vol) {
   //TEMP : nécéssaire pour compiler sinon il y a une erreur !
-  struct Passager passager;
-  // TODO: créer passsager
+  Passager *passager;
+  char reponse[3];
+  char naissance[11];
+
+  printf("Enregistrement des informations sur les passagers.\n");
+  printf("Entrez le nom de votre passager :\n");
+  scanf("%c", &passager->nom);
+
+  printf("Entrez le prénom de votre passager :\n");
+  scanf("%c", &passager->prenom);
+
+  printf("Êtes vous prioritaire ? (oui ou non)\n");
+  scanf("%c", &reponse[]);
+
+  if ( strcmp(reponse, "oui") == 0 ){
+    passager->prioritaire = 0;
+  }
+  else {
+      passager->prioritaire = 1;
+  }
+
+  printf("Indiquez votre date de naissance en format JJ/MM/AAAA:\n");
+    fgets(naissance, 11);
+
   // TODO: générer n°billet
   // TODO: afficher toutes les informations
   if (vol->places_libres > 0) {

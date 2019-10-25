@@ -63,8 +63,20 @@ int ajouterPassager(struct Vol *vol) {
 
   saisirPassager(passager);
   genererBillet(passager);
+// Les informations du passager sont montrés en une "jolie" phrase.
+  printf("%c", passager->nom);
+  printf(" %c né(e) le ", passager->prénom);
+  printf("%c" passager->date_naissance);
 
-  // TODO: afficher toutes les informations
+  if (passager->prioritaire == 0){
+    printf("est prioritaire.\n")
+    else {
+      printf("n'est pas prioritaire.\n");
+    }
+  }
+
+  printf("Votre billet est le n°%c.\n", passager->numero_billet);
+
   if (vol->places_libres > 0) {
     vol->passagers[vol->places_reservees] = passager;
     vol->places_libres -= 1;

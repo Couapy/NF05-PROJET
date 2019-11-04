@@ -14,7 +14,7 @@ void genererBillet(Passager *passager) {
 
     for (int i = 0; i < 13; i++) {
       nb_rand = (float)rand()/RAND_MAX * 10.0;
-      billet[i] = (int)nb_rand + '0';$
+      billet[i] = (int)nb_rand + '0';
     }
     billet[10] = '\0';
 
@@ -55,7 +55,7 @@ void saisirPassager(Passager *passager) {
   }
 
   printf("Indiquez votre date de naissance en format JJ/MM/AAAA:\n");
-  fgets(passager->naissance, 11); // TODO: a revoir le fgets
+  fgets(passager->date_naissance, 11, stdin);
 }
 
 int ajouterPassager(struct Vol *vol) {
@@ -65,15 +65,16 @@ int ajouterPassager(struct Vol *vol) {
   genererBillet(passager);
 // Les informations du passager sont montrés en une "jolie" phrase.
   printf("%c", passager->nom);
-  printf(" %c né(e) le ", passager->prénom);
-  printf("%c" passager->date_naissance);
+  printf(" %c né(e) le ", passager->prenom);
+  printf("%c", passager->date_naissance);
 
   if (passager->prioritaire == 0){
-    printf("est prioritaire.\n")
-    else {
-      printf("n'est pas prioritaire.\n");
-    }
+    printf("est prioritaire.\n");
   }
+  else {
+   printf("n'est pas prioritaire.\n");
+  }
+}
 
   printf("Votre billet est le n°%c.\n", passager->numero_billet);
 

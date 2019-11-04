@@ -14,7 +14,7 @@ typedef struct {
   char prenom[64];
   Bagage bagages[2];
   int prioritaire;
-  char numero_billet[11];
+  char billet[11];
   char date_naissance[10];
   char numero_siege[64];
 } Passager;

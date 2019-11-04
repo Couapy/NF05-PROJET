@@ -10,7 +10,7 @@ void genererBillet(Passager *passager) {
   int continuer;
   float nb_rand;
   char billet[11];
-  billet[0] = '\0';
+  billet[11] = '\0';
 
   printf("Generation du billet en cours...\n");
 
@@ -27,7 +27,7 @@ void genererBillet(Passager *passager) {
     while (i < nb_vols && continuer == 0) {
       j = 0;
       while (j < vols[i].places_reservees && continuer == 0) {
-        if (vols[i].passagers[j].numero_billet == billet) {
+        if (vols[i].passagers[j].billet == billet) {
           continuer = 1;
         }
         j++;
@@ -41,7 +41,7 @@ void genererBillet(Passager *passager) {
 
   // passager->numero_billet = billet;
 
-  strcpy(passager->numero_billet, billet);
+  strcpy(billet, passager->billet);
 
   // for (int i = 0; i < 11; i++) {
   //   passager->numero_billet[i] = billet[i];
@@ -54,7 +54,8 @@ int main(void) {
 
   Passager *passager;
   genererBillet(passager);
-  printf("Le billet est : %s\n", passager->numero_billet);
+  printf("%c", passager->billet[0]);
+  printf("Le billet est : %s\n", passager->billet);
 
   return 0;
 }

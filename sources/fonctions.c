@@ -45,16 +45,15 @@ void saisirPassager(Passager *passager) {
   scanf(" %c", &passager->prenom);
 
   printf("Êtes vous prioritaire ? (oui ou non)\n");
-  scanf(" %c", &reponse);
+  scanf(" %s", &reponse);
 
   if (strcmp(reponse, "oui") == 0) {
     passager->prioritaire = 0;
-  }
-  else {
+  } else {
     passager->prioritaire = 1;
   }
 
-  printf("Indiquez votre date de naissance en format JJ/MM/AAAA:\n");
+  printf("Indiquez votre date de naissance en format JJ/MM/AAAA : \n");
   fgets(passager->date_naissance, 11, stdin);
 }
 
@@ -63,10 +62,8 @@ int ajouterPassager(struct Vol *vol) {
 
   saisirPassager(passager);
   genererBillet(passager);
-// Les informations du passager sont montrés en une "jolie" phrase.
-  printf("%c", passager->nom);
-  printf(" %c né(e) le ", passager->prenom);
-  printf("%c", passager->date_naissance);
+  // Les informations du passager sont montrés en une "jolie" phrase.
+  printf("%s %s ne(e) le %s ", passager->nom, passager->prenom, passager->date_naissance);
 
   if (passager->prioritaire == 0){
     printf("est prioritaire.\n");
@@ -74,9 +71,8 @@ int ajouterPassager(struct Vol *vol) {
   else {
    printf("n'est pas prioritaire.\n");
   }
-}
 
-  printf("Votre billet est le n°%c.\n", passager->numero_billet);
+  printf("Votre billet est le n°%s.\n", passager->numero_billet);
 
   if (vol->places_libres > 0) {
     vol->passagers[vol->places_reservees] = passager;
@@ -85,7 +81,7 @@ int ajouterPassager(struct Vol *vol) {
     printf("[INFO]Ajout reussi du passager au vol\n");
     return 1;
   }
-  
+
   return 0;
 }
 

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "structures.c"
 
 Vol vols[255];
@@ -8,8 +9,10 @@ int nb_vols = 0;
 void genererBillet(Passager *passager) {
   int continuer;
   float nb_rand;
-  char billet[10];
+  char billet[11];
   billet[0] = '\0';
+
+  printf("Generation du billet en cours...\n");
 
   while (billet[0] == '\0' || continuer == 1) {
     continuer = 0;
@@ -33,9 +36,18 @@ void genererBillet(Passager *passager) {
     }
   }
 
-  for (int i = 0; i < 11; i++) {
-    passager->numero_billet[i] = billet[i];
-  }
+  printf("Generation du billet terminee.\n");
+  printf("Recopiage en cours... \n");
+
+  // passager->numero_billet = billet;
+
+  strcpy(passager->numero_billet, billet);
+
+  // for (int i = 0; i < 11; i++) {
+  //   passager->numero_billet[i] = billet[i];
+  // }
+
+  printf("Recopiage termine \n");
 }
 
 int main(void) {

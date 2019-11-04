@@ -39,9 +39,9 @@ void genererBillet(Passager *passager) {
   printf("Generation du billet terminee.\n");
   printf("Recopiage en cours... \n");
 
-  // passager->numero_billet = billet;
+  passager->billet = billet;
 
-  strcpy(billet, passager->billet);
+  // strcpy(billet, passager->billet);
 
   // for (int i = 0; i < 11; i++) {
   //   passager->numero_billet[i] = billet[i];

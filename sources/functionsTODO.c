@@ -1,15 +1,3 @@
-void engeristrer(char nom[], char billet[]) {
-  // TODO: générer le boarding pass
-  // TODO: générer les tickets bagages
-    // if (priority == 1)
-      // bagages_max = 2
-  // TODO: afficher boarding pass
-
-  // TODO: générer numéro de siège, OU le choisir, ET selon les places dispo
-    //si la place existe dans l'avion
-    //si aucun autre passager a deja la place
-}
-
 int passerFrontieres(void) {
 
   // Si toutes les conditions sont OK pour rejoindre la destination

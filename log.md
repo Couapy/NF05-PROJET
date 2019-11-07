@@ -14,3 +14,9 @@
   - ajouterPassager
     - Générer billet
     - Creer passager
+
+## 6 Novembre
+
+- Correction de bug
+  - Allocation des variables
+  - Autres

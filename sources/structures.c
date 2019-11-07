@@ -10,6 +10,9 @@ typedef struct {
 typedef struct {
   char nom[64];
   char prenom[64];
+  char nationalite[25];
+  int visa;
+  int frontiere;
   Bagage bagages[2];
   int prioritaire;
   char billet[11];
@@ -24,4 +27,5 @@ typedef struct {
   Passager *passagers[1024];
   int places_reservees;
   int places_libres;
+  int visa_requis;
 } Vol;

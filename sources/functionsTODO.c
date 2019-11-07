@@ -1,41 +1,40 @@
-int passerFrontieres(void) {
+#include <stdio.h>
+#include <stdlib.h>
+#include "structures.c"
+
+int passerFrontieres(Passager *passager, Vol *vol) {
   printf("Vérification des documents:\n");
-  if (passager->billet[0] != "\0"){
-    printf("Votre billet est bien le numéro :\n%%s", passager->billet);
-    if (passager->pass != "\0"){ TODO: BOARDING PASS 
-      if (passager->bagage[0] != 0){
-        printf("Vous avez bien %d bagages avec vous.\n", passager->bagage[0]);
+  if (passager->billet[0] != '\0'){
+    printf("Votre billet est bien le numéro : %s\n", passager->billet);
+    if (passager->enregistrer == 1) {
+      if (passager->bagages[0].ticket != 0) {
+        printf("Vous avez bien %d bagages avec vous.\n", passager->bagages[0]);
         printf("Vous etes de nationalitee : %s et vous vous rendez à %s.\n", passager->nationalite, vol->destination);
-          if(vol->visa_requis == 1){
+          if (vol->visa_requis == 1) {
             printf("Montrez votre VISA s'il vous plait :\n 0 - si vous ne l'avez pas \n 1 - si vous l'avez\n");
             scanf("%d", &passager->visa);
             if (passager->visa == 1){
               passager->frontiere = 1;
+            } else {
+              passager->frontiere = 0;
             }
-            else {
-              passager->frontiere = 1;
-            }
-        }
-        else {
+        } else {
           passager->frontiere = 0;
         }
-      }
-      else {
+      } else {
         passager->frontiere = 0;
       }
-    }
-    else {
+    } else {
       passager->frontiere = 0;
     }
-  }
-  else {
+  } else {
     passager->frontiere = 0;
   }
 
-  return 0;
+  return passager->frontiere;
 }
 
-int passerSecurite(void) {
+int passerSecurite(Passager *passager) {
   printf("La securite n'accepte pas de produits liquides de plus de 100mL ou d'objets contondants.");
   printf("En avez-vous en votre possession ?\n - 0 pour oui\n -1 pour non\n");
   scanf("%d", &passager->interdit);
@@ -43,12 +42,12 @@ int passerSecurite(void) {
   if (passager->interdit == 1){
     printf("Vous venez de passer la securite.");
     passager->securite = 1;
-  } 
-  else{
-    passager->securite = 0;
-    printf("Vous ne pouvez pas passer la securite.\n");
   }
-  return 0;
+  else{
+    printf("Vous ne pouvez pas passer la securite.\n");
+    passager->securite = 0;
+  }
+  return passager->securite;
 }
 
 int embarquement(void) {
@@ -73,4 +72,9 @@ int peutDecoller(void) {
 
 int creerVol(void){
     // heure d'arrivée, de départ, la destination, le nombre de place totales, visa ?
+}
+
+int main(void) {
+
+  return 0;
 }

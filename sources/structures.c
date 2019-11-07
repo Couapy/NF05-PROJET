@@ -3,7 +3,6 @@
 
 typedef struct {
   int ticket;
-  int depose;
   int embarque;
 } Bagage;
 
@@ -16,10 +15,12 @@ typedef struct {
   int interdit; // pour passer la sécurité
   int securite; // après avoir passer la securite : 1 
   Bagage bagages[2];
+  int nb_bagages;
   int prioritaire;
   char billet[11];
   char date_naissance[24];
   char numero_siege[64];
+  int enregistrer;
 } Passager;
 
 typedef struct {

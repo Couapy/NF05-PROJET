@@ -1,14 +1,38 @@
 int passerFrontieres(void) {
+  printf("Vérification des documents:\n");
+  if (passager->billet[0] != "\0"){
+    printf("Votre billet est bien le numéro :\n%%s", passager->billet);
+    if (passager->pass != "\0"){ TODO: BOARDING PASS 
+      if (passager->bagage[0] != 0){
+        printf("Vous avez bien %d bagages avec vous.\n", passager->bagage[0]);
+        printf("Vous etes de nationalitee : %s et vous vous rendez à %s.\n", passager->nationalite, vol->destination);
+          if(vol->visa_requis == 1){
+            printf("Montrez votre VISA s'il vous plait :\n 0 - si vous ne l'avez pas \n 1 - si vous l'avez\n");
+            scanf("%d", &passager->visa);
+            if (passager->visa == 1){
+              passager->frontiere = 1;
+            }
+            else {
+              passager->frontiere = 1;
+            }
+        }
+        else {
+          passager->frontiere = 0;
+        }
+      }
+      else {
+        passager->frontiere = 0;
+      }
+    }
+    else {
+      passager->frontiere = 0;
+    }
+  }
+  else {
+    passager->frontiere = 0;
+  }
 
-  // Si toutes les conditions sont OK pour rejoindre la destination
-    // engeristré ?
-    // a son boarding pass ET ses tickets de bagages
-  // Afficher
-    // Nationalité
-    // Destination
-    // A besoin d'un visa ?
-
-  return 0 || 1;
+  return 0;
 }
 
 int visaRequis(char destination[]) {

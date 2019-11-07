@@ -13,6 +13,8 @@ typedef struct {
   char nationalite[25];
   int visa;
   int frontiere;
+  int interdit; // pour passer la sécurité
+  int securite; // après avoir passer la securite : 1 
   Bagage bagages[2];
   int prioritaire;
   char billet[11];

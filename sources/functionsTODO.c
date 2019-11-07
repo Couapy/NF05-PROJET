@@ -35,17 +35,20 @@ int passerFrontieres(void) {
   return 0;
 }
 
-int visaRequis(char destination[]) {
-  //Trouver les pays qui ont besoin d'un VISA, ou pas
-
-  return 0;
-}
-
 int passerSecurite(void) {
-  // règles sur les liquides pour le bagage en main
-  // règles sur les objets à prendre en cabine ?
-  // afficher les objets à retirer des bagages
-  return 1 || 0;
+  printf("La securite n'accepte pas de produits liquides de plus de 100mL ou d'objets contondants.");
+  printf("En avez-vous en votre possession ?\n - 0 pour oui\n -1 pour non\n");
+  scanf("%d", &passager->interdit);
+
+  if (passager->interdit == 1){
+    printf("Vous venez de passer la securite.");
+    passager->securite = 1;
+  } 
+  else{
+    passager->securite = 0;
+    printf("Vous ne pouvez pas passer la securite.\n");
+  }
+  return 0;
 }
 
 int embarquement(void) {
@@ -66,4 +69,8 @@ int peutDecoller(void) {
   // embarqu´e et que tous les bagages sont charg´es.
 
   return 0 || 1;
+}
+
+int creerVol(void){
+    // heure d'arrivée, de départ, la destination, le nombre de place totales, visa ?
 }

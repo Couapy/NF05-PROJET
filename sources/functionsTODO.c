@@ -3,32 +3,26 @@
 #include "structures.c"
 
 int passerFrontieres(Passager *passager, Vol *vol) {
+  passager->frontiere = 0;
   printf("Vérification des documents:\n");
-  if (passager->billet[0] != '\0'){
+  
+  if (passager->billet[0] != '\0') {
     printf("Votre billet est bien le numéro : %s\n", passager->billet);
     if (passager->enregistrer == 1) {
       if (passager->bagages[0].ticket != 0) {
         printf("Vous avez bien %d bagages avec vous.\n", passager->bagages[0]);
         printf("Vous etes de nationalitee : %s et vous vous rendez à %s.\n", passager->nationalite, vol->destination);
-          if (vol->visa_requis == 1) {
-            printf("Montrez votre VISA s'il vous plait :\n 0 - si vous ne l'avez pas \n 1 - si vous l'avez\n");
-            scanf("%d", &passager->visa);
-            if (passager->visa == 1){
-              passager->frontiere = 1;
-            } else {
-              passager->frontiere = 0;
-            }
+        if (vol->visa_requis == 1) {
+          printf("Montrez votre VISA s'il vous plait :\n 0 - si vous ne l'avez pas \n 1 - si vous l'avez\n");
+          scanf("%d", &passager->visa);
+          if (passager->visa == 1) {
+            passager->frontiere = 1;
+          }
         } else {
-          passager->frontiere = 0;
+          passager->frontiere = 1;
         }
-      } else {
-        passager->frontiere = 0;
       }
-    } else {
-      passager->frontiere = 0;
     }
-  } else {
-    passager->frontiere = 0;
   }
 
   return passager->frontiere;

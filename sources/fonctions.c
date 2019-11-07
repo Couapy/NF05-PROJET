@@ -65,6 +65,7 @@ void saisirPassager(Passager *passager) { // DONE
   scanf(" %s", passager->date_naissance);
 
   passager->billet[0] = '\0';
+  passager->bagages[0].ticket = 0;
 }
 
 int ajouterPassager(Vol *vol) { // DONE
@@ -171,7 +172,8 @@ void choisirSiege(Passager *passager) {
   scanf(" %d", choix);
 
   if (strcmp(choix, "oui") == 0) {
-    printf("Quelle est la place que vous voulez ?")
+    printf("Quelle est la place que vous voulez ? ");
+    scanf("");
   }
   // TODO: générer numéro de siège, OU le choisir, ET selon les places dispo
   // si la place existe dans l'avion
@@ -179,7 +181,6 @@ void choisirSiege(Passager *passager) {
 }
 
 void engeristrerPassager(void) {
-
   Passager *passager = trouverPassager();
   Vol *vol = trouverVol(passager);
 

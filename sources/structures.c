@@ -12,7 +12,6 @@ typedef struct {
   char nationalite[25];
   int visa;
   int frontiere; // a passé la frontière : 1
-  int interdit; // pour passer la sécurité
   int securite; // après avoir passer la securite : 1
   Bagage bagages[2];
   int nb_bagages;

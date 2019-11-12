@@ -9,8 +9,11 @@ Vol vols[255];
 int nb_vols = 0;
 int last_id_bagage = 0;
 
-
-void genererBillet(Passager *passager) { // DONE
+/**
+ * Fonction qui génère un billet à un passager
+ * @param passager Passager*
+ */
+void genererBillet(Passager *passager) {
   int continuer = 0;
   float nb_rand;
   char billet[11];
@@ -41,7 +44,11 @@ void genererBillet(Passager *passager) { // DONE
   strcpy(passager->billet, billet);
 }
 
-void saisirPassager(Passager *passager) { // DONE
+/**
+ * Saisie d'un passager par l'utilisateur
+ * @param passager Passager*
+ */
+void saisirPassager(Passager *passager) {
   char reponse[10];
 
   printf("Enregistrement des informations sur les passagers.\n");
@@ -68,7 +75,11 @@ void saisirPassager(Passager *passager) { // DONE
   passager->bagages[0].ticket = 0;
 }
 
-int ajouterPassager(Vol *vol) { // DONE
+/**
+ * On ajoute un passager à un vol
+ * @param  vol Vol*
+ */
+void ajouterPassager(Vol *vol) { // DONE
   Passager *passager = (Passager*)malloc(sizeof(Passager));
 
   //On génère le passager
@@ -92,8 +103,6 @@ int ajouterPassager(Vol *vol) { // DONE
     printf("[INFO]Ajout reussi du passager au vol\n");
     return 1;
   }
-
-  return 0;
 }
 
 /**
@@ -166,7 +175,7 @@ void afficherBoardingPass(Passager passager*, Vol *vol) {
  * Permet de choisir un siège parmi les siège libres
  * @param passager [description]
  */
-void choisirSiege(Passager *passager) {
+void choisirSiege(Passager *passager) { // TODO: choisirSiege
   char choix[15];
   printf("Voulez-vous choisir votre siege ? (oui ou non) ");
   scanf(" %d", choix);
@@ -175,11 +184,14 @@ void choisirSiege(Passager *passager) {
     printf("Quelle est la place que vous voulez ? ");
     scanf("");
   }
-  // TODO: générer numéro de siège, OU le choisir, ET selon les places dispo
+  // générer numéro de siège, OU le choisir, ET selon les places dispo
   // si la place existe dans l'avion
   // si aucun autre passager a deja la place
 }
 
+/**
+ * On enregistre un passager sur son vol
+ */
 void engeristrerPassager(void) {
   Passager *passager = trouverPassager();
   Vol *vol = trouverVol(passager);
@@ -189,6 +201,59 @@ void engeristrerPassager(void) {
 
   passager->boardingPass = 1;
   afficherBoardingPass(passager, vol);
+}
+
+/**
+ * Faire passer la frontière pour un passager
+ * @param  passager Passager*
+ * @param  vol      Vol*
+ * @return          boolean
+ */
+int passerFrontieres(Passager *passager, Vol *vol) {
+  passager->frontiere = 0;
+  printf("Vérification des documents:\n");
+
+  if (passager->billet[0] != '\0') {
+    printf("Votre billet est bien le numéro : %s\n", passager->billet);
+    if (passager->enregistrer == 1) {
+      if (passager->bagages[0].ticket != 0) {
+        printf("Vous avez bien %d bagages avec vous.\n", passager->bagages[0]);
+        printf("Vous etes de nationalitee : %s et vous vous rendez à %s.\n", passager->nationalite, vol->destination);
+        if (vol->visa_requis == 1) {
+          printf("Montrez votre VISA s'il vous plait :\n 0 - si vous ne l'avez pas \n 1 - si vous l'avez\n");
+          scanf("%d", &passager->visa);
+          if (passager->visa == 1) {
+            passager->frontiere = 1;
+          }
+        } else {
+          passager->frontiere = 1;
+        }
+      }
+    }
+  }
+
+  return passager->frontiere;
+}
+
+/**
+ * Passe un passager à la frontière
+ * @param  passager Passager*
+ * @return          int
+ */
+int passerSecurite(Passager *passager) {
+  int interdit;
+  printf("La securite n'accepte pas de produits liquides de plus de 100mL ou d'objets contondants.");
+  printf("En avez-vous en votre possession ?\n - 0 pour non\n -1 pour oui\n");
+  scanf("%d", &interdit);
+
+  if (interdit == 1){
+    printf("Vous ne pouvez pas passer la securite.\n");
+    passager->securite = 0;
+  } else{
+    printf("Vous venez de passer la securite.");
+    passager->securite = 1;
+  }
+  return passager->securite;
 }
 
 int main(void) {

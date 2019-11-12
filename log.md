@@ -20,3 +20,8 @@
 - Correction de bug
   - Allocation des variables
   - Autres
+
+## 12 Novembre
+
+- Ajout de la documentation pour toutes les fonctions
+- Déplacement de fonctions vers le fichier fonctions.h

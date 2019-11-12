@@ -168,7 +168,7 @@ void enregistrerBagages(Passager passager*) {
  * @param vol    Vol*
  */
 void afficherBoardingPass(Passager passager*, Vol *vol) {
-
+  // TODO: afficher boardingPass
 }
 
 /**

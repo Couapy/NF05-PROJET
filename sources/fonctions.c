@@ -80,28 +80,29 @@ void saisirPassager(Passager *passager) {
  * @param  vol Vol*
  */
 void ajouterPassager(Vol *vol) { // DONE
-  Passager *passager = (Passager*)malloc(sizeof(Passager));
-
-  //On génère le passager
-  saisirPassager(passager);
-  genererBillet(passager);
-
-  // Les informations du passager sont montrés en une "jolie" phrase.
-  printf("%s %s ne(e) le %s ", passager->nom, passager->prenom, passager->date_naissance);
-  if (passager->prioritaire == 0){
-    printf("est prioritaire.\n");
-  } else {
-    printf("n'est pas prioritaire.\n");
-  }
-
-  printf("Votre numero de billet : %s %c\n", passager->billet, passager->billet[10]);
-
   if (vol->places_libres > 0) {
+    Passager *passager = (Passager*)malloc(sizeof(Passager));
+
+    //On génère le passager
+    saisirPassager(passager);
+    genererBillet(passager);
+
+    // Les informations du passager sont montrés en une "jolie" phrase.
+    printf("%s %s ne(e) le %s ", passager->nom, passager->prenom, passager->date_naissance);
+    if (passager->prioritaire == 0){
+      printf("est prioritaire.\n");
+    } else {
+      printf("n'est pas prioritaire.\n");
+    }
+
+    printf("Votre numero de billet : %s %c\n", passager->billet, passager->billet[10]);
+
     vol->passagers[vol->places_reservees] = passager;
     vol->places_libres -= 1;
     vol->places_reservees += 1;
     printf("[INFO]Ajout reussi du passager au vol\n");
-    return 1;
+  } else {
+    printf("[ERROR] Il n'y a plus de places sur le vol");
   }
 }
 
@@ -129,7 +130,7 @@ Passager* trouverPassager(void) {
  * @return          Passager*
  */
 Vol* trouverVol(Passager *passager) {
-  Vol vol*;
+  Vol *vol;
   for (int i = 0; i < nb_vols; i++) {
     for (int j = 0; j < vols[i].places_reservees; j++) {
       if (strcmp(passager->billet, vols[i].passagers[j]->billet) == 0) {
@@ -143,7 +144,7 @@ Vol* trouverVol(Passager *passager) {
  * Permet d'enregistrer les bagages d'un passager lors de son Enregistrement
  * @param [name] [description]
  */
-void enregistrerBagages(Passager passager*) {
+void enregistrerBagages(Passager *passager) {
   int nb_bagages = 3, nb_bagages_max = 1;
   if (passager->prioritaire == 1) {
     nb_bagages_max = 2;
@@ -167,26 +168,49 @@ void enregistrerBagages(Passager passager*) {
  * @param passager Passager*
  * @param vol    Vol*
  */
-void afficherBoardingPass(Passager passager*, Vol *vol) {
+void afficherBoardingPass(Passager *passager, Vol *vol) {
   // TODO: afficher boardingPass
+}
+
+int placeLibre(Siege *place, Vol *vol) {
+  char place_max[4];
+  sprintf(place_max, "%d%c", place->rangee, vol->sieges_colonne + '@');
+
+  if (1 >= place.rangee || place.rangee >= vol->sieges_rangee) {
+    return 0;
+  }
+
+  if (strcmp(place, "1A") > 0 && strcmp(place, place_max) < 0) {
+    // et que personne n'a deja la place
+    
+    return 0;
+  }
+  return 1;
 }
 
 /**
  * Permet de choisir un siège parmi les siège libres
  * @param passager [description]
  */
-void choisirSiege(Passager *passager) { // TODO: choisirSiege
+void choisirSiege(Passager *passager, Vol *vol) {
   char choix[15];
+  Siege place;
   printf("Voulez-vous choisir votre siege ? (oui ou non) ");
   scanf(" %d", choix);
 
   if (strcmp(choix, "oui") == 0) {
     printf("Quelle est la place que vous voulez ? ");
-    scanf("");
+    scanf(" %s", place);
+    if (placeLibre(place, vol)) {
+      passager->siege = place;
+    }
+  } else {
+    place = "AA";
+    while (!placeLibre(place, vol)) {
+      //générer un numéro de siège
+    }
+    passager->siege = place;
   }
-  // générer numéro de siège, OU le choisir, ET selon les places dispo
-  // si la place existe dans l'avion
-  // si aucun autre passager a deja la place
 }
 
 /**
@@ -197,9 +221,9 @@ void engeristrerPassager(void) {
   Vol *vol = trouverVol(passager);
 
   enregistrerBagages(passager);
-  choisirSiege(passager);
+  choisirSiege(passager, vol);
 
-  passager->boardingPass = 1;
+  passager->enregistrer = 1;
   afficherBoardingPass(passager, vol);
 }
 

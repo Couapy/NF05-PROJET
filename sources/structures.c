@@ -7,6 +7,11 @@ typedef struct {
 } Bagage;
 
 typedef struct {
+  int rangee;
+  int colonne;
+} Siege;
+
+typedef struct {
   char nom[64];
   char prenom[64];
   char nationalite[25];
@@ -18,7 +23,7 @@ typedef struct {
   int prioritaire;
   char billet[11];
   char date_naissance[24];
-  char numero_siege[64];
+  Siege siege;
   int enregistrer; // boarding pass enregistré
 } Passager;
 
@@ -30,4 +35,6 @@ typedef struct {
   int places_reservees;
   int places_libres;
   int visa_requis;
+  int sieges_rangee;
+  int sieges_colonne;
 } Vol;

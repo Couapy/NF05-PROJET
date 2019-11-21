@@ -25,6 +25,7 @@ typedef struct {
   char date_naissance[24];
   Siege siege;
   int enregistrer; // boarding pass enregistré
+  int embarquer;
 } Passager;
 
 typedef struct {
@@ -32,7 +33,7 @@ typedef struct {
   char heure_arrivee[64];
   char destination[128];
   Passager *passagers[1024];
-  int places_reservees;
+  int places_reservees; 
   int places_libres;
   int siege_rangee;
   int siege_colonne;

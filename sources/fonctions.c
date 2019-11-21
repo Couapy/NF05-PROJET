@@ -112,13 +112,14 @@ void ajouterPassager(Vol *vol) { // DONE
  */
 Passager* trouverPassager(void) {
   char reponse[64];
-  printf("Nom ou Numero de billet : ");
-  gets(reponse);
-
-  for (int i = 0; i < nb_vols; i++) {
-    for (int j = 0; j < vols[i].places_reservees; j++) {
-      if (strcmp(reponse, vols[i].passagers[j]->nom) == 0 || strcmp(reponse, vols[i].passagers[j]->billet)) {
-        return vols[i].passagers[j];
+  while (1) {
+    printf("Nom ou Numero de billet : ");
+    gets(reponse);
+    for (int i = 0; i < nb_vols; i++) {
+      for (int j = 0; j < vols[i].places_reservees; j++) {
+        if (strcmp(reponse, vols[i].passagers[j]->nom) == 0 || strcmp(reponse, vols[i].passagers[j]->billet)) {
+          return vols[i].passagers[j];
+        }
       }
     }
   }

@@ -172,6 +172,12 @@ void afficherBoardingPass(Passager *passager, Vol *vol) {
   // TODO: afficher boardingPass
 }
 
+/**
+ * Permet de savoir si une place est libre dans un vol
+ * @param  place Siege
+ * @param  vol   Vol
+ * @return       int
+ */
 int placeLibre(Siege *place, Vol *vol) {
   char place_max[4];
   sprintf(place_max, "%d%c", place->rangee, vol->sieges_colonne + '@');
@@ -181,9 +187,14 @@ int placeLibre(Siege *place, Vol *vol) {
   }
 
   if (strcmp(place, "1A") > 0 && strcmp(place, place_max) < 0) {
-    // et que personne n'a deja la place
-    
-    return 0;
+    int i = 0, pastrouve = 1;
+    while (i < vol->places_reservees && pastrouve == 1) {
+      if (vol->passagers[i].siege.rangee == place.rangee && vol->passagers[i].siege.colonne == place.colonne) {
+        pastrouve = 0;
+      }
+      i++;
+    }
+    return pastrouve;
   }
   return 1;
 }
@@ -192,24 +203,31 @@ int placeLibre(Siege *place, Vol *vol) {
  * Permet de choisir un siège parmi les siège libres
  * @param passager [description]
  */
-void choisirSiege(Passager *passager, Vol *vol) {
+int choisirSiege(Passager *passager, Vol *vol) {
   char choix[15];
   Siege place;
-  printf("Voulez-vous choisir votre siege ? (oui ou non) ");
-  scanf(" %d", choix);
-
-  if (strcmp(choix, "oui") == 0) {
-    printf("Quelle est la place que vous voulez ? ");
-    scanf(" %s", place);
-    if (placeLibre(place, vol)) {
+  while (1) {
+    printf("Voulez-vous choisir votre siege ? (oui ou non) ");
+    scanf(" %d", choix);
+    if (strcmp(choix, "oui") == 0) {
+      printf("Quelle est la place que vous voulez ?\n");
+      printf("  > Rangee numero : ");
+      scanf(" %d", &place.rangee);
+      printf("  > Colonne numero : ");
+      scanf(" %d", &place.colonne);
+      if (placeLibre(place, vol)) {
+        passager->siege = place;
+      }
+    } else {
+      do {
+        place = {
+          (rand()/RAND_MAX) * vol->siege_rangee,
+          (rand()/RAND_MAX) * vol->siege_colonne
+        };
+      } while (!placeLibre(place, vol));
       passager->siege = place;
+      return 1;
     }
-  } else {
-    place = "AA";
-    while (!placeLibre(place, vol)) {
-      //générer un numéro de siège
-    }
-    passager->siege = place;
   }
 }
 

@@ -2,33 +2,6 @@
 #include <stdlib.h>
 #include "structures.c"
 
-int embarquement(void) {
-  Passager *passager = trouverPassager();
-  
-  if (passager->prioritaire == 1){
-    passager->embarquer = 1;
-    printf("[SUCCES] Vous avez embarqué.");
-    return 1;
-  }
-  
-  for (int i = 0; i < vol->places_reservees ; i++)
-  {
-      if (vol->passagers[i].prioritaire == 1 && vol->passager[i].embarquer == 0){
-        printf("[ERROR] Vous ne passerez pas. Il reste des passagers prioritaires à embarquer.\n");
-        return 0;
-      }
-  }
-  printf("[SUCCES] Vous avez embarqué.");
-  return 1;
-}
-
-void deposerBagages(void) {
-  Passager *passager = trouverPassager();
-  for (int i = 0; i < passager->nb_bagages; i++) {
-    passager->bagages[i].embarque = 1;
-  }
-}
-
 int peutDecoller(void) {
 
   // V´erifier que l’avion peut d´ecoller en v´erifiant que tous les passagers enregistr´es ont

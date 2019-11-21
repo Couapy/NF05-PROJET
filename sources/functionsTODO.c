@@ -13,10 +13,10 @@ int embarquement(void) {
   
   for (int i = 0; i < vol->places_reservees ; i++)
   {
-      if (vol->passagers[i].prioritaire == 1 && vol->passager[i].embarquer == 0){
-        printf("[ERROR] Vous ne passerez pas. Il reste des passagers prioritaires à embarquer.\n");
-        return 0;
-      }
+    if (vol->passagers[i].prioritaire == 1 && vol->passager[i].embarquer == 0){
+      printf("[ERROR] Vous ne passerez pas. Il reste des passagers prioritaires à embarquer.\n");
+      return 0;
+    }
   }
   printf("[SUCCES] Vous avez embarqué.");
   return 1;
@@ -27,14 +27,29 @@ void deposerBagages(void) {
   for (int i = 0; i < passager->nb_bagages; i++) {
     passager->bagages[i].embarque = 1;
   }
+  printf("[SUCCES] Vous avez déposé vos bagages.");
 }
 
 int peutDecoller(void) {
-
-  // V´erifier que l’avion peut d´ecoller en v´erifiant que tous les passagers enregistr´es ont
-  // embarqu´e et que tous les bagages sont charg´es.
-
-  return 0 || 1;
+  for (int i = 0; i < vol->places_reservees; i++)
+  {
+    if (vol->passager[i].enregistrer == 1) {
+      if (vol->passager[i].embarquer == 0)
+      {
+        printf("[ERROR]Un passager n'a pas embarqué.\n");
+        return 0;
+      }
+      for (int i = 0; i < vol->passager[i].nb_bagages; i++)
+      {
+        if (vol->passager[i].bagages[i].embarque == 0) {
+          printf("[ERROR] Un passager n'a pas emarquer ses bagages\n");
+          return 0;
+        }
+      }
+    }
+  }
+  printf("[SUCCES] L'avion va maintenant décoller.\n Bon vol à tous!\n");
+  return 1;
 }
 
 int creerVol(void){

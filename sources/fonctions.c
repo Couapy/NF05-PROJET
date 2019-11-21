@@ -3,8 +3,9 @@
 #include <math.h>
 #include <string.h>
 #include "structures.c"
+#define VOLS_MAX 255
 
-Vol vols[255];
+Vol vols[VOLS_MAX];
 int nb_vols = 0;
 int last_id_bagage = 0;
 
@@ -43,19 +44,26 @@ Vol* trouverVol(Passager *passager) {
   }
 }
 
+void afficherVols(void) {
+  printf("\nVoici la liste des vols :\n");
+  for (int i = 0; i < nb_vols; i++) {
+    printf("[%d] %s, %d passagers\n", i+1, vols[i].destination, vols[i].places_reservees);
+  }
+  printf("%d vols affiches\n\n", nb_vols);
+}
+
 /**
  * Permet de sélectionner un vol
  * @return  Vol*
  */
-Vol* choisirVol(void) {
-  Vol *vol = NULL;
+Vol* selectionnerVol(void) {
   int numero;
 
-  printf("Entrez le numero du vl : \n");
+  afficherVols();
+  printf("Entrez le numero du vol : \n");
+  scanf(" %d", &numero);
 
-  // TODO: ChoisirVol
-
-  return vol;
+  return &vols[numero-1];
 }
 
 /**
@@ -129,7 +137,7 @@ void saisirPassager(Passager *passager) {
  * @param  vol Vol*
  */
 void ajouterPassager(void) {
-  Vol *vol = choisirVol();
+  Vol *vol = selectionnerVol();
   if (vol->places_libres > 0) {
     Passager *passager = (Passager*)malloc(sizeof(Passager));
 
@@ -238,8 +246,8 @@ int choisirSiege(Passager *passager, Vol *vol) {
       }
     } else {
       do {
-        place.rangee = (rand()/RAND_MAX) * vol->siege_rangee;
-        place.colonne = (rand()/RAND_MAX) * vol->siege_colonne;
+        place.rangee = (rand()/RAND_MAX) * vol->sieges_rangee;
+        place.colonne = (rand()/RAND_MAX) * vol->sieges_colonne;
       } while (!placeLibre(&place, vol));
       passager->siege = place;
       return 1;
@@ -362,7 +370,7 @@ void deposerBagages(void) {
  * @return  int
  */
 int decoller(void) {
-  Vol *vol = choisirVol();
+  Vol *vol = selectionnerVol();
   for (int i = 0; i < vol->places_reservees; i++)
   {
     if (vol->passagers[i]->enregistrer == 1) {
@@ -388,29 +396,30 @@ int decoller(void) {
  * Permet de creer un vol
  */
 void ajouterVol(void){
-  Vol *vol;
-  int n; // nécessaire pour ajouter plus qu'un unique vol en utilisant une seule fois la fonction
+  Vol *vol = &vols[nb_vols];
+  nb_vols++;
 
-  printf("Bienvenue dans l'espace de creation d'un vol");
+  printf("\nBienvenue dans l'espace de creation d'un vol\n\n");
 
-  vol = (Vol*)malloc(n*sizeof(Vol));
+  printf("Quelle est la destination du vol ? ");
+  scanf(" %s", vol->destination);
+  printf("Choisissez votre heure de depart ? ");
+  scanf(" %s", vol->heure_depart);
+  printf("Choisissez votre heure d'arrivee ? ");
+  scanf(" %s", vol->heure_arrivee);
+  printf("Combien voulez-vous de sieges sur une rangee ? ");
+  scanf(" %d", &vol->sieges_rangee);
+  printf("Combien voulez-vous de sieges sur une colonne ? ");
+  scanf(" %d", &vol->sieges_colonne);
 
-  printf("Nous allons creer un vol depuis l'aeroport vers une destination.\n Ou voulez-vous vous rendre ?\n");
-  scanf("%s", vol->destination);
-  printf("Choisissez votre heure de depart :\n");
-  scanf("%s", vol->heure_depart);
-  printf("Choisissez votre heure d'arrivee :\n");
-  scanf("%s", vol->heure_arrivee);
-  printf("Combien voulez-vous de sieges sur une rangee ?\n");
-  scanf("%d", &vol->siege_rangee);
-  printf("Combien voulez-vous de sieges sur une rangee ?\n");
-  scanf("%d", vol->siege_colonne);
-
-  vol->places_libres = vol->siege_colonne * vol->siege_rangee;
+  vol->places_libres = vol->sieges_colonne * vol->sieges_rangee;
   printf("Votre vol comprend %d places libres au total.\n", vol->places_libres);
 
-  printf("Est-ce que les passagers ont besoin d'un VISA pour se rendre dans la destination prevue par le vol ?\n - 0 pour non\n - 1 pour oui");
-  scanf("%d", &vol->visa_requis);
+  printf("Est-ce que les passagers ont besoin d'un VISA pour se rendre dans la "
+  "destination prevue par le vol ?\n - 0 pour non\n - 1 pour oui\n  > ");
+  scanf(" %d", &vol->visa_requis);
+
+  printf("[SUCCESS] Le vol a bien ete ajoute\n\n");
 }
 
 /**
@@ -428,8 +437,36 @@ void afficherAide(void) {
   "[6] Deposer les bagages d'un passager\n"
   "[7] Embarquer un passager\n"
   "[8] Faire decoller un avion\n\n"
+  "[11] Afficher tous les vols\n"
+  "[12] Afficher les informations d'un vol\n"
+  "[13] Afficher tous les passagers d'un vol\n\n"
   "[0] Afficher l'aide\n"
   "[-1] Fermer le programme\n\n");
+}
+
+/**
+ * Afficher les infromations d'un vol
+ */
+void afficherInfoVol(void) {
+  Vol *vol = selectionnerVol();
+  printf("\nDestination : %s\n", vol->destination);
+  printf("Heure de depart : %s\n", vol->heure_depart);
+  printf("Heure d'arrivee : %s\n", vol->heure_arrivee);
+  printf("Nombre de passager : %d\n", vol->places_reservees);
+  printf("Nombre de places libres : %d\n", vol->places_libres);
+  printf("VISA requis : %d\n\n", vol->visa_requis);
+}
+
+/**
+ * Libère les pointeurs passagers stockés dans chaque vol
+ */
+void fermer(void) {
+  for (int i = 0; i < nb_vols; i++) {
+    for (int j = 0; j < vols[i].places_reservees; j++) {
+      free(vols[i].passagers[j]);
+    }
+  }
+  printf("Au plaisir de vous revoir");
 }
 
 int main(void) {
@@ -439,7 +476,7 @@ int main(void) {
   printf("Pour obtenir de l'aide, tapez 0\n\n");
 
   while (1) {
-    printf("> ");
+    printf("operateur@tourDeControle:~$ ");
     scanf(" %d", &commande);
     switch (commande) {
       case 1: ajouterVol(); break;
@@ -451,7 +488,9 @@ int main(void) {
       case 7: embarquement(); break;
       case 8: decoller(); break;
       case 0: afficherAide(); break;
-      case -1: printf("Au plaisir de vous revoir"); return 0;
+      case 11: afficherVols(); break;
+      case 12: afficherInfoVol(); break;
+      case -1: fermer(); return 0;
       default:
         printf("La commande n'a pas ete reconnue, vous pouvez consulter l'aide en"
         " tapant 'help'\n");

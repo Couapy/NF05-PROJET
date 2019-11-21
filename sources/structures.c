@@ -35,8 +35,6 @@ typedef struct {
   Passager *passagers[1024];
   int places_reservees;
   int places_libres;
-  int siege_rangee;
-  int siege_colonne;
   int visa_requis;
   int sieges_rangee;
   int sieges_colonne;

@@ -306,6 +306,15 @@ int passerSecurite(Passager *passager) {
 int embarquement(void) {
   Passager *passager = trouverPassager();
 
+  if (passager->securite != 1) {
+    printf("[ERROR] Le passager n'a pas passe la securite\n");
+    return 0;
+  }
+  if (passager->frontiere != 1) {
+    printf("[ERROR] Le passager n'a pas passe la frontiere\n");
+    return 0;
+  }
+
   if (passager->prioritaire == 1) {
     passager->embarquer = 1;
     printf("[SUCCESS] Vous avez embarqué.");
@@ -332,7 +341,7 @@ void deposerBagages(void) {
   }
 }
 
-int peutDecoller(void) {
+int decoller(void) {
   for (int i = 0; i < vol->places_reservees; i++)
   {
     if (vol->passager[i].enregistrer == 1) {
@@ -380,17 +389,53 @@ int creerVol(void){
   scanf("%d", &vol->visa_requis);
 }
 
+void afficherAide(void) {
+
+  printf("\n
+  Bienvenue dans l'aide !\n
+  Voici les commandes disponibles :\n\n
+  - ajouterVol\n
+  - ajouterPassager (simule l'achat du billet)\n
+  - engeristrerPassager (enregistre le passager sur le vol)\n
+  - passerFrontieres\n
+  - passerSecurite\n
+  - deposerBagages\n
+  - embarquer\n
+  - decoller\n");
+
+}
+
 int main(void) {
+  char commande[24] = { "\0" };
+  printf("Pour obtenir de l'aide, tapez 'help'\n\n");
 
-  // Passager *passager = (Passager*)malloc(sizeof(Passager));
-  // saisirPassager(passager);
-  // genererBillet(passager);
-  // printf("Billet numero : %s\n", passager->billet);
-
-  // Vol *vol = (Vol*)malloc(sizeof(Vol));
-  // vol->places_reservees = 3;
-  // vol->places_libres = 64;
-  // ajouterPassager(vol);
+  while (strcmp(commande, "exit") != 0) {
+    printf("\n>");
+    scanf(" %s", commande);
+    switch (commande) {
+      case "help":
+        afficherAide();
+      break;
+      case "ajouterVol":
+      break;
+      case "ajouterPassager":
+      break;
+      case "engeristrerPassager":
+      break;
+      case "passerFrontieres":
+      break;
+      case "passerSecurite":
+      break;
+      case "deposerBagages":
+      break;
+      case "embarquer":
+      break;
+      case "decoller":
+      break;
+      case default:
+        printf("La commande n'a pas été reconnue, vous pouvez consulter l'aide en tapant 'help'\n");
+    }
+  }
 
   return 0;
 }

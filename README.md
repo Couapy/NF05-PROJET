@@ -14,3 +14,14 @@ d'aréoport pour le cours NF05 - Introduction au langage C
   - Embarquement des passagers
     - Prioritaires en premiers
     - Les autres après
+
+## Commandes Disponibles
+
+- ajouterVol
+- ajouterPassager (simule l'achat du billet)
+- engeristrerPassager (enregistre le passager sur le vol)
+- passerFrontieres
+- passerSecurite
+- deposerBagages
+- embarquer
+- decoller

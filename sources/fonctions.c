@@ -2,12 +2,61 @@
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
-#include "structures.c" // TEMP: Remove
+#include "structures.c"
 
-// Variable globales
 Vol vols[255];
 int nb_vols = 0;
 int last_id_bagage = 0;
+
+/**
+ * Trouve un passager selon un Nom ou un Numero de billet
+ * @return  Passager*
+ */
+Passager* trouverPassager(void) {
+  char reponse[64];
+  while (1) {
+    printf("Nom ou Numero de billet : ");
+    gets(reponse);
+    for (int i = 0; i < nb_vols; i++) {
+      for (int j = 0; j < vols[i].places_reservees; j++) {
+        if (strcmp(reponse, vols[i].passagers[j]->nom) == 0 || strcmp(reponse, vols[i].passagers[j]->billet)) {
+          return vols[i].passagers[j];
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Trouve le vol d'un passager
+ * @param  passager Passager*
+ * @return          Passager*
+ */
+Vol* trouverVol(Passager *passager) {
+  Vol *vol;
+  for (int i = 0; i < nb_vols; i++) {
+    for (int j = 0; j < vols[i].places_reservees; j++) {
+      if (strcmp(passager->billet, vols[i].passagers[j]->billet) == 0) {
+        return &vol[i];
+      }
+    }
+  }
+}
+
+/**
+ * Permet de sélectionner un vol
+ * @return  Vol*
+ */
+Vol* choisirVol(void) {
+  Vol *vol = NULL;
+  int numero;
+
+  printf("Entrez le numero du vl : \n");
+
+  // TODO: ChoisirVol
+
+  return vol;
+}
 
 /**
  * Fonction qui génère un billet à un passager
@@ -79,7 +128,8 @@ void saisirPassager(Passager *passager) {
  * On ajoute un passager à un vol
  * @param  vol Vol*
  */
-void ajouterPassager(Vol *vol) { // DONE
+void ajouterPassager(void) {
+  Vol *vol = choisirVol();
   if (vol->places_libres > 0) {
     Passager *passager = (Passager*)malloc(sizeof(Passager));
 
@@ -103,41 +153,6 @@ void ajouterPassager(Vol *vol) { // DONE
     printf("[INFO]Ajout reussi du passager au vol\n");
   } else {
     printf("[ERROR] Il n'y a plus de places sur le vol");
-  }
-}
-
-/**
- * Trouve un passager selon un Nom ou un Numero de billet
- * @return  Passager*
- */
-Passager* trouverPassager(void) {
-  char reponse[64];
-  while (1) {
-    printf("Nom ou Numero de billet : ");
-    gets(reponse);
-    for (int i = 0; i < nb_vols; i++) {
-      for (int j = 0; j < vols[i].places_reservees; j++) {
-        if (strcmp(reponse, vols[i].passagers[j]->nom) == 0 || strcmp(reponse, vols[i].passagers[j]->billet)) {
-          return vols[i].passagers[j];
-        }
-      }
-    }
-  }
-}
-
-/**
- * Trouve le vol d'un passager
- * @param  passager Passager*
- * @return          Passager*
- */
-Vol* trouverVol(Passager *passager) {
-  Vol *vol;
-  for (int i = 0; i < nb_vols; i++) {
-    for (int j = 0; j < vols[i].places_reservees; j++) {
-      if (strcmp(passager->billet, vols[i].passagers[j]->billet) == 0) {
-        return &vol[i];
-      }
-    }
   }
 }
 
@@ -181,16 +196,18 @@ void afficherBoardingPass(Passager *passager, Vol *vol) {
  */
 int placeLibre(Siege *place, Vol *vol) {
   char place_max[4];
+  char string_place[4];
   sprintf(place_max, "%d%c", place->rangee, vol->sieges_colonne + '@');
+  sprintf(string_place, "%d%c", place->rangee, place->colonne + '@');
 
-  if (1 >= place.rangee || place.rangee >= vol->sieges_rangee) {
+  if (1 >= place->rangee || place->rangee >= vol->sieges_rangee) {
     return 0;
   }
 
-  if (strcmp(place, "1A") > 0 && strcmp(place, place_max) < 0) {
+  if (strcmp(string_place, "1A") > 0 && strcmp(string_place, place_max) < 0) {
     int i = 0, pastrouve = 1;
     while (i < vol->places_reservees && pastrouve == 1) {
-      if (vol->passagers[i].siege.rangee == place.rangee && vol->passagers[i].siege.colonne == place.colonne) {
+      if (vol->passagers[i]->siege.rangee == place->rangee && vol->passagers[i]->siege.colonne == place->colonne) {
         pastrouve = 0;
       }
       i++;
@@ -216,16 +233,14 @@ int choisirSiege(Passager *passager, Vol *vol) {
       scanf(" %d", &place.rangee);
       printf("  > Colonne numero : ");
       scanf(" %d", &place.colonne);
-      if (placeLibre(place, vol)) {
+      if (placeLibre(&place, vol)) {
         passager->siege = place;
       }
     } else {
       do {
-        place = {
-          (rand()/RAND_MAX) * vol->siege_rangee,
-          (rand()/RAND_MAX) * vol->siege_colonne
-        };
-      } while (!placeLibre(place, vol));
+        place.rangee = (rand()/RAND_MAX) * vol->siege_rangee;
+        place.colonne = (rand()/RAND_MAX) * vol->siege_colonne;
+      } while (!placeLibre(&place, vol));
       passager->siege = place;
       return 1;
     }
@@ -252,7 +267,9 @@ void engeristrerPassager(void) {
  * @param  vol      Vol*
  * @return          boolean
  */
-int passerFrontieres(Passager *passager, Vol *vol) {
+void passerFrontieres(void) {
+  Passager *passager = trouverPassager();
+  Vol *vol = trouverVol(passager);
   passager->frontiere = 0;
   printf("Vérification des documents:\n");
 
@@ -274,8 +291,6 @@ int passerFrontieres(Passager *passager, Vol *vol) {
       }
     }
   }
-
-  return passager->frontiere;
 }
 
 /**
@@ -283,20 +298,20 @@ int passerFrontieres(Passager *passager, Vol *vol) {
  * @param  passager Passager*
  * @return          int
  */
-int passerSecurite(Passager *passager) {
+void passerSecurite(void) {
   int interdit;
+  Passager *passager = trouverPassager();
   printf("La securite n'accepte pas de produits liquides de plus de 100mL ou d'objets contondants.");
   printf("En avez-vous en votre possession ?\n - 0 pour non\n -1 pour oui\n");
   scanf("%d", &interdit);
 
   if (interdit == 1){
-    printf("Vous ne pouvez pas passer la securite.\n");
+    printf("[ERROR] Vous ne pouvez pas passer la securite.\n");
     passager->securite = 0;
   } else{
-    printf("Vous venez de passer la securite.");
+    printf("[SUCCESS]Vous venez de passer la securite.");
     passager->securite = 1;
   }
-  return passager->securite;
 }
 
 /**
@@ -305,6 +320,7 @@ int passerSecurite(Passager *passager) {
  */
 int embarquement(void) {
   Passager *passager = trouverPassager();
+  Vol *vol = trouverVol(passager);
 
   if (passager->securite != 1) {
     printf("[ERROR] Le passager n'a pas passe la securite\n");
@@ -322,12 +338,12 @@ int embarquement(void) {
   }
 
   for (int i = 0; i < vol->places_reservees ; i++) {
-      if (vol->passagers[i].prioritaire == 1 && vol->passager[i].embarquer == 0){
+      if (vol->passagers[i]->prioritaire == 1 && vol->passagers[i]->embarquer == 0){
         printf("[ERROR] Vous ne passerez pas. Il reste des passagers prioritaires à embarquer.\n");
         return 0;
       }
   }
-  printf("[SUCCES] Vous avez embarqué.");
+  printf("[SUCCESS] Vous avez embarqué.");
   return 1;
 }
 
@@ -341,29 +357,37 @@ void deposerBagages(void) {
   }
 }
 
+/**
+ * Permet  de faire decoller un avion
+ * @return  int
+ */
 int decoller(void) {
+  Vol *vol = choisirVol();
   for (int i = 0; i < vol->places_reservees; i++)
   {
-    if (vol->passager[i].enregistrer == 1) {
-      if (vol->passager[i].embarquer == 0)
+    if (vol->passagers[i]->enregistrer == 1) {
+      if (vol->passagers[i]->embarquer == 0)
       {
         printf("[ERROR]Un passager n'a pas embarqué.\n");
         return 0;
       }
-      for (int i = 0; i < vol->passager[i].nb_bagages; i++)
+      for (int i = 0; i < vol->passagers[i]->nb_bagages; i++)
       {
-        if (vol->passager[i].bagages[i].embarque == 0) {
+        if (vol->passagers[i]->bagages[i].embarque == 0) {
           printf("[ERROR] Un passager n'a pas emarquer ses bagages\n");
           return 0;
         }
       }
     }
   }
-  printf("[SUCCES] L'avion va maintenant décoller.\n Bon vol à tous!\n");
+  printf("[SUCCESS] L'avion va maintenant décoller.\n Bon vol à tous!\n");
   return 1;
 }
 
-int creerVol(void){
+/**
+ * Permet de creer un vol
+ */
+void ajouterVol(void){
   Vol *vol;
   int n; // nécessaire pour ajouter plus qu'un unique vol en utilisant une seule fois la fonction
 
@@ -389,53 +413,48 @@ int creerVol(void){
   scanf("%d", &vol->visa_requis);
 }
 
+/**
+ * Affiche le menu de l'aide
+ */
 void afficherAide(void) {
-
-  printf("\n
-  Bienvenue dans l'aide !\n
-  Voici les commandes disponibles :\n\n
-  - ajouterVol\n
-  - ajouterPassager (simule l'achat du billet)\n
-  - engeristrerPassager (enregistre le passager sur le vol)\n
-  - passerFrontieres\n
-  - passerSecurite\n
-  - deposerBagages\n
-  - embarquer\n
-  - decoller\n");
-
+  printf("\n"
+  "Bienvenue dans l'aide !\n"
+  "Voici les commandes disponibles :\n\n"
+  "[1] Ajouter un vol\n"
+  "[2] Ajouter un passager a un vol\n"
+  "[3] Enregistrer un passage sur vol\n"
+  "[4] Passer un passager a un la frontiere\n"
+  "[5] Passer un passager a la securite\n"
+  "[6] Deposer les bagages d'un passager\n"
+  "[7] Embarquer un passager\n"
+  "[8] Faire decoller un avion\n\n"
+  "[0] Afficher l'aide\n"
+  "[-1] Fermer le programme\n\n");
 }
 
 int main(void) {
-  char commande[24] = { "\0" };
-  printf("Pour obtenir de l'aide, tapez 'help'\n\n");
+  int commande;
 
-  while (strcmp(commande, "exit") != 0) {
-    printf("\n>");
-    scanf(" %s", commande);
+  printf("Bienvenue a Paris-Charles-De-Guaule !!\n");
+  printf("Pour obtenir de l'aide, tapez 0\n\n");
+
+  while (1) {
+    printf("> ");
+    scanf(" %d", &commande);
     switch (commande) {
-      case "help":
-        afficherAide();
-      break;
-      case "ajouterVol":
-      break;
-      case "ajouterPassager":
-      break;
-      case "engeristrerPassager":
-      break;
-      case "passerFrontieres":
-      break;
-      case "passerSecurite":
-      break;
-      case "deposerBagages":
-      break;
-      case "embarquer":
-      break;
-      case "decoller":
-      break;
-      case default:
-        printf("La commande n'a pas été reconnue, vous pouvez consulter l'aide en tapant 'help'\n");
+      case 1: ajouterVol(); break;
+      case 2: ajouterPassager(); break;
+      case 3: engeristrerPassager(); break;
+      case 4: passerFrontieres(); break;
+      case 5: passerSecurite(); break;
+      case 6: deposerBagages(); break;
+      case 7: embarquement(); break;
+      case 8: decoller(); break;
+      case 0: afficherAide(); break;
+      case -1: printf("Au plaisir de vous revoir"); return 0;
+      default:
+        printf("La commande n'a pas ete reconnue, vous pouvez consulter l'aide en"
+        " tapant 'help'\n");
     }
   }
-
-  return 0;
 }

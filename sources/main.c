@@ -2,32 +2,56 @@
 #include "structures.c"
 #include "fonctions.c"
 
-/**
- * register
- * ticket bagages + boarding pass
- * depot bagages
- * frontière
- * sécurité
- * embarquement
- */
-
 Vol vols[255];
 int nb_vols = 0;
 
 int main(void) {
-  char commande[64];
-  while (strcmp(commande, "quitter") != 0) {
-    printf("Sys> ");
-    gets(commande);
+  char commande[24] = { "\0" };
+  int nb_commandes = 8, i, selection;
+  char commandes[][24] = {
+    "ajouterVol",
+    "ajouterPassager",
+    "engeristrerPassager",
+    "passerFrontieres",
+    "passerSecurite",
+    "deposerBagages",
+    "embarquer",
+    "decoller"
+  };
+  int fonctions[] = {
+    &ajouterVol,
+    &ajouterPassager,
+    &engeristrerPassager,
+    &passerFrontieres,
+    &passerSecurite,
+    &deposerBagages,
+    &embarquer,
+    &decoller
+  };
+  printf("Pour obtenir de l'aide, tapez 'help'\n\n");
 
-    if (commande == "ajouter") {
-
-    } else {
-      // Aide
-      printf("ajouter\n");
+  while (1) {
+    printf("\n>");
+    scanf(" %s", commande);
+    if (strcmp(commande, "exit")) {
+      return 0;
     }
-    printf("\n");
-  }
 
-  return 0;
+    i = 0;
+    selection = -1;
+    while (i < nb_commandes && selection != -1) {
+      if (strcmp(commande, commandes[i]) == 0) {
+        selection = i;
+      }
+      i++;
+    }
+
+    if (selection < 0) {
+      printf("La commande n'a pas été reconnue, vous pouvez consulter l'aide en"
+      " tapant 'help'\n");
+    }
+    else {
+      fonctions[selection]();
+    }
+  }
 }

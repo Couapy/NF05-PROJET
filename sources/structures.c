@@ -33,7 +33,7 @@ typedef struct {
   char heure_arrivee[64];
   char destination[128];
   Passager *passagers[1024];
-  int places_reservees; 
+  int places_reservees;
   int places_libres;
   int siege_rangee;
   int siege_colonne;

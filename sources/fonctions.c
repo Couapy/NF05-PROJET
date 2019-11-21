@@ -299,7 +299,6 @@ int passerSecurite(Passager *passager) {
   return passager->securite;
 }
 
-<<<<<<< HEAD
 /**
  * Fonction qui permet d'embarquer un passager
  * @return  [description]
@@ -331,13 +330,6 @@ void deposerBagages(void) {
   for (int i = 0; i < passager->nb_bagages; i++) {
     passager->bagages[i].embarque = 1;
   }
-=======
-void deposerBagages(void) {
-  Passager *passager = trouverPassager();
-  for (int i = 0; i < passager->nb_bagages; i++) {
-    passager->bagages[i].embarque = 1;
-  }
-  printf("[SUCCES] Vous avez déposé vos bagages.");
 }
 
 int peutDecoller(void) {
@@ -363,13 +355,12 @@ int peutDecoller(void) {
 }
 
 int creerVol(void){
-
   Vol *vol;
   int n; // nécessaire pour ajouter plus qu'un unique vol en utilisant une seule fois la fonction
 
   printf("Bienvenue dans l'espace de creation d'un vol");
 
-  vol=(Vol*)malloc(n*sizeof(Vol));
+  vol = (Vol*)malloc(n*sizeof(Vol));
 
   printf("Nous allons creer un vol depuis l'aeroport vers une destination.\n Ou voulez-vous vous rendre ?\n");
   scanf("%s", vol->destination);
@@ -387,8 +378,6 @@ int creerVol(void){
 
   printf("Est-ce que les passagers ont besoin d'un VISA pour se rendre dans la destination prevue par le vol ?\n - 0 pour non\n - 1 pour oui");
   scanf("%d", &vol->visa_requis);
-  // heure d'arrivée, de départ, la destination, le nombre de place totales, visa ?
->>>>>>> 87f59e6704a3bc6fb7474d7b89c0914819605e8d
 }
 
 int main(void) {

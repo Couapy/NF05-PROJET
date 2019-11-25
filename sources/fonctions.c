@@ -45,6 +45,9 @@ Vol* trouverVol(Passager *passager) {
   }
 }
 
+/**
+ * Permet d'afficher tous les vols
+ */
 void afficherVols(void) {
   printf("\nVoici la liste des vols :\n");
   for (int i = 0; i < nb_vols; i++) {
@@ -61,7 +64,7 @@ Vol* selectionnerVol(void) {
   int numero;
 
   afficherVols();
-  printf("Entrez le numero du vol : \n");
+  printf("Entrez le numero du vol : ");
   scanf(" %d", &numero);
 
   return &vols[numero-1];
@@ -109,15 +112,13 @@ void genererBillet(Passager *passager) {
 void saisirPassager(Passager *passager) {
   char reponse[10];
 
-  printf("\nEnregistrement des informations sur les passagers.\n");
-
-  printf("Entrez le nom de votre passager : ");
+  printf("Entrez le nom du passager : ");
   scanf(" %s", passager->nom);
-
-  printf("Entrez le prenom de votre passager : ");
+  printf("Entrez le prenom du passager : ");
   scanf(" %s", passager->prenom);
-
-  printf("Etes vous prioritaire ? (oui ou non) ");
+  printf("Nationalite du passager : ");
+  scanf(" %s", passager->nationalite);
+  printf("Est-il prioritaire ? (oui ou non) ");
   scanf(" %s", &reponse);
 
   if (strcmp(reponse, "oui") == 0) {
@@ -126,15 +127,18 @@ void saisirPassager(Passager *passager) {
     passager->prioritaire = 1;
   }
 
-  printf("Indiquez votre date de naissance en format JJ/MM/AAAA : ");
+  printf("Indiquez sa date de naissance en format JJ/MM/AAAA : ");
   scanf(" %s", passager->date_naissance);
 
   passager->billet[0] = '\0';
+  passager->nb_bagages = 0;
   passager->bagages[0].ticket = 0;
   passager->enregistrer = 0;
   passager->embarquer = 0;
   passager->frontiere = 0;
   passager->securite = 0;
+  passager->siege.rangee = -1;
+  passager->siege.colonne = -1;
 }
 
 /**
@@ -142,30 +146,34 @@ void saisirPassager(Passager *passager) {
  * @param  vol Vol*
  */
 void ajouterPassager(void) {
-  Vol *vol = selectionnerVol();
-  if (vol->places_libres > 0) {
-    Passager *passager = (Passager*)malloc(sizeof(Passager));
+  if (nb_vols > 0) {
+    Vol *vol = selectionnerVol();
+    if (vol->places_libres > 0) {
+      Passager *passager = (Passager*)malloc(sizeof(Passager));
 
-    //On génère le passager
-    saisirPassager(passager);
-    genererBillet(passager);
+      //On génère le passager
+      saisirPassager(passager);
+      genererBillet(passager);
 
-    // Les informations du passager sont montrés en une "jolie" phrase.
-    printf("%s %s ne(e) le %s ", passager->nom, passager->prenom, passager->date_naissance);
-    if (passager->prioritaire == 0){
-      printf("est prioritaire.\n");
+      // Les informations du passager sont montrés en une "jolie" phrase.
+      printf("%s %s ne(e) le %s ", passager->nom, passager->prenom, passager->date_naissance);
+      if (passager->prioritaire == 0){
+        printf("est prioritaire.\n");
+      } else {
+        printf("n'est pas prioritaire.\n");
+      }
+
+      printf("Votre numero de billet : %s %c\n", passager->billet, passager->billet[10]);
+
+      vol->passagers[vol->places_reservees] = passager;
+      vol->places_libres -= 1;
+      vol->places_reservees += 1;
+      printf("[INFO] Ajout reussi du passager au vol\n\n");
     } else {
-      printf("n'est pas prioritaire.\n");
+      printf("[ERROR] Il n'y a plus de places sur le vol\n\n");
     }
-
-    printf("Votre numero de billet : %s %c\n", passager->billet, passager->billet[10]);
-
-    vol->passagers[vol->places_reservees] = passager;
-    vol->places_libres -= 1;
-    vol->places_reservees += 1;
-    printf("[INFO]Ajout reussi du passager au vol\n\n");
   } else {
-    printf("[ERROR] Il n'y a plus de places sur le vol\n\n");
+    printf("\n[ERROR] Il n'y pas encore de vol enregistre\n\n");
   }
 }
 
@@ -174,10 +182,11 @@ void ajouterPassager(void) {
  * @param [name] [description]
  */
 void enregistrerBagages(Passager *passager) {
-  int nb_bagages = 3, nb_bagages_max = 1;
+  int nb_bagages, nb_bagages_max = 1;
   if (passager->prioritaire == 1) {
     nb_bagages_max = 2;
   }
+  nb_bagages = nb_bagages_max + 1;
 
   while (nb_bagages > nb_bagages_max) {
     printf("Combien de bagages avez-vous ? (%d maximum)", nb_bagages_max);
@@ -375,49 +384,54 @@ void deposerBagages(void) {
  * @return  int
  */
 int decoller(void) {
-  Vol *vol = selectionnerVol();
-  int non_enregistre = 0;
+  if (nb_vols > 0) {
+    Vol *vol = selectionnerVol();
+    int non_enregistre = 0;
 
-  for (int i = 0; i < vol->places_reservees; i++) {
-    if (vol->passagers[i]->enregistrer == 1) {
-      if (vol->passagers[i]->embarquer == 0)
-      {
-        printf("[ERROR]Un passager n'a pas embarque.\n");
-        return 0;
-      }
-      for (int i = 0; i < vol->passagers[i]->nb_bagages; i++)
-      {
-        if (vol->passagers[i]->bagages[i].embarque == 0) {
-          printf("[ERROR] Un passager n'a pas embarquer ses bagages\n");
+    for (int i = 0; i < vol->places_reservees; i++) {
+      if (vol->passagers[i]->enregistrer == 1) {
+        if (vol->passagers[i]->embarquer == 0)
+        {
+          printf("[ERROR]Un passager n'a pas embarque.\n");
           return 0;
         }
+        for (int i = 0; i < vol->passagers[i]->nb_bagages; i++)
+        {
+          if (vol->passagers[i]->bagages[i].embarque == 0) {
+            printf("[ERROR] Un passager n'a pas embarquer ses bagages\n");
+            return 0;
+          }
+        }
+      } else {
+        non_enregistre++;
       }
+    }
+
+    if (non_enregistre > 0) {
+      printf("[INFO] %d passagers ne se sont pas enregistres\n", non_enregistre);
     } else {
-      non_enregistre++;
+      printf("[INFO] Tous les passagers sont embarques\n");
     }
-  }
 
-  if (non_enregistre > 0) {
-    printf("[INFO] %d passagers ne se sont pas enregistres\n", non_enregistre);
-  } else {
-    printf("[INFO] Tous les passagers sont embarques\n");
-  }
-
-  // On cherche l'indice du vol dans le tableau vols pour le retirer
-  int i = 0, trouve = 0;
-  while (i < nb_vols && trouve == 0) {
-    if (strcmp(vols[i].numero_vol, vol->numero_vol) == 0) {
-      trouve = 1;
-      for (int j = i; j < nb_vols-1; j++) {
-        vols[j] = vol[j+1];
+    // On cherche l'indice du vol dans le tableau vols pour le retirer
+    int i = 0, trouve = 0;
+    while (i < nb_vols && trouve == 0) {
+      if (strcmp(vols[i].numero_vol, vol->numero_vol) == 0) {
+        trouve = 1;
+        for (int j = i; j < nb_vols-1; j++) {
+          vols[j] = vol[j+1];
+        }
       }
+      i++;
     }
-    i++;
-  }
-  nb_vols--;
+    nb_vols--;
 
-  printf("[SUCCESS] L'avion va maintenant decoller.\nBon vol a tous!\n\n");
-  return 1;
+    printf("[SUCCESS] L'avion va maintenant decoller.\nBon vol a tous!\n\n");
+    return 1;
+  } else {
+    printf("\n[ERROR] Il n'y pas encore de vol enregistre\n\n");
+    return 0;
+  }
 }
 
 /**
@@ -441,9 +455,7 @@ void ajouterVol(void){
   Vol *vol = &vols[nb_vols];
   nb_vols++;
 
-  printf("\nBienvenue dans l'espace de creation d'un vol\n\n");
-
-  printf("Quelle est la destination du vol ? ");
+  printf("\nQuelle est la destination du vol ? ");
   scanf(" %s", vol->destination);
   printf("Choisissez votre heure de depart ? ");
   scanf(" %s", vol->heure_depart);
@@ -473,20 +485,21 @@ void ajouterVol(void){
 void afficherAide(void) {
   printf("\n"
   "Bienvenue dans l'aide !\n"
+  "Vous pouvez saisir les commandes, mais aussi le numéro correspondant\n"
   "Voici les commandes disponibles :\n\n"
-  "[1] Ajouter un vol\n"
-  "[2] Ajouter un passager a un vol\n"
-  "[3] Enregistrer un passage sur vol\n"
-  "[4] Passer un passager a un la frontiere\n"
-  "[5] Passer un passager a la securite\n"
-  "[6] Deposer les bagages d'un passager\n"
-  "[7] Embarquer un passager\n"
-  "[8] Faire decoller un avion\n\n"
-  "[11] Afficher tous les vols\n"
-  "[12] Afficher les informations d'un vol\n"
-  "[13] Afficher tous les passagers d'un vol\n\n"
-  "[0] Afficher l'aide\n"
-  "[-1] Fermer le programme\n\n");
+  "[1] ajouterVol : Ajouter un vol\n"
+  "[2] ajouterPassager : Ajouter un passager a un vol\n"
+  "[3] enregistrerPassager : Enregistrer un passage sur vol\n"
+  "[4] passerFrontieres : Passer un passager a un la frontiere\n"
+  "[5] passerSecurite : Passer un passager a la securite\n"
+  "[6] deposerBagages : Deposer les bagages d'un passager\n"
+  "[7] embarquer : Embarquer un passager\n"
+  "[8] decoller : Faire decoller un avion\n\n"
+  "[11] afficherVols : Afficher tous les vols\n"
+  "[12] afficherInfoVol : Afficher les informations d'un vol\n"
+  "[13] afficherPassagerVol : Afficher tous les passagers d'un vol\n\n"
+  "[0] aide : Afficher l'aide\n"
+  "[100] fermer : Fermer le programme\n\n");
 }
 
 /**
@@ -507,8 +520,79 @@ void afficherInfoVol(void) {
       printf("non\n\n");
     }
   } else {
-    printf("\nAucun vol n'a ete enregistre\n\n");
+    printf("\n[ERROR] Il n'y pas encore de vol enregistre\n\n");
   }
+}
+
+/**
+ * Sauvegarder l'instance du programme en cours
+ */
+void sauvegarder(void) {
+  FILE *fvols = NULL, *fpassagers = NULL;
+  char chemin_vols[64], chemin_passagers[64], nom_fichier[24];
+
+  printf("\nNom de la sauvegarde : ");
+  scanf("%s", nom_fichier);
+  sprintf(chemin_vols, "data/%s_vols.txt", nom_fichier);
+  sprintf(chemin_passagers, "data/%s_passagers.txt", nom_fichier);
+  fvols = fopen(chemin_vols, "w+");
+  fpassagers = fopen(chemin_passagers, "w+");
+
+  fprintf(fvols, "%d\n", nb_vols);
+  for (int i = 0; i < nb_vols; i++) {
+    fprintf(fvols, "%s\n%s\n%s\n%s\n%d\n%d\n%d\n%d\n%d\n",
+     vols[i].numero_vol,
+     vols[i].heure_depart,
+     vols[i].heure_arrivee,
+     vols[i].destination,
+     vols[i].places_reservees,
+     vols[i].places_libres,
+     vols[i].visa_requis,
+     vols[i].sieges_rangee,
+     vols[i].sieges_colonne
+    );
+  }
+
+  for (int i = 0; i < nb_vols; i++) {
+    for (int j = 0; j < vols[i].places_reservees; j++) {
+      fprintf(fpassagers, "%s\n%s\n%s\n%d\n%d\n%d\n%d\n%d\n%s\n%s\n%d\n%d\n"
+                          "%d\n%d\n",
+        vols[i].passagers[j]->nom,
+        vols[i].passagers[j]->prenom,
+        vols[i].passagers[j]->nationalite,
+        vols[i].passagers[j]->visa,
+        vols[i].passagers[j]->frontiere,
+        vols[i].passagers[j]->securite,
+        vols[i].passagers[j]->nb_bagages,
+        vols[i].passagers[j]->prioritaire,
+        vols[i].passagers[j]->billet,
+        vols[i].passagers[j]->date_naissance,
+        vols[i].passagers[j]->siege.rangee,
+        vols[i].passagers[j]->siege.colonne,
+        vols[i].passagers[j]->enregistrer,
+        vols[i].passagers[j]->embarquer
+      );
+      for (int k = 0; k < vols[i].passagers[j]->nb_bagages; k++) {
+        fprintf(fpassagers, "%d %d ",
+          vols[i].passagers[j]->bagages[k].ticket,
+          vols[i].passagers[j]->bagages[k].embarque
+        );
+        fprintf(fpassagers, "\n");
+      }
+    }
+  }
+
+  fclose(fvols);
+  fclose(fpassagers);
+
+  printf("[SUCCESS] La sauvegarde a ete effectuee\n\n");
+}
+
+/**
+ * Permet de restaurer une instance à partir d'un fichier
+ */
+void restaurer(void) {
+
 }
 
 /**
@@ -525,7 +609,7 @@ void fermer(void) {
 
 int main(void) {
   char commande[24];
-  int fonction, choix_commande, nb_commandes = 12;
+  int fonction, choix_commande, nb_commandes = 15;
   Commande commandes[] = {
     { 1, "ajouterVol" },
     { 2, "ajouterPassager" },
@@ -538,11 +622,14 @@ int main(void) {
     { 0, "aide" },
     { 11, "afficherVols" },
     { 12, "afficherInfoVol" },
-    { -1, "fermer" },
+    { 13, "afficherPassagerVol" },
+    { 21, "sauvegarder" },
+    { 22, "restaurer" },
+    { 100, "fermer" }
   };
 
   printf("Bienvenue a Paris-Charles-De-Guaule !!\n");
-  printf("Pour obtenir de l'aide, tapez 0\n\n");
+  printf("Pour obtenir de l'aide, tapez 'aide'\n\n");
 
   while (1) {
     printf("operateur@tourDeControle:~$ ");
@@ -557,7 +644,7 @@ int main(void) {
     }
 
     if (choix_commande == 0) {
-      sscanf(commande, "%d", &fonction);
+      sscanf(commande, " %d", &fonction);
     }
 
     switch (fonction) {
@@ -572,10 +659,12 @@ int main(void) {
       case 0: afficherAide(); break;
       case 11: afficherVols(); break;
       case 12: afficherInfoVol(); break;
-      case -1: fermer(); return 0;
+      case 21: sauvegarder(); break;
+      case 22: restaurer(); break;
+      case 100: fermer(); return 0;
       default:
         printf("La commande n'a pas ete reconnue, vous pouvez consulter l'aide en"
-        " tapant 'help'\n");
+        " tapant 'aide'\n");
     }
   }
 }

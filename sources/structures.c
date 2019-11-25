@@ -29,6 +29,7 @@ typedef struct {
 } Passager;
 
 typedef struct {
+  char numero_vol[8];
   char heure_depart[64];
   char heure_arrivee[64];
   char destination[128];
@@ -39,3 +40,8 @@ typedef struct {
   int sieges_rangee;
   int sieges_colonne;
 } Vol;
+
+typedef struct {
+  int fonction;
+  char commande[24];
+} Commande;

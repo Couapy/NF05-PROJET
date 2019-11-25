@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
+#include <time.h>
 #include "structures.c"
 #define VOLS_MAX 255
 
@@ -108,7 +109,7 @@ void genererBillet(Passager *passager) {
 void saisirPassager(Passager *passager) {
   char reponse[10];
 
-  printf("Enregistrement des informations sur les passagers.\n");
+  printf("\nEnregistrement des informations sur les passagers.\n");
 
   printf("Entrez le nom de votre passager : ");
   scanf(" %s", passager->nom);
@@ -130,6 +131,10 @@ void saisirPassager(Passager *passager) {
 
   passager->billet[0] = '\0';
   passager->bagages[0].ticket = 0;
+  passager->enregistrer = 0;
+  passager->embarquer = 0;
+  passager->frontiere = 0;
+  passager->securite = 0;
 }
 
 /**
@@ -158,9 +163,9 @@ void ajouterPassager(void) {
     vol->passagers[vol->places_reservees] = passager;
     vol->places_libres -= 1;
     vol->places_reservees += 1;
-    printf("[INFO]Ajout reussi du passager au vol\n");
+    printf("[INFO]Ajout reussi du passager au vol\n\n");
   } else {
-    printf("[ERROR] Il n'y a plus de places sur le vol");
+    printf("[ERROR] Il n'y a plus de places sur le vol\n\n");
   }
 }
 
@@ -371,25 +376,62 @@ void deposerBagages(void) {
  */
 int decoller(void) {
   Vol *vol = selectionnerVol();
-  for (int i = 0; i < vol->places_reservees; i++)
-  {
+  int non_enregistre = 0;
+
+  for (int i = 0; i < vol->places_reservees; i++) {
     if (vol->passagers[i]->enregistrer == 1) {
       if (vol->passagers[i]->embarquer == 0)
       {
-        printf("[ERROR]Un passager n'a pas embarqué.\n");
+        printf("[ERROR]Un passager n'a pas embarque.\n");
         return 0;
       }
       for (int i = 0; i < vol->passagers[i]->nb_bagages; i++)
       {
         if (vol->passagers[i]->bagages[i].embarque == 0) {
-          printf("[ERROR] Un passager n'a pas emarquer ses bagages\n");
+          printf("[ERROR] Un passager n'a pas embarquer ses bagages\n");
           return 0;
         }
       }
+    } else {
+      non_enregistre++;
     }
   }
-  printf("[SUCCESS] L'avion va maintenant décoller.\n Bon vol à tous!\n");
+
+  if (non_enregistre > 0) {
+    printf("[INFO] %d passagers ne se sont pas enregistres\n", non_enregistre);
+  } else {
+    printf("[INFO] Tous les passagers sont embarques\n");
+  }
+
+  // On cherche l'indice du vol dans le tableau vols pour le retirer
+  int i = 0, trouve = 0;
+  while (i < nb_vols && trouve == 0) {
+    if (strcmp(vols[i].numero_vol, vol->numero_vol) == 0) {
+      trouve = 1;
+      for (int j = i; j < nb_vols-1; j++) {
+        vols[j] = vol[j+1];
+      }
+    }
+    i++;
+  }
+  nb_vols--;
+
+  printf("[SUCCESS] L'avion va maintenant decoller.\nBon vol a tous!\n\n");
   return 1;
+}
+
+/**
+ * Génération du numéro d uvol aléatoirement
+ * @return  char[8]
+ */
+void genererNumeroVol(char *numero) {
+  int numero1, numero2, numero3;
+  numero1 = 26.0 * ((float)rand()/RAND_MAX) + 'A';
+  numero2 = 26.0 * ((float)rand()/RAND_MAX) + 'A';
+  do {
+    numero3 = 10000.0 * ((float)rand()/RAND_MAX);
+  } while (numero3 == 10000);
+  sprintf(numero, "%c%c%04d", numero1, numero2, numero3);
 }
 
 /**
@@ -419,6 +461,9 @@ void ajouterVol(void){
   "destination prevue par le vol ?\n - 0 pour non\n - 1 pour oui\n  > ");
   scanf(" %d", &vol->visa_requis);
 
+  genererNumeroVol(vol->numero_vol);
+
+  printf("[INFO] Le numero de vol est le %s\n", vol->numero_vol);
   printf("[SUCCESS] Le vol a bien ete ajoute\n\n");
 }
 
@@ -448,13 +493,22 @@ void afficherAide(void) {
  * Afficher les infromations d'un vol
  */
 void afficherInfoVol(void) {
-  Vol *vol = selectionnerVol();
-  printf("\nDestination : %s\n", vol->destination);
-  printf("Heure de depart : %s\n", vol->heure_depart);
-  printf("Heure d'arrivee : %s\n", vol->heure_arrivee);
-  printf("Nombre de passager : %d\n", vol->places_reservees);
-  printf("Nombre de places libres : %d\n", vol->places_libres);
-  printf("VISA requis : %d\n\n", vol->visa_requis);
+  if (nb_vols > 0) {
+    Vol *vol = selectionnerVol();
+    printf("\nDestination : %s\n", vol->destination);
+    printf("Heure de depart : %s\n", vol->heure_depart);
+    printf("Heure d'arrivee : %s\n", vol->heure_arrivee);
+    printf("Nombre de passager : %d\n", vol->places_reservees);
+    printf("Nombre de places libres : %d\n", vol->places_libres);
+    printf("VISA requis : ");
+    if (vol->visa_requis) {
+      printf("oui\n\n");
+    } else {
+      printf("non\n\n");
+    }
+  } else {
+    printf("\nAucun vol n'a ete enregistre\n\n");
+  }
 }
 
 /**
@@ -466,19 +520,47 @@ void fermer(void) {
       free(vols[i].passagers[j]);
     }
   }
-  printf("Au plaisir de vous revoir");
+  printf("\n>> Au plaisir de vous revoir\n");
 }
 
 int main(void) {
-  int commande;
+  char commande[24];
+  int fonction, choix_commande, nb_commandes = 12;
+  Commande commandes[] = {
+    { 1, "ajouterVol" },
+    { 2, "ajouterPassager" },
+    { 3, "engeristrerPassager" },
+    { 4, "passerFrontieres" },
+    { 5, "passerSecurite" },
+    { 6, "deposerBagages" },
+    { 7, "embarquement" },
+    { 8, "decoller" },
+    { 0, "aide" },
+    { 11, "afficherVols" },
+    { 12, "afficherInfoVol" },
+    { -1, "fermer" },
+  };
 
   printf("Bienvenue a Paris-Charles-De-Guaule !!\n");
   printf("Pour obtenir de l'aide, tapez 0\n\n");
 
   while (1) {
     printf("operateur@tourDeControle:~$ ");
-    scanf(" %d", &commande);
-    switch (commande) {
+    scanf("%s", &commande);
+    choix_commande = 0;
+
+    for (int i = 0; i < nb_commandes; i++) {
+      if (strcmp(commande, commandes[i].commande) == 0) {
+        fonction = commandes[i].fonction;
+        choix_commande = 1;
+      }
+    }
+
+    if (choix_commande == 0) {
+      sscanf(commande, "%d", &fonction);
+    }
+
+    switch (fonction) {
       case 1: ajouterVol(); break;
       case 2: ajouterPassager(); break;
       case 3: engeristrerPassager(); break;

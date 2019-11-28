@@ -21,7 +21,7 @@ typedef struct {
   Bagage bagages[2];
   int nb_bagages;
   int prioritaire;
-  char billet[11];
+  int billet;
   char date_naissance[24];
   Siege siege;
   int enregistrer; // boarding pass enregistré

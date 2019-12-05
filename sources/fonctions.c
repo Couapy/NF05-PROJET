@@ -140,7 +140,6 @@ void saisirPassager(Passager *passager) {
 
   passager->billet = 0;
   passager->nb_bagages = 0;
-  passager->bagages[0].ticket = 0;
   passager->enregistrer = 0;
   passager->embarquer = 0;
   passager->visa = 0;
@@ -182,7 +181,7 @@ void ajouterPassager(void) {
       printf("\a[ERROR] Il n'y a plus de places sur le vol\n\n");
     }
   } else {
-    printf("\n[ERROR] Il n'y pas encore de vol enregistre\n\n");
+    printf("\n\a[ERROR] Il n'y pas encore de vol enregistre\n\n");
   }
 }
 
@@ -229,17 +228,19 @@ void afficherBoardingPass(Passager *passager, Vol *vol) {
 int placeLibre(Siege *place, Vol *vol) {
   char place_max[4];
   char string_place[4];
-  sprintf(place_max, "%d%c", place->rangee, vol->sieges_colonne + '@');
-  sprintf(string_place, "%d%c", place->rangee, place->colonne + '@');
+  sprintf(place_max, "%c%d", place->rangee + '@', vol->sieges_colonne);
+  sprintf(string_place, "%c%d", place->rangee + '@', place->colonne);
 
-  if (1 >= place->rangee || place->rangee >= vol->sieges_rangee) {
+  if (1 > place->rangee || place->rangee > vol->sieges_rangee ||
+  1 > place->colonne || place->colonne > vol->sieges_colonne) {
     return 0;
   }
 
-  if (strcmp(string_place, "1A") > 0 && strcmp(string_place, place_max) < 0) {
+  if (strcmp(string_place, "A1") > 0 && strcmp(string_place, place_max) < 0) {
     int i = 0, pastrouve = 1;
     while (i < vol->places_reservees && pastrouve == 1) {
-      if (vol->passagers[i]->siege.rangee == place->rangee && vol->passagers[i]->siege.colonne == place->colonne) {
+      if (vol->passagers[i]->siege.rangee == place->rangee &&
+        vol->passagers[i]->siege.colonne == place->colonne) {
         pastrouve = 0;
       }
       i++;
@@ -269,18 +270,18 @@ int choisirSiege(Passager *passager, Vol *vol) {
       scanf(" %d", &place.colonne);
       if (placeLibre(&place, vol)) {
         passager->siege = place;
+        printf("[INFO] Votre place est la %c%02d\n", '@' + place.rangee, place.colonne);
         return 1;
       }
+      printf("\a[ERROR] La place est deja attribuee ou non valide\n");
     } else {
       do {
-        printf("%d %d\n", vol->sieges_rangee, vol->sieges_colonne);
-        printf(">1 %f\n", ((float)rand()/RAND_MAX));
-        place.rangee = (rand()/RAND_MAX) * vol->sieges_rangee;
-        printf(">2\n");
-        place.colonne = (rand()/RAND_MAX) * vol->sieges_colonne;
+        place.rangee = ((float)rand()/RAND_MAX) * vol->sieges_rangee;
+        place.colonne = ((float)rand()/RAND_MAX) * vol->sieges_colonne;
         printf("Rangee = %d, Colonne = %d\n", place.rangee, place.colonne);
       } while (!placeLibre(&place, vol));
       passager->siege = place;
+      printf("[INFO] Votre place est la %c%02d\n", '@' + place.rangee, place.colonne);
       return 1;
     }
   }
@@ -300,18 +301,23 @@ void engeristrerPassager(void) {
     }
     if (personne == 1) {
       Passager *passager = trouverPassager();
-      Vol *vol = trouverVol(passager);
+      if (passager->enregistrer == 0) {
+        Vol *vol = trouverVol(passager);
 
-      enregistrerBagages(passager);
-      choisirSiege(passager, vol);
+        enregistrerBagages(passager);
+        choisirSiege(passager, vol);
 
-      passager->enregistrer = 1;
-      afficherBoardingPass(passager, vol);
+        passager->enregistrer = 1;
+        afficherBoardingPass(passager, vol);
+        printf("[SUCCESS] Le passager est enregistre\n\n");
+      } else {
+        printf("\n\a[ERROR] Le passager s'est deja enregistre\n\n");
+      }
     } else {
-      printf("\n[ERROR] Il n'y a aucun passager sur les vols\n\n");
+      printf("\n\a[ERROR] Il n'y a aucun passager sur les vols\n\n");
     }
   } else {
-    printf("\n[ERROR] Aucun vol existe\n\n");
+    printf("\n\a[ERROR] Aucun vol existe\n\n");
   }
 }
 
@@ -324,26 +330,38 @@ void engeristrerPassager(void) {
 void passerFrontieres(void) {
   Passager *passager = trouverPassager();
   Vol *vol = trouverVol(passager);
-  passager->frontiere = 0;
-  printf("Vérification des documents:\n");
+  if (passager->frontiere == 1) {
+    passager->frontiere = 0;
+    printf("Vérification des documents:\n");
 
-  if (passager->billet != 0) {
     printf("Votre billet est bien le numéro : %010lu\n", passager->billet);
     if (passager->enregistrer == 1) {
-      if (passager->bagages[0].ticket != 0) {
-        printf("Vous avez bien %d bagages avec vous.\n", passager->bagages[0]);
-        printf("Vous etes de nationalitee : %s et vous vous rendez à %s.\n", passager->nationalite, vol->destination);
-        if (vol->visa_requis == 1) {
-          printf("Montrez votre VISA s'il vous plait :\n 0 - si vous ne l'avez pas \n 1 - si vous l'avez\n");
-          scanf("%d", &passager->visa);
-          if (passager->visa == 1) {
-            passager->frontiere = 1;
-          }
-        } else {
-          passager->frontiere = 1;
+      int bagages_enregistres = 1;
+      for (int i = 0; i < passager->nb_bagages; i++) {
+        if (passager->bagages[i]->ticket == 0) {
+
         }
       }
+
+      printf("Vous avez bien %d bagages avec vous.\n", passager->bagages[0]);
+      printf("Vous etes de nationalitee : %s et vous vous rendez à %s.\n",
+        passager->nationalite, vol->destination);
+      if (vol->visa_requis == 1) {
+        printf("Montrez votre VISA s'il vous plait :\n 0 - si vous ne l'avez "
+        "pas \n 1 - si vous l'avez\n > ");
+        scanf("%d", &passager->visa);
+        if (passager->visa == 1) {
+          passager->frontiere = 1;
+        }
+      } else {
+        passager->frontiere = 1;
+      }
+    } else {
+      printf("\n\a[ERROR] Le passager ne s'est pas enregistre\n");
     }
+  }
+  else {
+    printf("\n\a[ERROR] Le passager a deja passe la frontiere\n");
   }
 }
 
@@ -353,7 +371,7 @@ void passerFrontieres(void) {
  * @return          int
  */
 void passerSecurite(void) {
-  int interdit; // TODO : afficher la liste des objects dangereux
+  int interdit; // TODO: afficher la liste des objects dangereux
   Passager *passager = trouverPassager();
   printf("La securite n'accepte pas de produits liquides de plus de 100mL ou d'objets contondants.");
   printf("En avez-vous en votre possession ?\n - 0 pour non\n -1 pour oui\n");
@@ -461,7 +479,7 @@ int decoller(void) {
     printf("[SUCCESS] L'avion va maintenant decoller.\nBon vol a tous!\n\n");
     return 1;
   } else {
-    printf("\n[ERROR] Il n'y pas encore de vol enregistre\n\n");
+    printf("\n\a[ERROR] Il n'y pas encore de vol enregistre\n\n");
     return 0;
   }
 }
@@ -556,7 +574,7 @@ void afficherInfoVol(void) {
     }
     printf("\n");
   } else {
-    printf("\n[ERROR] Il n'y pas encore de vol enregistre\n\n");
+    printf("\n\a[ERROR] Il n'y pas encore de vol enregistre\n\n");
   }
 }
 
@@ -713,7 +731,7 @@ void ping(void) {
 int main(void) {
   srand(time(NULL));
   char commande[64];
-  int fonction, choix_commande, nb_commandes = 14, i;
+  int fonction, choix_commande, nb_commandes, i;
   Commande commandes[] = {
     { 1, "ajouter vol" },
     { 2, "ajouter passager" },
@@ -731,6 +749,7 @@ int main(void) {
     { 99, "ping" },
     { 100, "fermer" }
   };
+  nb_commandes = sizeof(commandes) / sizeof(commandes[0]);
 
   printf("Bienvenue a Paris-Charles-De-Guaule !!\n");
   printf("Pour obtenir de l'aide, tapez 'aide'\n\n");
@@ -753,7 +772,6 @@ int main(void) {
 
     printf(">> '%s'\n", commande);
     for (int i = 0; i < nb_commandes; i++) {
-      printf("[%d] %s\n", strcmp(commande, commandes[i].commande) == 0, commandes[i].commande);
       if (strcmp(commande, commandes[i].commande) == 0) {
         fonction = commandes[i].fonction;
         choix_commande = 1;

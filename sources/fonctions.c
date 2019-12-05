@@ -390,35 +390,37 @@ void passerFrontieres(void) {
 void passerSecurite(void) {
   int interdit, reponse;
   Passager *passager = trouverPassager();
-  FILE *interdit = NULL;
+  FILE *fichier = NULL;
   char ch;
 
-  printf("Voulez-vous afficher la liste des objets interdits en cabine ?\n - 0 pour non\n -1 pour oui\n");
+  printf("Voulez-vous afficher la liste des objets interdits en cabine ?\n - 0 pour non\n - 1 pour oui\n > ");
   scanf("%d", &reponse);
 
   if (reponse == 1){
-    interdit = fopen("interdit.txt", "r");
-    if(interdit == NULL){
+    fichier = fopen("interdit.txt", "r");
+    if(fichier == NULL){
       printf("Impossible d'ouvrir le fichier. Verifiez qu'il existe et que vous pouvez le lire.\n");
     }
     else {
+      printf("\n");
       do{
-        ch = fgetc(interdit);
+        ch = fgetc(fichier);
         putchar(ch);
       }
       while(ch != EOF);
-      fclose(interdit);
+      printf("\n");
+      fclose(fichier);
     }
   }
 
-  printf("Avez-vous des objets interdits en votre possession ?\n - 0 pour non\n -1 pour oui\n");
+  printf("Avez-vous des objets interdits en votre possession ?\n - 0 pour non\n - 1 pour oui\n > ");
   scanf("%d", &interdit);
 
   if (interdit == 1){
-    printf("\a[ERROR] Vous ne pouvez pas passer la securite.\n");
+    printf("\a[ERROR] Vous ne pouvez pas passer la securite.\n\n");
     passager->securite = 0;
   } else{
-    printf("[SUCCESS]Vous venez de passer la securite.");
+    printf("[SUCCESS]Vous venez de passer la securite.\n\n");
     passager->securite = 1;
   }
 }
@@ -768,7 +770,6 @@ void fermer(void) {
  * Pong ?
  */
 void ping(void) {
-  printf("\nPong !\n");
 }
 
 int main(void) {

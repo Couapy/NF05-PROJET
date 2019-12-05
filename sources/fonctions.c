@@ -218,7 +218,9 @@ void enregistrerBagages(Passager *passager) {
  * @param vol    Vol*
  */
 void afficherBoardingPass(Passager *passager, Vol *vol) {
-  // TODO: afficher boardingPass
+  printf("Carte d'embarquement:\n\n");
+  printf("M/Mme %s %s\nPriorite: %d\nNumero billet: %lu\n", passager->nom, passager->prenom, passager->prioritaire, passager->billet);
+  printf("\nVol numero: %s à destination de %s depuis Paris\nDepart: %s / Arrivee prevue a : %s", vol->numero_vol, vol->destination, vol->heure_depart, vol->heure_arrivee);
 }
 
 /**
@@ -377,8 +379,17 @@ void passerFrontieres(void) {
  * @return          int
  */
 void passerSecurite(void) {
-  int interdit; // TODO: afficher la liste des objects dangereux
+  int interdit;
   Passager *passager = trouverPassager();
+ /* 
+  FILE *interdit = NULL;
+  interdit = fopen("interdit.txt", 'r');
+  if (interdit != NULL){
+    fscanf
+  }
+  fclose(interdit);
+
+  printf("") */
   printf("La securite n'accepte pas de produits liquides de plus de 100mL ou d'objets contondants.");
   printf("En avez-vous en votre possession ?\n - 0 pour non\n -1 pour oui\n");
   scanf("%d", &interdit);
@@ -737,7 +748,25 @@ void fermer(void) {
  * Pong ?
  */
 void ping(void) {
-  printf("\nPong !\n\n");
+  printf("\nPong !\n");
+
+  FILE *interdit = NULL;
+  interdit = fopen("interdit.txt", "r");
+  char ch;
+    do 
+    {
+        /* Read single character from file */
+        ch = fgetc(interdit);
+
+        /* Print character read on console */
+        putchar(ch);
+
+    } while(ch != EOF); /* Repeat this if last read character is not EOF */
+
+
+    /* Done with this file, close file to release resource */
+    fclose(interdit);
+
 }
 
 int main(void) {

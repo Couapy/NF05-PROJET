@@ -1,0 +1,20 @@
+ - objet coupant ou contondant les ciseaux à ongles, lame de rasoir
+ - armes à feu
+ - munitions
+ - cartouches d'imprimante
+ - briquets à combustibles
+ - batteries (électrolyte ou au lithium > 160 Wh)
+ - feux d'artifices
+ - pétards
+ - gaz lacrymogènes
+ - bouteille de gaz
+ - peintures
+ - vernies
+ - matière toxique
+ - matériaux radioactifs
+ - produits chimiques (engrais, pesticides, insecticides)
+ - produits ménagers (décapants, eau de Javel, lessive)
+ - liquides inflammables (carburant, diluant, solvant, acétone)
+ - thermomètres à mercure et baromètres
+ - produit liquide au-delà de 100 ml
+

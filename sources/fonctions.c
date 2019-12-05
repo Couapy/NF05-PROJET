@@ -218,6 +218,9 @@ void enregistrerBagages(Passager *passager) {
  */
 void afficherBoardingPass(Passager *passager, Vol *vol) {
   // TODO: afficher boardingPass
+  printf("Carte d'embarquement:\n\n");
+  printf("M/Mme %s %s\nPriorite: %d\nNumero billet: %lu\n", passager->nom, passager->prenom, passager->prioritaire, passager->billet);
+  printf("\nVol numero: %s à destination de %s depuis Paris\nDepart: %s / Arrivee prevue a : %s", vol->numero_vol, vol->destination, vol->heure_depart, vol->heure_arrivee);
 }
 
 /**

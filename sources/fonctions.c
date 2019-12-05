@@ -25,6 +25,12 @@ Passager* trouverPassager(void) {
       for (int j = 0; j < vols[i].places_reservees; j++) {
         if (strcmp(reponse, vols[i].passagers[j]->nom) == 0 ||
             billet == vols[i].passagers[j]->billet) {
+          printf(
+            "[INFO] %s %s #%010lu a ete selectionne\n",
+            vols[i].passagers[j]->nom,
+            vols[i].passagers[j]->prenom,
+            vols[i].passagers[j]->billet
+          );
           return vols[i].passagers[j];
         }
       }
@@ -218,9 +224,9 @@ void enregistrerBagages(Passager *passager) {
  * @param vol    Vol*
  */
 void afficherBoardingPass(Passager *passager, Vol *vol) {
-  printf("Carte d'embarquement:\n\n");
-  printf("M/Mme %s %s\nPriorite: %d\nNumero billet: %lu\n", passager->nom, passager->prenom, passager->prioritaire, passager->billet);
-  printf("\nVol numero: %s à destination de %s depuis Paris\nDepart: %s / Arrivee prevue a : %s", vol->numero_vol, vol->destination, vol->heure_depart, vol->heure_arrivee);
+  printf("  Carte d'embarquement:\n\n");
+  printf("  M/Mme %s %s\nPriorite: %d\nNumero billet: %lu\n", passager->nom, passager->prenom, passager->prioritaire, passager->billet);
+  printf("  Vol numero: %s a destination de %s depuis Paris\nDepart: %s / Arrivee prevue a : %s\n", vol->numero_vol, vol->destination, vol->heure_depart, vol->heure_arrivee);
 }
 
 /**
@@ -353,14 +359,17 @@ void passerFrontieres(void) {
           "pas \n 1 - si vous l'avez\n > ");
           scanf(" %d", &passager->visa);
           if (passager->visa == 1) {
-            printf("[INFO] Tous les papiers sont en regle\n\n");
+            printf("[INFO] Tous les papiers sont en regle\n");
             passager->frontiere = 1;
           } else {
-            printf("\a[ERROR] Le passager ne possede pas de VISA\n\n");
+            printf("\a[ERROR] Le passager ne possede pas de VISA\n");
           }
         } else {
-          printf("[INFO] Le passager n'a pas besoin de VISA\n\n");
+          printf("[INFO] Le passager n'a pas besoin de VISA\n");
           passager->frontiere = 1;
+        }
+        if (passager->frontiere == 1) {
+          printf("[SUCCES] Le passager a passe la frontiere\n\n");
         }
       } else {
         printf("\n\a[ERROR] Le passager n'a pas depose ses bagages\n");
@@ -381,7 +390,7 @@ void passerFrontieres(void) {
 void passerSecurite(void) {
   int interdit;
   Passager *passager = trouverPassager();
- /* 
+ /*
   FILE *interdit = NULL;
   interdit = fopen("interdit.txt", 'r');
   if (interdit != NULL){
@@ -753,7 +762,7 @@ void ping(void) {
   FILE *interdit = NULL;
   interdit = fopen("interdit.txt", "r");
   char ch;
-    do 
+    do
     {
         /* Read single character from file */
         ch = fgetc(interdit);

@@ -332,7 +332,6 @@ void engeristrerPassager(void) {
 void passerFrontieres(void) {
   Passager *passager = trouverPassager();
   Vol *vol = trouverVol(passager);
-  printf("%d %d\n", passager->frontiere, passager->frontiere == 1);
   if (passager->frontiere == 0) {
     if (passager->enregistrer == 1) {
       int bagages_enregistres = 1;
@@ -342,9 +341,9 @@ void passerFrontieres(void) {
         }
       }
       if (bagages_enregistres == 1) {
-        printf("Votre billet est bien le numero : %010lu\n", passager->billet);
-        printf("Vous avez %d bagages\n", passager->bagages[0]);
-        printf("Vous etes de nationalitee : %s et vous vous rendez à %s.\n",
+        printf("[INFO] Le numero de billet est : %010lu\n", passager->billet);
+        printf("[INFO] Le passager a %d bagages\n", passager->bagages[0]);
+        printf("[INFO] Le passager est %s se rend a %s\n",
           passager->nationalite, vol->destination);
         if (vol->visa_requis == 1) {
           printf("[INFO] Le passager a besoin de VISA\n");
@@ -352,12 +351,13 @@ void passerFrontieres(void) {
           "pas \n 1 - si vous l'avez\n > ");
           scanf(" %d", &passager->visa);
           if (passager->visa == 1) {
+            printf("[INFO] Tous les papiers sont en regle\n\n");
             passager->frontiere = 1;
           } else {
             printf("\a[ERROR] Le passager ne possede pas de VISA\n\n");
           }
         } else {
-          printf("\a[INFO] Le passager n'a pas besoin de VISA\n\n");
+          printf("[INFO] Le passager n'a pas besoin de VISA\n\n");
           passager->frontiere = 1;
         }
       } else {

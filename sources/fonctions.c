@@ -379,19 +379,30 @@ void passerFrontieres(void) {
  * @return          int
  */
 void passerSecurite(void) {
-  int interdit;
+  int interdit, reponse;
   Passager *passager = trouverPassager();
- /* 
   FILE *interdit = NULL;
-  interdit = fopen("interdit.txt", 'r');
-  if (interdit != NULL){
-    fscanf
+  char ch;
+ 
+  printf("Voulez-vous afficher la liste des objets interdits en cabine ?\n - 0 pour non\n -1 pour oui\n");
+  scanf("%d", &reponse);
+  
+  if (reponse == 1){
+    interdit = fopen("interdit.txt", "r");
+    if(interdit == NULL){
+      printf("Impossible d'ouvrir le fichier. Verifiez qu'il existe et que vous pouvez le lire.\n");
+    }
+    else {
+      do{
+        ch = fgetc(interdit);
+        putchar(ch);
+      } 
+      while(ch != EOF);
+      fclose(interdit);
+    }
   }
-  fclose(interdit);
-
-  printf("") */
-  printf("La securite n'accepte pas de produits liquides de plus de 100mL ou d'objets contondants.");
-  printf("En avez-vous en votre possession ?\n - 0 pour non\n -1 pour oui\n");
+  
+  printf("Avez-vous des objets interdits en votre possession ?\n - 0 pour non\n -1 pour oui\n");
   scanf("%d", &interdit);
 
   if (interdit == 1){
@@ -750,22 +761,7 @@ void fermer(void) {
 void ping(void) {
   printf("\nPong !\n");
 
-  FILE *interdit = NULL;
-  interdit = fopen("interdit.txt", "r");
-  char ch;
-    do 
-    {
-        /* Read single character from file */
-        ch = fgetc(interdit);
 
-        /* Print character read on console */
-        putchar(ch);
-
-    } while(ch != EOF); /* Repeat this if last read character is not EOF */
-
-
-    /* Done with this file, close file to release resource */
-    fclose(interdit);
 
 }
 

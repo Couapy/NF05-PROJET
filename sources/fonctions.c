@@ -35,6 +35,7 @@ Passager* trouverPassager(void) {
         }
       }
     }
+    printf("\a[ERROR] Nous n'avons pas trouve le passager\n");
   }
 }
 
@@ -72,12 +73,17 @@ void afficherPassager(Passager *passager) {
   printf("  Billet : %010lu\n", passager->billet);
   printf("  Naissance : %s\n", passager->date_naissance);
   printf("  Prioritaire : %d\n", passager->prioritaire);
+  printf("  Bagages : %d\n", passager->nb_bagages);
   printf("  VISA : %d\n", passager->visa);
   printf("  Frontiere : %d\n", passager->frontiere);
   printf("  Securite : %d\n", passager->securite);
-  printf("  Siege : %d %d\n", passager->siege.rangee, passager->siege.colonne);
+  printf("  Siege : %c%02d\n", passager->siege.rangee + '@', passager->siege.colonne);
   printf("  Enregistre : %d\n", passager->enregistrer);
   printf("  Embarquer : %d\n", passager->embarquer);
+  for (int i = 0; i < passager->nb_bagages; i++) {
+    printf("    Bagage#%d \n", passager->bagages[i].ticket);
+  }
+  printf("    ");
 }
 
 /**
@@ -225,8 +231,23 @@ void enregistrerBagages(Passager *passager) {
  */
 void afficherBoardingPass(Passager *passager, Vol *vol) {
   printf("  Carte d'embarquement:\n\n");
-  printf("  M/Mme %s %s\nPriorite: %d\nNumero billet: %lu\n", passager->nom, passager->prenom, passager->prioritaire, passager->billet);
-  printf("  Vol numero: %s a destination de %s depuis Paris\nDepart: %s / Arrivee prevue a : %s\n", vol->numero_vol, vol->destination, vol->heure_depart, vol->heure_arrivee);
+  printf(
+    "  M/Mme %s %s\n"
+    "  Priorite: %d\n"
+    "  Numero billet: %lu\n",
+    passager->nom,
+    passager->prenom,
+    passager->prioritaire,
+    passager->billet
+  );
+  printf(
+    "  Vol numero: %s a destination de %s depuis Paris\n"
+    "  Depart: %s / Arrivee prevue a : %s\n",
+    vol->numero_vol,
+    vol->destination,
+    vol->heure_depart,
+    vol->heure_arrivee
+  );
 }
 
 /**
@@ -319,7 +340,7 @@ void engeristrerPassager(void) {
 
         passager->enregistrer = 1;
         afficherBoardingPass(passager, vol);
-        printf("[SUCCESS] Le passager est enregistre\n\n");
+        printf("\n[SUCCESS] Le passager est enregistre\n\n");
       } else {
         printf("\n\a[ERROR] Le passager s'est deja enregistre\n\n");
       }
@@ -434,27 +455,28 @@ int embarquement(void) {
   Vol *vol = trouverVol(passager);
 
   if (passager->securite != 1) {
-    printf("\a[ERROR] Le passager n'a pas passe la securite\n");
+    printf("\a[ERROR] Le passager n'a pas passe la securite\n\n");
     return 0;
   }
   if (passager->frontiere != 1) {
-    printf("\a[ERROR] Le passager n'a pas passe la frontiere\n");
+    printf("\a[ERROR] Le passager n'a pas passe la frontiere\n\n");
     return 0;
   }
 
   if (passager->prioritaire == 1) {
     passager->embarquer = 1;
-    printf("[SUCCESS] Vous avez embarqué.");
+    printf("[SUCCESS] Vous avez embarqué.\n\n");
     return 1;
   }
 
   for (int i = 0; i < vol->places_reservees ; i++) {
-      if (vol->passagers[i]->prioritaire == 1 && vol->passagers[i]->embarquer == 0){
-        printf("\a[ERROR] Vous ne passerez pas. Il reste des passagers prioritaires à embarquer.\n");
-        return 0;
-      }
+    if (vol->passagers[i]->prioritaire == 1 && vol->passagers[i]->embarquer == 0){
+      printf("\a[ERROR] Vous ne passerez pas. Il reste des passagers prioritaires à embarquer.\n");
+      return 0;
+    }
   }
-  printf("[SUCCESS] Vous avez embarqué.");
+
+  printf("[SUCCESS] Vous avez embarqué.\n\n");
   return 1;
 }
 
@@ -524,8 +546,8 @@ int decoller(void) {
 }
 
 /**
- * Génération du numéro d uvol aléatoirement
- * @return  char[8]
+ * Génération du numéro du vol aléatoirement
+ * @param numero Numéro de Vol généré
  */
 void genererNumeroVol(char *numero) {
   int numero1, numero2, numero3;
@@ -574,7 +596,7 @@ void ajouterVol(void){
 void afficherAide(void) {
   printf("\n"
   "Bienvenue dans l'aide !\n"
-  "Vous pouvez saisir les commandes, mais aussi le numéro correspondant\n"
+  "Vous pouvez saisir les commandes, mais aussi le numero correspondant\n"
   "Voici les commandes disponibles :\n\n"
   "[1]   ajouter vol           : Ajouter un vol\n"
   "[2]   ajouter passager      : Ajouter un passager a un vol\n"
@@ -635,6 +657,7 @@ void sauvegarder(void) {
   fpassagers = fopen(chemin_passagers, "w+");
 
   fprintf(fvols, "%d\n", nb_vols);
+  fprintf(fvols, "%d\n", last_id_bagage);
   for (int i = 0; i < nb_vols; i++) {
     fprintf(fvols, "%s\n%s\n%s\n%s\n%d\n%d\n%d\n%d\n%d\n\n",
      vols[i].numero_vol,
@@ -700,6 +723,7 @@ void restaurer(void) {
 
   if (fvols != 0 && fpassagers != 0) {
     fscanf(fvols, "%d\n", &nb_vols);
+    fscanf(fvols, "%d\n", &last_id_bagage);
     printf("\n[INFO] Il y a %d vols a charger\n", nb_vols);
     for (int i = 0; i < nb_vols; i++) {
       fscanf(fvols, "%s\n%s\n%s\n%s\n%d\n%d\n%d\n%d\n%d\n\n",
@@ -770,6 +794,7 @@ void fermer(void) {
  * Pong ?
  */
 void ping(void) {
+  printf("\n  PONG ! \n\n");
 }
 
 int main(void) {

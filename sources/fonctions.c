@@ -140,6 +140,8 @@ void saisirPassager(Passager *passager) {
 
   passager->billet = 0;
   passager->nb_bagages = 0;
+  passager->bagages[0].ticket = 0;
+  passager->bagages[1].ticket = 0;
   passager->enregistrer = 0;
   passager->embarquer = 0;
   passager->visa = 0;
@@ -332,38 +334,42 @@ void engeristrerPassager(void) {
 void passerFrontieres(void) {
   Passager *passager = trouverPassager();
   Vol *vol = trouverVol(passager);
-  if (passager->frontiere == 1) {
-    passager->frontiere = 0;
-    printf("Vérification des documents:\n");
-
-    printf("Votre billet est bien le numéro : %010lu\n", passager->billet);
+  printf("%d %d\n", passager->frontiere, passager->frontiere == 1);
+  if (passager->frontiere == 0) {
     if (passager->enregistrer == 1) {
       int bagages_enregistres = 1;
       for (int i = 0; i < passager->nb_bagages; i++) {
-        if (passager->bagages[i]->ticket == 0) {
-
+        if (passager->bagages[i].ticket == 0) {
+          bagages_enregistres = 0;
         }
       }
-
-      printf("Vous avez bien %d bagages avec vous.\n", passager->bagages[0]);
-      printf("Vous etes de nationalitee : %s et vous vous rendez à %s.\n",
-        passager->nationalite, vol->destination);
-      if (vol->visa_requis == 1) {
-        printf("Montrez votre VISA s'il vous plait :\n 0 - si vous ne l'avez "
-        "pas \n 1 - si vous l'avez\n > ");
-        scanf("%d", &passager->visa);
-        if (passager->visa == 1) {
+      if (bagages_enregistres == 1) {
+        printf("Votre billet est bien le numero : %010lu\n", passager->billet);
+        printf("Vous avez %d bagages\n", passager->bagages[0]);
+        printf("Vous etes de nationalitee : %s et vous vous rendez à %s.\n",
+          passager->nationalite, vol->destination);
+        if (vol->visa_requis == 1) {
+          printf("[INFO] Le passager a besoin de VISA\n");
+          printf("Montrez votre VISA s'il vous plait :\n 0 - si vous ne l'avez "
+          "pas \n 1 - si vous l'avez\n > ");
+          scanf(" %d", &passager->visa);
+          if (passager->visa == 1) {
+            passager->frontiere = 1;
+          } else {
+            printf("\a[ERROR] Le passager ne possede pas de VISA\n\n");
+          }
+        } else {
+          printf("\a[INFO] Le passager n'a pas besoin de VISA\n\n");
           passager->frontiere = 1;
         }
       } else {
-        passager->frontiere = 1;
+        printf("\n\a[ERROR] Le passager n'a pas depose ses bagages\n");
       }
     } else {
-      printf("\n\a[ERROR] Le passager ne s'est pas enregistre\n");
+      printf("\n\a[ERROR] Le passager ne s'est pas enregistre\n\n");
     }
-  }
-  else {
-    printf("\n\a[ERROR] Le passager a deja passe la frontiere\n");
+  } else {
+    printf("\n\a[ERROR] Le passager a deja passe la frontiere\n\n");
   }
 }
 
@@ -548,18 +554,21 @@ void afficherAide(void) {
   "Bienvenue dans l'aide !\n"
   "Vous pouvez saisir les commandes, mais aussi le numéro correspondant\n"
   "Voici les commandes disponibles :\n\n"
-  "[1]   ajouterVol           : Ajouter un vol\n"
-  "[2]   ajouterPassager      : Ajouter un passager a un vol\n"
-  "[3]   enregistrerPassager  : Enregistrer un passage sur vol\n"
-  "[4]   passerFrontieres     : Passer un passager a un la frontiere\n"
-  "[5]   passerSecurite       : Passer un passager a la securite\n"
-  "[6]   deposerBagages       : Deposer les bagages d'un passager\n"
-  "[7]   embarquer            : Embarquer un passager\n"
-  "[8]   decoller             : Faire decoller un avion\n\n"
-  "[11]  afficherVols         : Afficher tous les vols\n"
-  "[12]  afficherInfoVol      : Afficher les informations d'un vol\n"
-  "[0]   aide                 : Afficher l'aide\n"
-  "[100] fermer               : Fermer le programme\n\n");
+  "[1]   ajouter vol           : Ajouter un vol\n"
+  "[2]   ajouter passager      : Ajouter un passager a un vol\n"
+  "[3]   enregistrer           : Enregistrer un passage sur vol\n"
+  "[4]   passer frontiere      : Passer un passager a un la frontiere\n"
+  "[5]   passager securite     : Passer un passager a la securite\n"
+  "[6]   desposer bagages      : Deposer les bagages d'un passager\n"
+  "[7]   embarquer             : Embarquer un passager\n"
+  "[8]   decoller              : Faire decoller un avion\n\n"
+  "[11]  afficher vols         : Afficher tous les vols\n"
+  "[12]  afficher info vol     : Afficher les informations d'un vol\n\n"
+  "[21]  sauvegarder           : Sauvegarder l'instance\n"
+  "[21]  restaurer             : Restaurer l'instance\n\n"
+  "[99]  ping                  : Ping ???\n\n"
+  "[0]   aide                  : Afficher l'aide\n"
+  "[100] fermer                : Fermer le programme\n\n");
 }
 
 /**
@@ -735,6 +744,9 @@ void fermer(void) {
   printf("\n>> Au plaisir de vous revoir\n");
 }
 
+/**
+ * Pong ?
+ */
 void ping(void) {
   printf("\nPong !\n");
 
@@ -765,7 +777,7 @@ int main(void) {
     { 1, "ajouter vol" },
     { 2, "ajouter passager" },
     { 3, "enregistrer" },
-    { 4, "passer frontieres" },
+    { 4, "passer frontiere" },
     { 5, "passer securite" },
     { 6, "deposer bagages" },
     { 7, "embarquement" },
@@ -799,7 +811,6 @@ int main(void) {
       i++;
     }
 
-    printf(">> '%s'\n", commande);
     for (int i = 0; i < nb_commandes; i++) {
       if (strcmp(commande, commandes[i].commande) == 0) {
         fonction = commandes[i].fonction;
@@ -831,7 +842,6 @@ int main(void) {
       case 99: ping(); break;
       case 100: fermer(); return 0;
       default:
-        printf("> '%s':%d\n", commande, strlen(commande));
         printf("\nLa commande n'a pas ete reconnue, vous pouvez consulter l'aide en"
         " tapant 'aide'\n\n");
     }

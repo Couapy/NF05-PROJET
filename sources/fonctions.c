@@ -10,6 +10,22 @@ Vol vols[VOLS_MAX];
 int nb_vols = 0;
 int last_id_bagage = 0;
 
+// TODO: Ajouter des dates pour les vols
+// TODO: Ajouter une nouvelle structure pour les dates
+// TODO: Creer une fonction pour saisir une date
+// TODO: Ajouter les dates pour la date de naissance mais aussi pour la date du vol
+// TODO: Ajouter une nouvelle structure pour les heures
+// TODO: Creer une fonction pour saisir une heure
+// TODO: Ajouter les heures dans la structure vol
+// TODO: Modifier Restaurer et Sauvegarder
+
+/**
+ * FIX BUGS
+ */
+// TODO: fonction trouverPassager -> si deux passagers ont le même nom, demander lequel ?
+
+// TODO: Commenter le code
+
 /**
  * Trouve un passager selon un Nom ou un Numero de billet
  * @return  Passager*
@@ -77,7 +93,11 @@ void afficherPassager(Passager *passager) {
   printf("  VISA : %d\n", passager->visa);
   printf("  Frontiere : %d\n", passager->frontiere);
   printf("  Securite : %d\n", passager->securite);
-  printf("  Siege : %c%02d\n", passager->siege.rangee + '@', passager->siege.colonne);
+  if (passager->siege.rangee != -1 && passager->siege.colonne != -1) {
+    printf("  Siege : %c%02d\n", passager->siege.rangee + '@', passager->siege.colonne);
+  } else {
+    printf("  Siege : N/A\n", passager->siege.rangee + '@', passager->siege.colonne);
+  }
   printf("  Enregistre : %d\n", passager->enregistrer);
   printf("  Embarquer : %d\n", passager->embarquer);
   for (int i = 0; i < passager->nb_bagages; i++) {
@@ -91,15 +111,20 @@ void afficherPassager(Passager *passager) {
  * @return  Vol*
  */
 Vol* selectionnerVol(void) {
-  int numero;
+  if (nb_vols == 1) {
+    printf("[INFO] %s est l'unique vol\n", vols[0].numero_vol);
+    return &vols[0];
+  } else {
+    int numero;
 
-  afficherVols();
-  do {
-    printf("Entrez le numero du vol : ");
-    scanf(" %d", &numero);
-  } while(numero > nb_vols);
+    afficherVols();
+    do {
+      printf("Entrez le numero du vol : ");
+      scanf(" %d", &numero);
+    } while(numero > nb_vols);
 
-  return &vols[numero-1];
+    return &vols[numero-1];
+  }
 }
 
 /**
@@ -220,7 +245,7 @@ void enregistrerBagages(Passager *passager) {
   for (int i = 0; i < passager->nb_bagages; i++) {
     last_id_bagage++;
     passager->bagages[i].ticket = last_id_bagage;
-    passager->bagages[i].embarque = 0;
+    passager->bagages[i].embarque = 1;
   }
 }
 
@@ -230,7 +255,7 @@ void enregistrerBagages(Passager *passager) {
  * @param vol    Vol*
  */
 void afficherBoardingPass(Passager *passager, Vol *vol) {
-  printf("  Carte d'embarquement:\n\n");
+  printf("Carte d'embarquement:\n\n");
   printf(
     "  M/Mme %s %s\n"
     "  Priorite: %d\n"
@@ -363,37 +388,27 @@ void passerFrontieres(void) {
   Vol *vol = trouverVol(passager);
   if (passager->frontiere == 0) {
     if (passager->enregistrer == 1) {
-      int bagages_enregistres = 1;
-      for (int i = 0; i < passager->nb_bagages; i++) {
-        if (passager->bagages[i].ticket == 0) {
-          bagages_enregistres = 0;
-        }
-      }
-      if (bagages_enregistres == 1) {
-        printf("[INFO] Le numero de billet est : %010lu\n", passager->billet);
-        printf("[INFO] Le passager a %d bagages\n", passager->bagages[0]);
-        printf("[INFO] Le passager est %s se rend a %s\n",
-          passager->nationalite, vol->destination);
-        if (vol->visa_requis == 1) {
-          printf("[INFO] Le passager a besoin de VISA\n");
-          printf("Montrez votre VISA s'il vous plait :\n 0 - si vous ne l'avez "
-          "pas \n 1 - si vous l'avez\n > ");
-          scanf(" %d", &passager->visa);
-          if (passager->visa == 1) {
-            printf("[INFO] Tous les papiers sont en regle\n");
-            passager->frontiere = 1;
-          } else {
-            printf("\a[ERROR] Le passager ne possede pas de VISA\n");
-          }
-        } else {
-          printf("[INFO] Le passager n'a pas besoin de VISA\n");
+      printf("[INFO] Le numero de billet est : %010lu\n", passager->billet);
+      printf("[INFO] Le passager a %d bagages\n", passager->bagages[0]);
+      printf("[INFO] Le passager est %s se rend a %s\n",
+        passager->nationalite, vol->destination);
+      if (vol->visa_requis == 1) {
+        printf("[INFO] Le passager a besoin de VISA\n");
+        printf("Montrez votre VISA s'il vous plait :\n 0 - si vous ne l'avez "
+        "pas \n 1 - si vous l'avez\n > ");
+        scanf(" %d", &passager->visa);
+        if (passager->visa == 1) {
+          printf("[INFO] Tous les papiers sont en regle\n");
           passager->frontiere = 1;
-        }
-        if (passager->frontiere == 1) {
-          printf("[SUCCES] Le passager a passe la frontiere\n\n");
+        } else {
+          printf("\a[ERROR] Le passager ne possede pas de VISA\n");
         }
       } else {
-        printf("\n\a[ERROR] Le passager n'a pas depose ses bagages\n");
+        printf("[INFO] Le passager n'a pas besoin de VISA\n");
+        passager->frontiere = 1;
+      }
+      if (passager->frontiere == 1) {
+        printf("[SUCCESS] Le passager a passe la frontiere\n\n");
       }
     } else {
       printf("\n\a[ERROR] Le passager ne s'est pas enregistre\n\n");
@@ -409,40 +424,48 @@ void passerFrontieres(void) {
  * @return          int
  */
 void passerSecurite(void) {
-  int interdit, reponse;
   Passager *passager = trouverPassager();
-  FILE *fichier = NULL;
-  char ch;
+  if (passager->frontiere == 1) {
+    if (passager->securite == 0) {
+      int interdit, reponse;
+      FILE *fichier = NULL;
+      char ch;
 
-  printf("Voulez-vous afficher la liste des objets interdits en cabine ?\n - 0 pour non\n - 1 pour oui\n > ");
-  scanf("%d", &reponse);
+      printf("Voulez-vous afficher la liste des objets interdits en cabine ?\n - 0 pour non\n - 1 pour oui\n > ");
+      scanf("%d", &reponse);
 
-  if (reponse == 1){
-    fichier = fopen("interdit.txt", "r");
-    if(fichier == NULL){
-      printf("Impossible d'ouvrir le fichier. Verifiez qu'il existe et que vous pouvez le lire.\n");
-    }
-    else {
-      printf("\n");
-      do{
-        ch = fgetc(fichier);
-        putchar(ch);
+      if (reponse == 1){
+        fichier = fopen("interdit.txt", "r");
+        if(fichier == NULL){
+          printf("Impossible d'ouvrir le fichier. Verifiez qu'il existe et que vous pouvez le lire.\n");
+        }
+        else {
+          printf("\n");
+          do{
+            ch = fgetc(fichier);
+            putchar(ch);
+          }
+          while(ch != EOF);
+          printf("\n");
+          fclose(fichier);
+        }
       }
-      while(ch != EOF);
-      printf("\n");
-      fclose(fichier);
+
+      printf("Avez-vous des objets interdits en votre possession ?\n - 0 pour non\n - 1 pour oui\n > ");
+      scanf("%d", &interdit);
+
+      if (interdit == 1){
+        printf("\a[ERROR] Vous ne pouvez pas passer la securite.\n\n");
+        passager->securite = 0;
+      } else{
+        printf("[SUCCESS]Vous venez de passer la securite.\n\n");
+        passager->securite = 1;
+      }
+    } else {
+      printf("\n\a[ERROR] Le passager a deja passe la securite\n\n");
     }
-  }
-
-  printf("Avez-vous des objets interdits en votre possession ?\n - 0 pour non\n - 1 pour oui\n > ");
-  scanf("%d", &interdit);
-
-  if (interdit == 1){
-    printf("\a[ERROR] Vous ne pouvez pas passer la securite.\n\n");
-    passager->securite = 0;
-  } else{
-    printf("[SUCCESS]Vous venez de passer la securite.\n\n");
-    passager->securite = 1;
+  } else {
+    printf("\n\a[ERROR] Le passager n'a pas passe la frontiere\n\n");
   }
 }
 
@@ -454,40 +477,27 @@ int embarquement(void) {
   Passager *passager = trouverPassager();
   Vol *vol = trouverVol(passager);
 
-  if (passager->securite != 1) {
-    printf("\a[ERROR] Le passager n'a pas passe la securite\n\n");
-    return 0;
-  }
   if (passager->frontiere != 1) {
-    printf("\a[ERROR] Le passager n'a pas passe la frontiere\n\n");
+    printf("\n\a[ERROR] Le passager n'a pas passe la frontiere\n\n");
+    return 0;
+  }
+  if (passager->securite != 1) {
+    printf("\n\a[ERROR] Le passager n'a pas passe la securite\n\n");
     return 0;
   }
 
-  if (passager->prioritaire == 1) {
-    passager->embarquer = 1;
-    printf("[SUCCESS] Vous avez embarqué.\n\n");
-    return 1;
-  }
-
-  for (int i = 0; i < vol->places_reservees ; i++) {
-    if (vol->passagers[i]->prioritaire == 1 && vol->passagers[i]->embarquer == 0){
-      printf("\a[ERROR] Vous ne passerez pas. Il reste des passagers prioritaires à embarquer.\n");
-      return 0;
+  if (passager->prioritaire != 1) {
+    for (int i = 0; i < vol->places_reservees ; i++) {
+      if (vol->passagers[i]->prioritaire == 1 && vol->passagers[i]->embarquer == 0){
+        printf("\n\a[ERROR] Vous ne passerez pas. Il reste des passagers prioritaires à embarquer.\n\n");
+        return 0;
+      }
     }
   }
 
-  printf("[SUCCESS] Vous avez embarqué.\n\n");
+  passager->embarquer = 1;
+  printf("\n[SUCCESS] Vous avez embarque.\n\n");
   return 1;
-}
-
-/**
- * Permet de déposer les bagages d'un passager
- */
-void deposerBagages(void) {
-  Passager *passager = trouverPassager();
-  for (int i = 0; i < passager->nb_bagages; i++) {
-    passager->bagages[i].embarque = 1;
-  }
 }
 
 /**
@@ -501,15 +511,17 @@ int decoller(void) {
 
     for (int i = 0; i < vol->places_reservees; i++) {
       if (vol->passagers[i]->enregistrer == 1) {
-        if (vol->passagers[i]->embarquer == 0)
-        {
-          printf("\a[ERROR]Un passager n'a pas embarque.\n");
+        if (vol->passagers[i]->embarquer == 0) {
+          printf("\a[ERROR]Un passager n'a pas embarque.\n\n");
           return 0;
         }
-        for (int i = 0; i < vol->passagers[i]->nb_bagages; i++)
-        {
-          if (vol->passagers[i]->bagages[i].embarque == 0) {
-            printf("\a[ERROR] Un passager n'a pas embarquer ses bagages\n");
+        for (int j = 0; j < vol->passagers[i]->nb_bagages; j++) {
+          if (vol->passagers[i]->bagages[j].embarque == 0) {
+            printf(
+              "\a[ERROR] %s %s n'a pas embarque ses bagages\n\n",
+              vol->passagers[i]->nom,
+              vol->passagers[i]->prenom
+            );
             return 0;
           }
         }
@@ -603,9 +615,8 @@ void afficherAide(void) {
   "[3]   enregistrer           : Enregistrer un passage sur vol\n"
   "[4]   passer frontiere      : Passer un passager a un la frontiere\n"
   "[5]   passager securite     : Passer un passager a la securite\n"
-  "[6]   desposer bagages      : Deposer les bagages d'un passager\n"
-  "[7]   embarquer             : Embarquer un passager\n"
-  "[8]   decoller              : Faire decoller un avion\n\n"
+  "[6]   embarquer             : Embarquer un passager\n"
+  "[7]   decoller              : Faire decoller un avion\n\n"
   "[11]  afficher vols         : Afficher tous les vols\n"
   "[12]  afficher info vol     : Afficher les informations d'un vol\n\n"
   "[21]  sauvegarder           : Sauvegarder l'instance\n"
@@ -675,7 +686,7 @@ void sauvegarder(void) {
   for (int i = 0; i < nb_vols; i++) {
     for (int j = 0; j < vols[i].places_reservees; j++) {
       fprintf(fpassagers, "%s\n%s\n%s\n%d\n%d\n%d\n%d\n%d\n%lu\n%s\n%d\n%d\n"
-                          "%d\n%d\n\n",
+                          "%d\n%d\n",
         vols[i].passagers[j]->nom,
         vols[i].passagers[j]->prenom,
         vols[i].passagers[j]->nationalite,
@@ -696,8 +707,8 @@ void sauvegarder(void) {
           vols[i].passagers[j]->bagages[k].ticket,
           vols[i].passagers[j]->bagages[k].embarque
         );
-        fprintf(fpassagers, "\n");
       }
+      fprintf(fpassagers, "\n\n");
     }
   }
 
@@ -745,7 +756,7 @@ void restaurer(void) {
       for (int j = 0; j < vols[i].places_reservees; j++) {
         vols[i].passagers[j] =(Passager*)malloc(sizeof(Passager));
         fscanf(fpassagers, "%s\n%s\n%s\n%d\n%d\n%d\n%d\n%d\n%lu\n%s\n%d\n%d\n"
-                           "%d\n%d\n\n",
+                           "%d\n%d\n",
           vols[i].passagers[j]->nom,
           vols[i].passagers[j]->prenom,
           vols[i].passagers[j]->nationalite,
@@ -807,9 +818,8 @@ int main(void) {
     { 3, "enregistrer" },
     { 4, "passer frontiere" },
     { 5, "passer securite" },
-    { 6, "deposer bagages" },
-    { 7, "embarquement" },
-    { 8, "decoller" },
+    { 6, "embarquer" },
+    { 7, "decoller" },
     { 0, "aide" },
     { 11, "afficher vols" },
     { 12, "afficher info vol" },
@@ -859,9 +869,8 @@ int main(void) {
       case 3: engeristrerPassager(); break;
       case 4: passerFrontieres(); break;
       case 5: passerSecurite(); break;
-      case 6: deposerBagages(); break;
-      case 7: embarquement(); break;
-      case 8: decoller(); break;
+      case 6: embarquement(); break;
+      case 7: decoller(); break;
       case 0: afficherAide(); break;
       case 11: afficherVols(); break;
       case 12: afficherInfoVol(); break;

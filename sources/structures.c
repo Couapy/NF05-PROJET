@@ -12,6 +12,12 @@ typedef struct {
 } Siege;
 
 typedef struct {
+  int jour;
+  int mois;
+  int année;
+} Date;
+
+typedef struct {
   char nom[64];
   char prenom[64];
   char nationalite[25];

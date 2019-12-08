@@ -18,6 +18,11 @@ typedef struct {
 } Date;
 
 typedef struct {
+  int heure;
+  int minutes;
+} Temps;
+
+typedef struct {
   char nom[64];
   char prenom[64];
   char nationalite[25];
@@ -36,8 +41,8 @@ typedef struct {
 
 typedef struct {
   char numero_vol[8];
-  char heure_depart[64];
-  char heure_arrivee[64];
+  Temps heure_depart;
+  Temps heure_arrivee;
   char destination[128];
   Passager *passagers[1024];
   int places_reservees;

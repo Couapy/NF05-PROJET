@@ -10,9 +10,6 @@ Vol vols[VOLS_MAX];
 int nb_vols = 0;
 int last_id_bagage = 0;
 
-// TODO: Ajouter une nouvelle structure pour les heures
-// TODO: Creer une fonction pour saisir une heure
-// TODO: Ajouter les heures dans la structure vol
 // TODO: Modifier Restaurer et Sauvegarder avec les heures et dates 
 
 Date genererDate(void){
@@ -26,6 +23,17 @@ Date genererDate(void){
   scanf("%d", &date.annee);
 
   return date;
+}
+
+Temps genererTemps(void){
+  Temps temps;
+
+  printf("Heure : ");
+  scanf("%d", &temps.heure);
+  printf("Minutes : ");
+  scanf("%d", &temps.minutes);
+
+  return temps;
 }
 
 /**
@@ -276,11 +284,11 @@ void afficherBoardingPass(Passager *passager, Vol *vol) {
   );
   printf(
     "  Vol numero: %s a destination de %s depuis Paris\n"
-    "  Depart: %s / Arrivee prevue a : %s\n",
+    "  Depart: %dh%d / Arrivee prevue a : %dh%d\n",
     vol->numero_vol,
     vol->destination,
-    vol->heure_depart,
-    vol->heure_arrivee
+    vol->heure_depart.heure, vol->heure_depart.minutes,
+    vol->heure_arrivee.heure, vol->heure_arrivee.minutes
   );
 }
 
@@ -592,10 +600,12 @@ void ajouterVol(void){
   printf("Le vol est le %d/%d/%d", vol->date.jour, vol->date.mois, vol->date.annee);
   printf("\nQuelle est la destination du vol ? ");
   scanf(" %s", vol->destination);
-  printf("Choisissez votre heure de depart ? ");
-  scanf(" %s", vol->heure_depart);
-  printf("Choisissez votre heure d'arrivee ? ");
-  scanf(" %s", vol->heure_arrivee);
+  printf("Choisissez votre heure de depart ?\n");
+  vol->heure_depart = genererTemps();
+  // scanf(" %s", vol->heure_depart);
+  printf("Choisissez votre heure d'arrivee ?\n");
+  vol->heure_arrivee = genererTemps();
+  // scanf(" %s", vol->heure_arrivee);
   printf("Combien voulez-vous de sieges sur une rangee ? ");
   scanf(" %d", &vol->sieges_rangee);
   printf("Combien voulez-vous de sieges sur une colonne ? ");
@@ -645,8 +655,8 @@ void afficherInfoVol(void) {
   if (nb_vols > 0) {
     Vol *vol = selectionnerVol();
     printf("\nDestination : %s\n", vol->destination);
-    printf("Heure de depart : %s\n", vol->heure_depart);
-    printf("Heure d'arrivee : %s\n", vol->heure_arrivee);
+    printf("Heure de depart : %dh%d\n", vol->heure_depart.heure, vol->heure_depart.minutes);
+    printf("Heure d'arrivee : %dh%d\n", vol->heure_arrivee.heure, vol->heure_arrivee.minutes);
     printf("Nombre de passager : %d\n", vol->places_reservees);
     printf("Nombre de places libres : %d\n", vol->places_libres);
     printf("VISA requis : ");

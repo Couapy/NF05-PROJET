@@ -17,4 +17,3 @@
  - liquides inflammables (carburant, diluant, solvant, acétone)
  - thermomètres à mercure et baromètres
  - produit liquide au-delà de 100 ml
-

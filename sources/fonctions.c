@@ -10,11 +10,10 @@ Vol vols[VOLS_MAX];
 int nb_vols = 0;
 int last_id_bagage = 0;
 
-// TODO: Ajouter les dates pour la date de naissance 
 // TODO: Ajouter une nouvelle structure pour les heures
 // TODO: Creer une fonction pour saisir une heure
 // TODO: Ajouter les heures dans la structure vol
-// TODO: Modifier Restaurer et Sauvegarder
+// TODO: Modifier Restaurer et Sauvegarder avec les heures et dates 
 
 Date genererDate(void){
   Date date;
@@ -97,7 +96,7 @@ void afficherVols(void) {
 void afficherPassager(Passager *passager) {
   printf("\n  %s %s est %s\n", passager->nom, passager->prenom, passager->nationalite);
   printf("  Billet : %010lu\n", passager->billet);
-  printf("  Naissance : %s\n", passager->date_naissance);
+  printf("  Naissance : %d/%d/%d\n", passager->date_naissance.jour, passager->date_naissance.mois, passager->date_naissance.annee);
   printf("  Prioritaire : %d\n", passager->prioritaire);
   printf("  Bagages : %d\n", passager->nb_bagages);
   printf("  VISA : %d\n", passager->visa);
@@ -213,7 +212,7 @@ void ajouterPassager(void) {
       genererBillet(passager);
 
       // Les informations du passager sont montrés en une "jolie" phrase.
-      printf("%s %s ne(e) le %s ", passager->nom, passager->prenom, passager->date_naissance);
+      printf("%s %s ne(e) le %d/%d/%d ", passager->nom, passager->prenom, passager->date_naissance.jour, passager->date_naissance.mois, passager->date_naissance.annee);
       if (passager->prioritaire == 1){
         printf("est prioritaire.\n");
       } else {

@@ -692,10 +692,15 @@ void sauvegarder(void) {
   fprintf(fvols, "%d\n", nb_vols);
   fprintf(fvols, "%d\n", last_id_bagage);
   for (int i = 0; i < nb_vols; i++) {
-    fprintf(fvols, "%s\n%s\n%s\n%s\n%d\n%d\n%d\n%d\n%d\n\n",
+    fprintf(fvols, "%s\n%d\n%d\n%d\n%d\n%d\n%d\n%d\n%s\n%d\n%d\n%d\n%d\n%d\n\n",
      vols[i].numero_vol,
-     vols[i].heure_depart,
-     vols[i].heure_arrivee,
+     vols[i].date.jour,
+     vols[i].date.mois,
+     vols[i].date.annee,
+     vols[i].heure_depart.heure,
+     vols[i].heure_depart.minutes,
+     vols[i].heure_arrivee.heure,
+     vols[i].heure_arrivee.minutes,
      vols[i].destination,
      vols[i].places_reservees,
      vols[i].places_libres,
@@ -707,7 +712,7 @@ void sauvegarder(void) {
 
   for (int i = 0; i < nb_vols; i++) {
     for (int j = 0; j < vols[i].places_reservees; j++) {
-      fprintf(fpassagers, "%s\n%s\n%s\n%d\n%d\n%d\n%d\n%d\n%lu\n%s\n%d\n%d\n"
+      fprintf(fpassagers, "%s\n%s\n%s\n%d\n%d\n%d\n%d\n%d\n%lu\n%d\n%d\n%d\n%d\n%d\n"
                           "%d\n%d\n",
         vols[i].passagers[j]->nom,
         vols[i].passagers[j]->prenom,
@@ -718,7 +723,9 @@ void sauvegarder(void) {
         vols[i].passagers[j]->nb_bagages,
         vols[i].passagers[j]->prioritaire,
         vols[i].passagers[j]->billet,
-        vols[i].passagers[j]->date_naissance,
+        vols[i].passagers[j]->date_naissance.jour,
+        vols[i].passagers[j]->date_naissance.mois,
+        vols[i].passagers[j]->date_naissance.annee,
         vols[i].passagers[j]->siege.rangee,
         vols[i].passagers[j]->siege.colonne,
         vols[i].passagers[j]->enregistrer,
@@ -759,16 +766,21 @@ void restaurer(void) {
     fscanf(fvols, "%d\n", &last_id_bagage);
     printf("\n[INFO] Il y a %d vols a charger\n", nb_vols);
     for (int i = 0; i < nb_vols; i++) {
-      fscanf(fvols, "%s\n%s\n%s\n%s\n%d\n%d\n%d\n%d\n%d\n\n",
-       vols[i].numero_vol,
-       vols[i].heure_depart,
-       vols[i].heure_arrivee,
-       vols[i].destination,
-       &vols[i].places_reservees,
-       &vols[i].places_libres,
-       &vols[i].visa_requis,
-       &vols[i].sieges_rangee,
-       &vols[i].sieges_colonne
+      fscanf(fvols, "%s\n%d\n%d\n%d\n%d\n%d\n%d\n%d\n%s\n%d\n%d\n%d\n%d\n%d\n\n",
+        vols[i].numero_vol,
+        &vols[i].date.jour,
+        &vols[i].date.mois,
+        &vols[i].date.annee,
+        &vols[i].heure_depart.heure,
+        &vols[i].heure_depart.minutes,
+        &vols[i].heure_arrivee.heure,
+        &vols[i].heure_arrivee.minutes,
+        vols[i].destination,
+        &vols[i].places_reservees,
+        &vols[i].places_libres,
+        &vols[i].visa_requis,
+        &vols[i].sieges_rangee,
+        &vols[i].sieges_colonne
       );
     }
     printf("[INFO] Les vols ont ete charges\n");
@@ -777,7 +789,7 @@ void restaurer(void) {
     for (int i = 0; i < nb_vols; i++) {
       for (int j = 0; j < vols[i].places_reservees; j++) {
         vols[i].passagers[j] =(Passager*)malloc(sizeof(Passager));
-        fscanf(fpassagers, "%s\n%s\n%s\n%d\n%d\n%d\n%d\n%d\n%lu\n%s\n%d\n%d\n"
+        fscanf(fpassagers, "%s\n%s\n%s\n%d\n%d\n%d\n%d\n%d\n%lu\n%d\n%d\n%d\n%d\n%d\n"
                            "%d\n%d\n",
           vols[i].passagers[j]->nom,
           vols[i].passagers[j]->prenom,
@@ -788,7 +800,9 @@ void restaurer(void) {
           &vols[i].passagers[j]->nb_bagages,
           &vols[i].passagers[j]->prioritaire,
           &vols[i].passagers[j]->billet,
-          vols[i].passagers[j]->date_naissance,
+          vols[i].passagers[j]->date_naissance.jour,
+          vols[i].passagers[j]->date_naissance.mois,
+          vols[i].passagers[j]->date_naissance.annee,
           &vols[i].passagers[j]->siege.rangee,
           &vols[i].passagers[j]->siege.colonne,
           &vols[i].passagers[j]->enregistrer,

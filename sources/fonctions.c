@@ -10,14 +10,24 @@ Vol vols[VOLS_MAX];
 int nb_vols = 0;
 int last_id_bagage = 0;
 
-// TODO: Ajouter des dates pour les vols
-// TODO: Ajouter une nouvelle structure pour les dates
-// TODO: Creer une fonction pour saisir une date
-// TODO: Ajouter les dates pour la date de naissance mais aussi pour la date du vol
+// TODO: Ajouter les dates pour la date de naissance 
 // TODO: Ajouter une nouvelle structure pour les heures
 // TODO: Creer une fonction pour saisir une heure
 // TODO: Ajouter les heures dans la structure vol
 // TODO: Modifier Restaurer et Sauvegarder
+
+Date genererDate(void){
+  Date date;
+
+  printf("Jour (format JJ) : ");
+  scanf("%d", &date.jour);
+  printf("Mois (format MM) : ");
+  scanf("%d", &date.mois);
+  printf("Annee (format AAAA) : ");
+  scanf("%d", &date.annee);
+
+  return date;
+}
 
 /**
  * FIX BUGS
@@ -162,7 +172,6 @@ void genererBillet(Passager *passager) {
  * @param passager Passager*
  */
 void saisirPassager(Passager *passager) {
-  char reponse[10];
 
   printf("\nEntrez le nom du passager : ");
   scanf(" %s", passager->nom);
@@ -172,8 +181,9 @@ void saisirPassager(Passager *passager) {
   scanf(" %s", passager->nationalite);
   printf("Est-il prioritaire ? (1 - oui ou 0 - non) ");
   scanf(" %d", &passager->prioritaire);
-  printf("Indiquez sa date de naissance en format JJ/MM/AAAA : ");
-  scanf(" %s", passager->date_naissance);
+  printf("Indiquez sa date de naissance : \n");
+  passager->date_naissance = genererDate();
+  // scanf(" %s", passager->date_naissance);
 
   passager->billet = 0;
   passager->nb_bagages = 0;
@@ -578,6 +588,9 @@ void ajouterVol(void){
   Vol *vol = &vols[nb_vols];
   nb_vols++;
 
+  printf("\nQuelle est la date du vol ?\n");
+  vol->date = genererDate();
+  printf("Le vol est le %d/%d/%d", vol->date.jour, vol->date.mois, vol->date.annee);
   printf("\nQuelle est la destination du vol ? ");
   scanf(" %s", vol->destination);
   printf("Choisissez votre heure de depart ? ");

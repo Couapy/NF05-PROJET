@@ -14,7 +14,7 @@ typedef struct {
 typedef struct {
   int jour;
   int mois;
-  int année;
+  int annee;
 } Date;
 
 typedef struct {
@@ -28,7 +28,7 @@ typedef struct {
   int nb_bagages;
   int prioritaire;
   unsigned long billet;
-  char date_naissance[24];
+  Date date_naissance;
   Siege siege;
   int enregistrer; // boarding pass enregistré
   int embarquer;
@@ -45,6 +45,7 @@ typedef struct {
   int visa_requis;
   int sieges_rangee;
   int sieges_colonne;
+  Date date;
 } Vol;
 
 typedef struct {

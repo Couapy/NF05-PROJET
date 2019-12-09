@@ -13,7 +13,7 @@ void afficherPourcentage(float pourcentage, int longueur) {
 }
 
 int main(void) {
-  
+
   for (float i = 0; i <= 100; i += 5.5) {
     printf("Taux de remplissage : ");
     afficherPourcentage(i, 50);

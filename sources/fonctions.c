@@ -334,7 +334,6 @@ int choisirSiege(Passager *passager, Vol *vol) {
       do {
         place.rangee = ((float)rand()/RAND_MAX) * vol->sieges_rangee;
         place.colonne = ((float)rand()/RAND_MAX) * vol->sieges_colonne;
-        printf("Rangee = %d, Colonne = %d\n", place.rangee, place.colonne);
       } while (!placeLibre(&place, vol));
       passager->siege = place;
       printf("[INFO] Votre place est la %c%02d\n", '@' + place.rangee, place.colonne);

@@ -10,14 +10,31 @@ Vol vols[VOLS_MAX];
 int nb_vols = 0;
 int last_id_bagage = 0;
 
-// TODO: Ajouter des dates pour les vols
-// TODO: Ajouter une nouvelle structure pour les dates
-// TODO: Creer une fonction pour saisir une date
-// TODO: Ajouter les dates pour la date de naissance mais aussi pour la date du vol
-// TODO: Ajouter une nouvelle structure pour les heures
-// TODO: Creer une fonction pour saisir une heure
-// TODO: Ajouter les heures dans la structure vol
-// TODO: Modifier Restaurer et Sauvegarder
+// TODO: Modifier Restaurer et Sauvegarder avec les heures et dates 
+
+Date genererDate(void){
+  Date date;
+
+  printf("Jour (format JJ) : ");
+  scanf("%d", &date.jour);
+  printf("Mois (format MM) : ");
+  scanf("%d", &date.mois);
+  printf("Annee (format AAAA) : ");
+  scanf("%d", &date.annee);
+
+  return date;
+}
+
+Temps genererTemps(void){
+  Temps temps;
+
+  printf("Heure : ");
+  scanf("%d", &temps.heure);
+  printf("Minutes : ");
+  scanf("%d", &temps.minutes);
+
+  return temps;
+}
 
 /**
  * FIX BUGS
@@ -87,7 +104,7 @@ void afficherVols(void) {
 void afficherPassager(Passager *passager) {
   printf("\n  %s %s est %s\n", passager->nom, passager->prenom, passager->nationalite);
   printf("  Billet : %010lu\n", passager->billet);
-  printf("  Naissance : %s\n", passager->date_naissance);
+  printf("  Naissance : %d/%d/%d\n", passager->date_naissance.jour, passager->date_naissance.mois, passager->date_naissance.annee);
   printf("  Prioritaire : %d\n", passager->prioritaire);
   printf("  Bagages : %d\n", passager->nb_bagages);
   printf("  VISA : %d\n", passager->visa);
@@ -162,7 +179,6 @@ void genererBillet(Passager *passager) {
  * @param passager Passager*
  */
 void saisirPassager(Passager *passager) {
-  char reponse[10];
 
   printf("\nEntrez le nom du passager : ");
   scanf(" %s", passager->nom);
@@ -172,8 +188,9 @@ void saisirPassager(Passager *passager) {
   scanf(" %s", passager->nationalite);
   printf("Est-il prioritaire ? (1 - oui ou 0 - non) ");
   scanf(" %d", &passager->prioritaire);
-  printf("Indiquez sa date de naissance en format JJ/MM/AAAA : ");
-  scanf(" %s", passager->date_naissance);
+  printf("Indiquez sa date de naissance : \n");
+  passager->date_naissance = genererDate();
+  // scanf(" %s", passager->date_naissance);
 
   passager->billet = 0;
   passager->nb_bagages = 0;
@@ -203,7 +220,7 @@ void ajouterPassager(void) {
       genererBillet(passager);
 
       // Les informations du passager sont montrés en une "jolie" phrase.
-      printf("%s %s ne(e) le %s ", passager->nom, passager->prenom, passager->date_naissance);
+      printf("%s %s ne(e) le %d/%d/%d ", passager->nom, passager->prenom, passager->date_naissance.jour, passager->date_naissance.mois, passager->date_naissance.annee);
       if (passager->prioritaire == 1){
         printf("est prioritaire.\n");
       } else {
@@ -267,11 +284,11 @@ void afficherBoardingPass(Passager *passager, Vol *vol) {
   );
   printf(
     "  Vol numero: %s a destination de %s depuis Paris\n"
-    "  Depart: %s / Arrivee prevue a : %s\n",
+    "  Depart: %dh%d / Arrivee prevue a : %dh%d\n",
     vol->numero_vol,
     vol->destination,
-    vol->heure_depart,
-    vol->heure_arrivee
+    vol->heure_depart.heure, vol->heure_depart.minutes,
+    vol->heure_arrivee.heure, vol->heure_arrivee.minutes
   );
 }
 
@@ -577,12 +594,17 @@ void ajouterVol(void){
   Vol *vol = &vols[nb_vols];
   nb_vols++;
 
+  printf("\nQuelle est la date du vol ?\n");
+  vol->date = genererDate();
+  printf("Le vol est le %d/%d/%d", vol->date.jour, vol->date.mois, vol->date.annee);
   printf("\nQuelle est la destination du vol ? ");
   scanf(" %s", vol->destination);
-  printf("Choisissez votre heure de depart ? ");
-  scanf(" %s", vol->heure_depart);
-  printf("Choisissez votre heure d'arrivee ? ");
-  scanf(" %s", vol->heure_arrivee);
+  printf("Choisissez votre heure de depart ?\n");
+  vol->heure_depart = genererTemps();
+  // scanf(" %s", vol->heure_depart);
+  printf("Choisissez votre heure d'arrivee ?\n");
+  vol->heure_arrivee = genererTemps();
+  // scanf(" %s", vol->heure_arrivee);
   printf("Combien voulez-vous de sieges sur une rangee ? ");
   scanf(" %d", &vol->sieges_rangee);
   printf("Combien voulez-vous de sieges sur une colonne ? ");
@@ -632,8 +654,8 @@ void afficherInfoVol(void) {
   if (nb_vols > 0) {
     Vol *vol = selectionnerVol();
     printf("\nDestination : %s\n", vol->destination);
-    printf("Heure de depart : %s\n", vol->heure_depart);
-    printf("Heure d'arrivee : %s\n", vol->heure_arrivee);
+    printf("Heure de depart : %dh%d\n", vol->heure_depart.heure, vol->heure_depart.minutes);
+    printf("Heure d'arrivee : %dh%d\n", vol->heure_arrivee.heure, vol->heure_arrivee.minutes);
     printf("Nombre de passager : %d\n", vol->places_reservees);
     printf("Nombre de places libres : %d\n", vol->places_libres);
     printf("VISA requis : ");
@@ -669,10 +691,15 @@ void sauvegarder(void) {
   fprintf(fvols, "%d\n", nb_vols);
   fprintf(fvols, "%d\n", last_id_bagage);
   for (int i = 0; i < nb_vols; i++) {
-    fprintf(fvols, "%s\n%s\n%s\n%s\n%d\n%d\n%d\n%d\n%d\n\n",
+    fprintf(fvols, "%s\n%d\n%d\n%d\n%d\n%d\n%d\n%d\n%s\n%d\n%d\n%d\n%d\n%d\n\n",
      vols[i].numero_vol,
-     vols[i].heure_depart,
-     vols[i].heure_arrivee,
+     vols[i].date.jour,
+     vols[i].date.mois,
+     vols[i].date.annee,
+     vols[i].heure_depart.heure,
+     vols[i].heure_depart.minutes,
+     vols[i].heure_arrivee.heure,
+     vols[i].heure_arrivee.minutes,
      vols[i].destination,
      vols[i].places_reservees,
      vols[i].places_libres,
@@ -684,7 +711,7 @@ void sauvegarder(void) {
 
   for (int i = 0; i < nb_vols; i++) {
     for (int j = 0; j < vols[i].places_reservees; j++) {
-      fprintf(fpassagers, "%s\n%s\n%s\n%d\n%d\n%d\n%d\n%d\n%lu\n%s\n%d\n%d\n"
+      fprintf(fpassagers, "%s\n%s\n%s\n%d\n%d\n%d\n%d\n%d\n%lu\n%d\n%d\n%d\n%d\n%d\n"
                           "%d\n%d\n",
         vols[i].passagers[j]->nom,
         vols[i].passagers[j]->prenom,
@@ -695,7 +722,9 @@ void sauvegarder(void) {
         vols[i].passagers[j]->nb_bagages,
         vols[i].passagers[j]->prioritaire,
         vols[i].passagers[j]->billet,
-        vols[i].passagers[j]->date_naissance,
+        vols[i].passagers[j]->date_naissance.jour,
+        vols[i].passagers[j]->date_naissance.mois,
+        vols[i].passagers[j]->date_naissance.annee,
         vols[i].passagers[j]->siege.rangee,
         vols[i].passagers[j]->siege.colonne,
         vols[i].passagers[j]->enregistrer,
@@ -736,16 +765,21 @@ void restaurer(void) {
     fscanf(fvols, "%d\n", &last_id_bagage);
     printf("\n[INFO] Il y a %d vols a charger\n", nb_vols);
     for (int i = 0; i < nb_vols; i++) {
-      fscanf(fvols, "%s\n%s\n%s\n%s\n%d\n%d\n%d\n%d\n%d\n\n",
-       vols[i].numero_vol,
-       vols[i].heure_depart,
-       vols[i].heure_arrivee,
-       vols[i].destination,
-       &vols[i].places_reservees,
-       &vols[i].places_libres,
-       &vols[i].visa_requis,
-       &vols[i].sieges_rangee,
-       &vols[i].sieges_colonne
+      fscanf(fvols, "%s\n%d\n%d\n%d\n%d\n%d\n%d\n%d\n%s\n%d\n%d\n%d\n%d\n%d\n\n",
+        vols[i].numero_vol,
+        &vols[i].date.jour,
+        &vols[i].date.mois,
+        &vols[i].date.annee,
+        &vols[i].heure_depart.heure,
+        &vols[i].heure_depart.minutes,
+        &vols[i].heure_arrivee.heure,
+        &vols[i].heure_arrivee.minutes,
+        vols[i].destination,
+        &vols[i].places_reservees,
+        &vols[i].places_libres,
+        &vols[i].visa_requis,
+        &vols[i].sieges_rangee,
+        &vols[i].sieges_colonne
       );
     }
     printf("[INFO] Les vols ont ete charges\n");
@@ -754,7 +788,7 @@ void restaurer(void) {
     for (int i = 0; i < nb_vols; i++) {
       for (int j = 0; j < vols[i].places_reservees; j++) {
         vols[i].passagers[j] =(Passager*)malloc(sizeof(Passager));
-        fscanf(fpassagers, "%s\n%s\n%s\n%d\n%d\n%d\n%d\n%d\n%lu\n%s\n%d\n%d\n"
+        fscanf(fpassagers, "%s\n%s\n%s\n%d\n%d\n%d\n%d\n%d\n%lu\n%d\n%d\n%d\n%d\n%d\n"
                            "%d\n%d\n",
           vols[i].passagers[j]->nom,
           vols[i].passagers[j]->prenom,
@@ -765,7 +799,9 @@ void restaurer(void) {
           &vols[i].passagers[j]->nb_bagages,
           &vols[i].passagers[j]->prioritaire,
           &vols[i].passagers[j]->billet,
-          vols[i].passagers[j]->date_naissance,
+          vols[i].passagers[j]->date_naissance.jour,
+          vols[i].passagers[j]->date_naissance.mois,
+          vols[i].passagers[j]->date_naissance.annee,
           &vols[i].passagers[j]->siege.rangee,
           &vols[i].passagers[j]->siege.colonne,
           &vols[i].passagers[j]->enregistrer,

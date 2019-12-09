@@ -12,6 +12,17 @@ typedef struct {
 } Siege;
 
 typedef struct {
+  int jour;
+  int mois;
+  int annee;
+} Date;
+
+typedef struct {
+  int heure;
+  int minutes;
+} Temps;
+
+typedef struct {
   char nom[64];
   char prenom[64];
   char nationalite[25];
@@ -22,7 +33,7 @@ typedef struct {
   int nb_bagages;
   int prioritaire;
   unsigned long billet;
-  char date_naissance[24];
+  Date date_naissance;
   Siege siege;
   int enregistrer; // boarding pass enregistré
   int embarquer;
@@ -30,8 +41,8 @@ typedef struct {
 
 typedef struct {
   char numero_vol[8];
-  char heure_depart[64];
-  char heure_arrivee[64];
+  Temps heure_depart;
+  Temps heure_arrivee;
   char destination[128];
   Passager *passagers[1024];
   int places_reservees;
@@ -39,6 +50,7 @@ typedef struct {
   int visa_requis;
   int sieges_rangee;
   int sieges_colonne;
+  Date date;
 } Vol;
 
 typedef struct {

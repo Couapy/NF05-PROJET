@@ -41,16 +41,16 @@ typedef struct {
 
 typedef struct {
   char numero_vol[8];
+  char destination[128];
+  Date date;
   Temps heure_depart;
   Temps heure_arrivee;
-  char destination[128];
-  Passager *passagers[1024];
+  int visa_requis;
   int places_reservees;
   int places_libres;
-  int visa_requis;
+  Passager *passagers[1024];
   int sieges_rangee;
   int sieges_colonne;
-  Date date;
 } Vol;
 
 typedef struct {

@@ -10,7 +10,7 @@ Vol vols[VOLS_MAX];
 int nb_vols = 0;
 int last_id_bagage = 0;
 
-// TODO: Modifier Restaurer et Sauvegarder avec les heures et dates 
+// TODO: Modifier Restaurer et Sauvegarder avec les heures et dates
 
 Date genererDate(void){
   Date date;
@@ -129,7 +129,7 @@ void afficherPassager(Passager *passager) {
  */
 Vol* selectionnerVol(void) {
   if (nb_vols == 1) {
-    printf("[INFO] %s est l'unique vol\n", vols[0].numero_vol);
+    printf("\n[INFO] %s est l'unique vol\n", vols[0].numero_vol);
     return &vols[0];
   } else {
     int numero;
@@ -179,7 +179,6 @@ void genererBillet(Passager *passager) {
  * @param passager Passager*
  */
 void saisirPassager(Passager *passager) {
-
   printf("\nEntrez le nom du passager : ");
   scanf(" %s", passager->nom);
   printf("Entrez le prenom du passager : ");
@@ -218,14 +217,6 @@ void ajouterPassager(void) {
       //On génère le passager
       saisirPassager(passager);
       genererBillet(passager);
-
-      // Les informations du passager sont montrés en une "jolie" phrase.
-      printf("%s %s ne(e) le %d/%d/%d ", passager->nom, passager->prenom, passager->date_naissance.jour, passager->date_naissance.mois, passager->date_naissance.annee);
-      if (passager->prioritaire == 1){
-        printf("est prioritaire.\n");
-      } else {
-        printf("n'est pas prioritaire.\n");
-      }
 
       printf("Votre numero de billet : %010lu\n", passager->billet);
 
@@ -676,8 +667,9 @@ void afficherInfoVol(void) {
 
 /**
  * Sauvegarder l'instance du programme en cours
+ * @return  int
  */
-void sauvegarder(void) {
+int sauvegarder(void) {
   FILE *fvols = NULL, *fpassagers = NULL;
   char chemin_vols[64], chemin_passagers[64], nom_fichier[24];
 
@@ -688,48 +680,72 @@ void sauvegarder(void) {
   fvols = fopen(chemin_vols, "w+");
   fpassagers = fopen(chemin_passagers, "w+");
 
+  if (fvols == NULL || fpassagers == NULL) {
+    printf("\a[ERROR] Impossible de créer la sauvegarde\n\n");
+    return 0;
+  }
+
+  // On enregistre les données de chaque vols sauf les passagers
+  printf("[INFO] Enregistrement des vols en cours...\n");
   fprintf(fvols, "%d\n", nb_vols);
   fprintf(fvols, "%d\n", last_id_bagage);
   for (int i = 0; i < nb_vols; i++) {
-    fprintf(fvols, "%s\n%d\n%d\n%d\n%d\n%d\n%d\n%d\n%s\n%d\n%d\n%d\n%d\n%d\n\n",
-     vols[i].numero_vol,
-     vols[i].date.jour,
-     vols[i].date.mois,
-     vols[i].date.annee,
-     vols[i].heure_depart.heure,
-     vols[i].heure_depart.minutes,
-     vols[i].heure_arrivee.heure,
-     vols[i].heure_arrivee.minutes,
-     vols[i].destination,
-     vols[i].places_reservees,
-     vols[i].places_libres,
-     vols[i].visa_requis,
-     vols[i].sieges_rangee,
-     vols[i].sieges_colonne
+    fprintf(fvols, "%s\n", vols[i].numero_vol);
+    fprintf(fvols, "%s\n", vols[i].destination);
+    fprintf(
+      fvols,
+      "%d/%d/%d\n",
+      vols[i].date.jour,
+      vols[i].date.mois,
+      vols[i].date.annee
     );
+    fprintf(
+      fvols,
+      "%dH%d\n",
+      vols[i].heure_depart.heure,
+      vols[i].heure_depart.minutes
+    );
+    fprintf(
+      fvols,
+      "%dH%d\n",
+      vols[i].heure_arrivee.heure,
+      vols[i].heure_arrivee.minutes
+    );
+    fprintf(fvols, "%d\n", vols[i].visa_requis);
+    fprintf(fvols, "%d\n", vols[i].places_reservees);
+    fprintf(fvols, "%d\n", vols[i].places_libres);
+    fprintf(fvols, "%d\n", vols[i].sieges_rangee);
+    fprintf(fvols, "%d\n", vols[i].sieges_colonne);
   }
 
+  // On enregistre tout les passagers de chaque vols
+  printf("[INFO] Enregistrement des passagers en cours...\n");
   for (int i = 0; i < nb_vols; i++) {
     for (int j = 0; j < vols[i].places_reservees; j++) {
-      fprintf(fpassagers, "%s\n%s\n%s\n%d\n%d\n%d\n%d\n%d\n%lu\n%d\n%d\n%d\n%d\n%d\n"
-                          "%d\n%d\n",
-        vols[i].passagers[j]->nom,
-        vols[i].passagers[j]->prenom,
-        vols[i].passagers[j]->nationalite,
-        vols[i].passagers[j]->visa,
-        vols[i].passagers[j]->frontiere,
-        vols[i].passagers[j]->securite,
-        vols[i].passagers[j]->nb_bagages,
-        vols[i].passagers[j]->prioritaire,
-        vols[i].passagers[j]->billet,
+      fprintf(fpassagers, "%s\n", vols[i].passagers[j]->nom);
+      fprintf(fpassagers, "%s\n", vols[i].passagers[j]->prenom);
+      fprintf(fpassagers, "%s\n", vols[i].passagers[j]->nationalite);
+      fprintf(fpassagers, "%d\n", vols[i].passagers[j]->visa);
+      fprintf(fpassagers, "%d\n", vols[i].passagers[j]->frontiere);
+      fprintf(fpassagers, "%d\n", vols[i].passagers[j]->securite);
+      fprintf(fpassagers, "%d\n", vols[i].passagers[j]->nb_bagages);
+      fprintf(fpassagers, "%d\n", vols[i].passagers[j]->prioritaire);
+      fprintf(fpassagers, "%010lu\n", vols[i].passagers[j]->billet);
+      fprintf(
+        fpassagers,
+        "%d/%d/%d\n",
         vols[i].passagers[j]->date_naissance.jour,
         vols[i].passagers[j]->date_naissance.mois,
-        vols[i].passagers[j]->date_naissance.annee,
-        vols[i].passagers[j]->siege.rangee,
-        vols[i].passagers[j]->siege.colonne,
-        vols[i].passagers[j]->enregistrer,
-        vols[i].passagers[j]->embarquer
+        vols[i].passagers[j]->date_naissance.annee
       );
+      fprintf(
+        fpassagers,
+        "%d %ds\n",
+        vols[i].passagers[j]->siege.rangee,
+        vols[i].passagers[j]->siege.colonne
+      );
+      fprintf(fpassagers, "%d\n", vols[i].passagers[j]->enregistrer);
+      fprintf(fpassagers, "%d\n", vols[i].passagers[j]->embarquer);
       for (int k = 0; k < vols[i].passagers[j]->nb_bagages; k++) {
         fprintf(fpassagers, "%d %d ",
           vols[i].passagers[j]->bagages[k].ticket,
@@ -744,12 +760,14 @@ void sauvegarder(void) {
   fclose(fpassagers);
 
   printf("[SUCCESS] La sauvegarde a ete effectuee\n\n");
+  return 1;
 }
 
 /**
  * Permet de restaurer une instance à partir d'un fichier
+ * @return  int
  */
-void restaurer(void) {
+int restaurer(void) {
   FILE *fvols = NULL, *fpassagers = NULL;
   char chemin_vols[64], chemin_passagers[64], nom_fichier[24];
 
@@ -760,68 +778,87 @@ void restaurer(void) {
   fvols = fopen(chemin_vols, "r");
   fpassagers = fopen(chemin_passagers, "r");
 
-  if (fvols != 0 && fpassagers != 0) {
-    fscanf(fvols, "%d\n", &nb_vols);
-    fscanf(fvols, "%d\n", &last_id_bagage);
-    printf("\n[INFO] Il y a %d vols a charger\n", nb_vols);
-    for (int i = 0; i < nb_vols; i++) {
-      fscanf(fvols, "%s\n%d\n%d\n%d\n%d\n%d\n%d\n%d\n%s\n%d\n%d\n%d\n%d\n%d\n\n",
-        vols[i].numero_vol,
-        &vols[i].date.jour,
-        &vols[i].date.mois,
-        &vols[i].date.annee,
-        &vols[i].heure_depart.heure,
-        &vols[i].heure_depart.minutes,
-        &vols[i].heure_arrivee.heure,
-        &vols[i].heure_arrivee.minutes,
-        vols[i].destination,
-        &vols[i].places_reservees,
-        &vols[i].places_libres,
-        &vols[i].visa_requis,
-        &vols[i].sieges_rangee,
-        &vols[i].sieges_colonne
-      );
-    }
-    printf("[INFO] Les vols ont ete charges\n");
-    fclose(fvols);
+  if (fvols == NULL || fpassagers == NULL) {
+    printf("\a[ERROR] Impossible d'ouvrir la sauvegarde\n\n");
+    return 0;
+  }
 
-    for (int i = 0; i < nb_vols; i++) {
-      for (int j = 0; j < vols[i].places_reservees; j++) {
-        vols[i].passagers[j] =(Passager*)malloc(sizeof(Passager));
-        fscanf(fpassagers, "%s\n%s\n%s\n%d\n%d\n%d\n%d\n%d\n%lu\n%d\n%d\n%d\n%d\n%d\n"
-                           "%d\n%d\n",
-          vols[i].passagers[j]->nom,
-          vols[i].passagers[j]->prenom,
-          vols[i].passagers[j]->nationalite,
-          &vols[i].passagers[j]->visa,
-          &vols[i].passagers[j]->frontiere,
-          &vols[i].passagers[j]->securite,
-          &vols[i].passagers[j]->nb_bagages,
-          &vols[i].passagers[j]->prioritaire,
-          &vols[i].passagers[j]->billet,
-          vols[i].passagers[j]->date_naissance.jour,
-          vols[i].passagers[j]->date_naissance.mois,
-          vols[i].passagers[j]->date_naissance.annee,
-          &vols[i].passagers[j]->siege.rangee,
-          &vols[i].passagers[j]->siege.colonne,
-          &vols[i].passagers[j]->enregistrer,
-          &vols[i].passagers[j]->embarquer
+  // On restaure les données de chaque vols sauf les passagers
+  printf("[INFO] Restauration des vols en cours...\n");
+  fscanf(fvols, "%d\n", &nb_vols);
+  fscanf(fvols, "%d\n", &last_id_bagage);
+  for (int i = 0; i < nb_vols; i++) {
+    fscanf(fvols, "%s\n", vols[i].numero_vol);
+    fscanf(fvols, "%s\n", vols[i].destination);
+    fscanf(
+      fvols,
+      "%d/%d/%d\n",
+      &vols[i].date.jour,
+      &vols[i].date.mois,
+      &vols[i].date.annee
+    );
+    fscanf(
+      fvols,
+      "%dH%s\n",
+      &vols[i].heure_depart.heure,
+      &vols[i].heure_depart.minutes
+    );
+    fscanf(
+      fvols,
+      "%dH%s\n",
+      &vols[i].heure_arrivee.heure,
+      &vols[i].heure_arrivee.minutes
+    );
+    fscanf(fvols, "%d\n", &vols[i].visa_requis);
+    fscanf(fvols, "%d\n", &vols[i].places_reservees);
+    fscanf(fvols, "%d\n", &vols[i].places_libres);
+    fscanf(fvols, "%d\n", &vols[i].sieges_rangee);
+    fscanf(fvols, "%d\n", &vols[i].sieges_colonne);
+  }
+
+  // On restaure tout les passagers de chaque vols
+  printf("[INFO] Restauration des passagers en cours...\n");
+  for (int i = 0; i < nb_vols; i++) {
+    for (int j = 0; j < vols[i].places_reservees; j++) {
+      vols[i].passagers[j] = (Passager*)malloc(sizeof(Passager));
+      fscanf(fpassagers, "%s\n", vols[i].passagers[j]->nom);
+      fscanf(fpassagers, "%s\n", vols[i].passagers[j]->prenom);
+      fscanf(fpassagers, "%s\n", vols[i].passagers[j]->nationalite);
+      fscanf(fpassagers, "%d\n", &vols[i].passagers[j]->visa);
+      fscanf(fpassagers, "%d\n", &vols[i].passagers[j]->frontiere);
+      fscanf(fpassagers, "%d\n", &vols[i].passagers[j]->securite);
+      fscanf(fpassagers, "%d\n", &vols[i].passagers[j]->nb_bagages);
+      fscanf(fpassagers, "%d\n", &vols[i].passagers[j]->prioritaire);
+      fscanf(fpassagers, "%010lu\n", &vols[i].passagers[j]->billet);
+      fscanf(
+        fpassagers,
+        "%d/%d/%d\n",
+        &vols[i].passagers[j]->date_naissance.jour,
+        &vols[i].passagers[j]->date_naissance.mois,
+        &vols[i].passagers[j]->date_naissance.annee
+      );
+      fscanf(
+        fpassagers,
+        "%d %d\n",
+        &vols[i].passagers[j]->siege.rangee,
+        &vols[i].passagers[j]->siege.colonne
+      );
+      fscanf(fpassagers, "%d\n", &vols[i].passagers[j]->enregistrer);
+      fscanf(fpassagers, "%d\n", &vols[i].passagers[j]->embarquer);
+      for (int k = 0; k < vols[i].passagers[j]->nb_bagages; k++) {
+        fscanf(fpassagers, "%d %d ",
+          &vols[i].passagers[j]->bagages[k].ticket,
+          &vols[i].passagers[j]->bagages[k].embarque
         );
-        for (int k = 0; k < vols[i].passagers[j]->nb_bagages; k++) {
-          fscanf(fpassagers, "%d %d ",
-            &vols[i].passagers[j]->bagages[k].ticket,
-            &vols[i].passagers[j]->bagages[k].embarque
-          );
-        }
       }
     }
-    printf("[INFO] Les passagers ont ete charges\n");
-    fclose(fpassagers);
-
-    printf("[SUCCESS] La sauvegarde a ete chargee\n\n");
-  } else {
-    printf("\a[ERROR] Impossible de trouver la sauvegarde\n\n");
   }
+
+  fclose(fvols);
+  fclose(fpassagers);
+
+  printf("[SUCCESS] La restauration a ete effectuee\n\n");
+  return 1;
 }
 
 /**

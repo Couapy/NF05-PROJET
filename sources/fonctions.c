@@ -10,38 +10,33 @@ Vol vols[VOLS_MAX];
 int nb_vols = 0;
 int last_id_bagage = 0;
 
-// TODO: Modifier Restaurer et Sauvegarder avec les heures et dates
-
-Date genererDate(void){
-  Date date;
-
-  printf("Jour (format JJ) : ");
-  scanf("%d", &date.jour);
-  printf("Mois (format MM) : ");
-  scanf("%d", &date.mois);
-  printf("Annee (format AAAA) : ");
-  scanf("%d", &date.annee);
-
-  return date;
-}
-
-Temps genererTemps(void){
-  Temps temps;
-
-  printf("Heure : ");
-  scanf("%d", &temps.heure);
-  printf("Minutes : ");
-  scanf("%d", &temps.minutes);
-
-  return temps;
-}
-
 /**
  * FIX BUGS
  */
-// TODO: fonction trouverPassager -> si deux passagers ont le même nom, demander lequel ?
-
+// TODO: Demander le passeport
 // TODO: Commenter le code
+
+/**
+ * Permet de saisir une date
+ */
+void saisirDate(Date *date){
+  printf(" > Jour (format JJ) : ");
+  scanf("%d", &date->jour);
+  printf(" > Mois (format MM) : ");
+  scanf("%d", &date->mois);
+  printf(" > Annee (format AAAA) : ");
+  scanf("%d", &date->annee);
+}
+
+/**
+ * Permet de saisir un horaire
+ */
+void saisirTemps(Temps *temps){
+  printf(" > Heure : ");
+  scanf("%d", &temps->heure);
+  printf(" > Minutes : ");
+  scanf("%d", &temps->minutes);
+}
 
 /**
  * Trouve un passager selon un Nom ou un Numero de billet
@@ -50,21 +45,66 @@ Temps genererTemps(void){
 Passager* trouverPassager(void) {
   char reponse[64];
   unsigned long billet = 0;
+  int nb_passagers, id_passager, vol_passager, selection;
   while (1) {
     printf("\nNom ou Numero de billet : ");
     scanf(" %s", reponse);
-    sscanf(reponse, "%d", &billet);
+    sscanf(reponse, "%ld", &billet);
+    nb_passagers = 0;
     for (int i = 0; i < nb_vols; i++) {
       for (int j = 0; j < vols[i].places_reservees; j++) {
         if (strcmp(reponse, vols[i].passagers[j]->nom) == 0 ||
             billet == vols[i].passagers[j]->billet) {
-          printf(
-            "[INFO] %s %s #%010lu a ete selectionne\n",
-            vols[i].passagers[j]->nom,
-            vols[i].passagers[j]->prenom,
-            vols[i].passagers[j]->billet
-          );
-          return vols[i].passagers[j];
+          id_passager = j;
+          vol_passager = i;
+          nb_passagers += 1;
+        }
+      }
+    }
+    if (nb_passagers == 1) {
+      printf(
+        "[INFO] %s %s #%010lu a ete selectionne\n",
+        vols[vol_passager].passagers[id_passager]->nom,
+        vols[vol_passager].passagers[id_passager]->prenom,
+        vols[vol_passager].passagers[id_passager]->billet
+      );
+      return vols[vol_passager].passagers[id_passager];
+    } else if (nb_passagers > 1) {
+      printf("[INFO] Il y a plusieurs passagers qui ont le meme nom\n\n");
+      nb_passagers = 0;
+      for (int i = 0; i < nb_vols; i++) {
+        for (int j = 0; j < vols[i].places_reservees; j++) {
+          if (strcmp(reponse, vols[i].passagers[j]->nom) == 0) {
+            nb_passagers += 1;
+            printf(
+              "[%d] %s %s #%010lu > %s\n",
+              nb_passagers,
+              vols[i].passagers[j]->nom,
+              vols[i].passagers[j]->prenom,
+              vols[i].passagers[j]->billet,
+              vols[i].destination
+            );
+          }
+        }
+      }
+      printf("Quelle est le numero de la personne que vous recherchez ? ");
+      scanf("%d", &selection);
+      nb_passagers = 0;
+      for (int i = 0; i < nb_vols; i++) {
+        for (int j = 0; j < vols[i].places_reservees; j++) {
+          if (strcmp(reponse, vols[i].passagers[j]->nom) == 0 ||
+              billet == vols[i].passagers[j]->billet) {
+            nb_passagers += 1;
+            if (selection == nb_passagers) {
+              printf(
+                "[INFO] %s %s #%010lu a ete selectionne\n",
+                vols[vol_passager].passagers[id_passager]->nom,
+                vols[vol_passager].passagers[id_passager]->prenom,
+                vols[vol_passager].passagers[id_passager]->billet
+              );
+              return vols[i].passagers[j];
+            }
+          }
         }
       }
     }
@@ -113,7 +153,7 @@ void afficherPassager(Passager *passager) {
   if (passager->siege.rangee != -1 && passager->siege.colonne != -1) {
     printf("  Siege : %c%02d\n", passager->siege.rangee + '@', passager->siege.colonne);
   } else {
-    printf("  Siege : N/A\n", passager->siege.rangee + '@', passager->siege.colonne);
+    printf("  Siege : N/A\n");
   }
   printf("  Enregistre : %d\n", passager->enregistrer);
   printf("  Embarquer : %d\n", passager->embarquer);
@@ -188,8 +228,7 @@ void saisirPassager(Passager *passager) {
   printf("Est-il prioritaire ? (1 - oui ou 0 - non) ");
   scanf(" %d", &passager->prioritaire);
   printf("Indiquez sa date de naissance : \n");
-  passager->date_naissance = genererDate();
-  // scanf(" %s", passager->date_naissance);
+  saisirDate(&passager->date_naissance);
 
   passager->billet = 0;
   passager->nb_bagages = 0;
@@ -396,7 +435,7 @@ void passerFrontieres(void) {
   if (passager->frontiere == 0) {
     if (passager->enregistrer == 1) {
       printf("[INFO] Le numero de billet est : %010lu\n", passager->billet);
-      printf("[INFO] Le passager a %d bagages\n", passager->bagages[0]);
+      printf("[INFO] Le passager a %d bagages\n", passager->nb_bagages);
       printf("[INFO] Le passager est %s se rend a %s\n",
         passager->nationalite, vol->destination);
       if (vol->visa_requis == 1) {
@@ -405,13 +444,13 @@ void passerFrontieres(void) {
         "pas \n 1 - si vous l'avez\n > ");
         scanf(" %d", &passager->visa);
         if (passager->visa == 1) {
-          printf("[INFO] Tous les papiers sont en regle\n");
+          printf("[INFO] Tous les papiers sont en regle\n\n");
           passager->frontiere = 1;
         } else {
-          printf("\a[ERROR] Le passager ne possede pas de VISA\n");
+          printf("\a[ERROR] Le passager ne possede pas de VISA\n\n");
         }
       } else {
-        printf("[INFO] Le passager n'a pas besoin de VISA\n");
+        printf("[INFO] Le passager n'a pas besoin de VISA\n\n");
         passager->frontiere = 1;
       }
       if (passager->frontiere == 1) {
@@ -495,7 +534,9 @@ int embarquement(void) {
 
   if (passager->prioritaire != 1) {
     for (int i = 0; i < vol->places_reservees ; i++) {
-      if (vol->passagers[i]->prioritaire == 1 && vol->passagers[i]->embarquer == 0){
+      if (vol->passagers[i]->enregistrer == 1 &&
+          vol->passagers[i]->prioritaire == 1 &&
+          vol->passagers[i]->embarquer == 0) {
         printf("\n\a[ERROR] Vous ne passerez pas. Il reste des passagers prioritaires à embarquer.\n\n");
         return 0;
       }
@@ -586,16 +627,14 @@ void ajouterVol(void){
   nb_vols++;
 
   printf("\nQuelle est la date du vol ?\n");
-  vol->date = genererDate();
+  saisirDate(&vol->date);
   printf("Le vol est le %d/%d/%d", vol->date.jour, vol->date.mois, vol->date.annee);
   printf("\nQuelle est la destination du vol ? ");
   scanf(" %s", vol->destination);
   printf("Choisissez votre heure de depart ?\n");
-  vol->heure_depart = genererTemps();
-  // scanf(" %s", vol->heure_depart);
+  saisirTemps(&vol->heure_depart);
   printf("Choisissez votre heure d'arrivee ?\n");
-  vol->heure_arrivee = genererTemps();
-  // scanf(" %s", vol->heure_arrivee);
+  saisirTemps(&vol->heure_arrivee);
   printf("Combien voulez-vous de sieges sur une rangee ? ");
   scanf(" %d", &vol->sieges_rangee);
   printf("Combien voulez-vous de sieges sur une colonne ? ");
@@ -740,7 +779,7 @@ int sauvegarder(void) {
       );
       fprintf(
         fpassagers,
-        "%d %ds\n",
+        "%d %d\n",
         vols[i].passagers[j]->siege.rangee,
         vols[i].passagers[j]->siege.colonne
       );
@@ -799,13 +838,13 @@ int restaurer(void) {
     );
     fscanf(
       fvols,
-      "%dH%s\n",
+      "%dH%d\n",
       &vols[i].heure_depart.heure,
       &vols[i].heure_depart.minutes
     );
     fscanf(
       fvols,
-      "%dH%s\n",
+      "%dH%d\n",
       &vols[i].heure_arrivee.heure,
       &vols[i].heure_arrivee.minutes
     );

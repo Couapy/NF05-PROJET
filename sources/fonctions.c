@@ -30,6 +30,7 @@ int last_id_bagage = 0;
 
 /**
  * Permet de saisir une date
+ * @param date La date à écrire
  */
 void saisirDate(Date *date){
   printf(" > Jour (format JJ) : ");
@@ -42,6 +43,7 @@ void saisirDate(Date *date){
 
 /**
  * Permet de saisir un horaire
+ * @param temps L'horaire à saisir
  */
 void saisirTemps(Temps *temps){
   printf(" > Heure : ");
@@ -52,7 +54,7 @@ void saisirTemps(Temps *temps){
 
 /**
  * Trouve un passager selon un Nom ou un Numero de billet
- * @return  Passager*
+ * @return  Le passager sélectionner
  */
 Passager* trouverPassager(void) {
   char reponse[64];
@@ -125,9 +127,9 @@ Passager* trouverPassager(void) {
 }
 
 /**
- * Trouve le vol d'un passager
- * @param  passager Passager*
- * @return          Passager*
+ * Trouve le vol d'un passager à oar
+ * @param  passager Le passager
+ * @return          Le vol du passager
  */
 Vol* trouverVol(Passager *passager) {
   for (int i = 0; i < nb_vols; i++) {
@@ -151,8 +153,9 @@ void afficherVols(void) {
 }
 
 /**
-* Affiche les informations d'un passager
-*/
+ * Affiche les informations d'un passager
+ * @param passager Passager à afficher
+ */
 void afficherPassager(Passager *passager) {
   printf("\n  %s %s est %s\n", passager->nom, passager->prenom, passager->nationalite);
   printf("  Billet : %010lu\n", passager->billet);
@@ -177,7 +180,7 @@ void afficherPassager(Passager *passager) {
 
 /**
  * Permet de sélectionner un vol
- * @return  Vol*
+ * @return  Le vol sélectionné
  */
 Vol* selectionnerVol(void) {
   if (nb_vols == 1) {
@@ -198,7 +201,7 @@ Vol* selectionnerVol(void) {
 
 /**
  * Fonction qui génère un billet à un passager
- * @param passager Passager*
+ * @param passager Le passager sans billet
  */
 void genererBillet(Passager *passager) {
   int continuer = 1;
@@ -228,7 +231,7 @@ void genererBillet(Passager *passager) {
 
 /**
  * Saisie d'un passager par l'utilisateur
- * @param passager Passager*
+ * @param passager Le passager à saisir
  */
 void saisirPassager(Passager *passager) {
   printf("\nEntrez le nom du passager : ");
@@ -257,7 +260,6 @@ void saisirPassager(Passager *passager) {
 
 /**
  * On ajoute un passager à un vol
- * @param  vol Vol*
  */
 void ajouterPassager(void) {
   if (nb_vols > 0) {
@@ -285,7 +287,7 @@ void ajouterPassager(void) {
 
 /**
  * Permet d'enregistrer les bagages d'un passager lors de son Enregistrement
- * @param [name] [description]
+ * @param passager Le passafer qui doit enregistrer ses bagages
  */
 void enregistrerBagages(Passager *passager) {
   int nb_bagages, nb_bagages_max = 1;
@@ -310,8 +312,8 @@ void enregistrerBagages(Passager *passager) {
 
 /**
  * Permet d'afficher le boarding pass
- * @param passager Passager*
- * @param vol    Vol*
+ * @param passager Le passager
+ * @param vol      Le vol du passager
  */
 void afficherBoardingPass(Passager *passager, Vol *vol) {
   printf("Carte d'embarquement:\n\n");
@@ -336,9 +338,9 @@ void afficherBoardingPass(Passager *passager, Vol *vol) {
 
 /**
  * Permet de savoir si une place est libre dans un vol
- * @param  place Siege
- * @param  vol   Vol
- * @return       int
+ * @param  place Siège à tester
+ * @param  vol   Vol dans lequel on va vérifier qu'il est libre
+ * @return       1 pour un succes ou 0 pour un échec
  */
 int placeLibre(Siege *place, Vol *vol) {
   char place_max[4];
@@ -367,7 +369,8 @@ int placeLibre(Siege *place, Vol *vol) {
 
 /**
  * Permet de choisir un siège parmi les siège libres
- * @param passager [description]
+ * @param passager Passager qui doit choisir son siège
+ * @return         1 pour un succes ou 0 pour un échec
  */
 int choisirSiege(Passager *passager, Vol *vol) {
   char choix[15];
@@ -402,7 +405,7 @@ int choisirSiege(Passager *passager, Vol *vol) {
 }
 
 /**
- * On enregistre un passager sur son vol
+ * Permet d'enregistrer un passager sur son vol
  */
 void engeristrerPassager(void) {
   if (nb_vols > 0) {
@@ -437,9 +440,6 @@ void engeristrerPassager(void) {
 
 /**
  * Faire passer la frontière pour un passager
- * @param  passager Passager*
- * @param  vol      Vol*
- * @return          boolean
  */
 void passerFrontieres(void) {
   Passager *passager = trouverPassager();
@@ -478,8 +478,6 @@ void passerFrontieres(void) {
 
 /**
  * Passe un passager à la frontière
- * @param  passager Passager*
- * @return          int
  */
 void passerSecurite(void) {
   Passager *passager = trouverPassager();
@@ -528,8 +526,8 @@ void passerSecurite(void) {
 }
 
 /**
- * Fonction qui permet d'embarquer un passager
- * @return  [description]
+ * Embarquement d'un passager
+ * @return  1 pour un succes ou 0 pour un échec
  */
 int embarquement(void) {
   Passager *passager = trouverPassager();
@@ -561,8 +559,8 @@ int embarquement(void) {
 }
 
 /**
- * Permet  de faire decoller un avion
- * @return  int
+ * Permet de faire decoller un avion
+ * @return  1 pour un succes ou 0 pour un échec
  */
 int decoller(void) {
   if (nb_vols > 0) {
@@ -684,7 +682,6 @@ void afficherAide(void) {
   "[12]  afficher info vol     : Afficher les informations d'un vol\n\n"
   "[21]  sauvegarder           : Sauvegarder l'instance\n"
   "[21]  restaurer             : Restaurer l'instance\n\n"
-  "[99]  ping                  : Ping ???\n\n"
   "[0]   aide                  : Afficher l'aide\n"
   "[100] fermer                : Fermer le programme\n\n");
 }
@@ -718,7 +715,7 @@ void afficherInfoVol(void) {
 
 /**
  * Sauvegarder l'instance du programme en cours
- * @return  int
+ * @return  1 pour un succes ou 0 pour un échec
  */
 int sauvegarder(void) {
   FILE *fvols = NULL, *fpassagers = NULL;
@@ -816,7 +813,7 @@ int sauvegarder(void) {
 
 /**
  * Permet de restaurer une instance à partir d'un fichier
- * @return  int
+ * @return  1 pour un succes ou 0 pour un échec
  */
 int restaurer(void) {
   FILE *fvols = NULL, *fpassagers = NULL;
@@ -925,13 +922,6 @@ void fermer(void) {
 }
 
 /**
- * Pong ?
- */
-void ping(void) {
-  printf("\n  PONG ! \n\n");
-}
-
-/**
  * @fn main
  * @brief Fonction principale du projet
  * 
@@ -956,7 +946,6 @@ int main(void) {
     { 12, "afficher info vol" },
     { 21, "sauvegarder" },
     { 22, "restaurer" },
-    { 99, "ping" },
     { 100, "fermer" }
   };
   nb_commandes = sizeof(commandes) / sizeof(commandes[0]);

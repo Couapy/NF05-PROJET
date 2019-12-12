@@ -1,0 +1,5 @@
+<map id="afficherInfoVol" name="afficherInfoVol">
+<area shape="rect" id="node2" href="$dd/d76/projet_8c.html#a12653e9c9b27170ffe8611eacdbf4332" title="Permet de sélectionner un vol. " alt="" coords="165,5,275,32"/>
+<area shape="rect" id="node4" href="$dd/d76/projet_8c.html#a7773f05eade91be866a2e9e1a0fd05c1" title="Affiche les informations d&#39;un passager. " alt="" coords="160,56,280,83"/>
+<area shape="rect" id="node3" href="$dd/d76/projet_8c.html#a8353acb67d0873be1faa01022fb13f2e" title="Permet d&#39;afficher tous les vols. " alt="" coords="328,5,419,32"/>
+</map>

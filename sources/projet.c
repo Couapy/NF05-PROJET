@@ -21,9 +21,9 @@
 #define VOLS_MAX 255
 
 
-Vol vols[VOLS_MAX]; /** Tableau de tout les vols **/
-int nb_vols = 0; /** Nombre de vols enregistrés en mémoire **/
-int last_id_bagage = 0; /** Dernier numéro de ticket bagage délivré **/
+Vol vols[VOLS_MAX]; //!< Tableau de tout les vols
+int nb_vols = 0; //!< Nombre de vols enregistrés en mémoire
+int last_id_bagage = 0; //!< Dernier numéro de ticket bagage délivré
 
 // TODO: Demander le passeport
 // TODO: Commenter le code

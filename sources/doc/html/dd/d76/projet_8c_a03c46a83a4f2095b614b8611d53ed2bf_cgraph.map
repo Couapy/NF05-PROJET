@@ -1,0 +1,8 @@
+<map id="engeristrerPassager" name="engeristrerPassager">
+<area shape="rect" id="node2" href="$dd/d76/projet_8c.html#a23523aed07121a95f642adb75bb88e12" title="Trouve un passager selon un Nom ou un Numero de billet. " alt="" coords="207,5,324,32"/>
+<area shape="rect" id="node3" href="$dd/d76/projet_8c.html#ad1c84140fc0ec3cfab79111d9f398198" title="Trouve le vol d&#39;un passager à oar. " alt="" coords="225,56,306,83"/>
+<area shape="rect" id="node4" href="$dd/d76/projet_8c.html#a513f6c3ea6f3e3734a502258b1233132" title="Permet d&#39;enregistrer les bagages d&#39;un passager lors de son Enregistrement. " alt="" coords="198,107,333,133"/>
+<area shape="rect" id="node5" href="$dd/d76/projet_8c.html#a75e6165f64696079d00eba0b252a705f" title="Permet de choisir un siège parmi les siège libres. " alt="" coords="219,157,312,184"/>
+<area shape="rect" id="node7" href="$dd/d76/projet_8c.html#a112ee3d9bdb246be36be9f08ac45e56a" title="Permet d&#39;afficher le boarding pass. " alt="" coords="192,208,339,235"/>
+<area shape="rect" id="node6" href="$dd/d76/projet_8c.html#a0c8ba9d4c94acbfcdf35826d76d09cc1" title="Permet de savoir si une place est libre dans un vol. " alt="" coords="387,157,468,184"/>
+</map>

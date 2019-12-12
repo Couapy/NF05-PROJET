@@ -1,0 +1,5 @@
+<map id="ajouterVol" name="ajouterVol">
+<area shape="rect" id="node2" href="$dd/d76/projet_8c.html#a4bf01fe3d4f4455f5031752444ffab0e" title="Permet de saisir une date. " alt="" coords="158,5,239,32"/>
+<area shape="rect" id="node3" href="$dd/d76/projet_8c.html#a799ce83f74df3ba2ea472cb2bfb3d264" title="Permet de saisir un horaire. " alt="" coords="152,56,245,83"/>
+<area shape="rect" id="node4" href="$dd/d76/projet_8c.html#a591f9de54d288327053df8484e4e032e" title="Génération du numéro du vol aléatoirement. " alt="" coords="133,107,264,133"/>
+</map>

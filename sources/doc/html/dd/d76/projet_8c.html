@@ -80,6 +80,7 @@ Graphe des dépendances par inclusion de projet.c:</div>
 <div class="dyncontent">
 <div class="center"><img src="../../d2/d10/projet_8c__incl.png" border="0" usemap="#projet_8c" alt=""/></div>
 <map name="projet_8c" id="projet_8c">
+<area shape="rect" id="node7" href="../../d5/db5/structures_8c.html" title="structures.c" alt="" coords="32,80,123,107"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -92,7 +93,7 @@ Macros</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Fonctions</h2></td></tr>
 <tr class="memitem:a4bf01fe3d4f4455f5031752444ffab0e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d76/projet_8c.html#a4bf01fe3d4f4455f5031752444ffab0e">saisirDate</a> (<a class="el" href="../../d9/ddb/structDate.html">Date</a> *date)</td></tr>
-<tr class="memdesc:a4bf01fe3d4f4455f5031752444ffab0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dernier numéro de ticket bagage délivré  <a href="#a4bf01fe3d4f4455f5031752444ffab0e">Plus de détails...</a><br /></td></tr>
+<tr class="memdesc:a4bf01fe3d4f4455f5031752444ffab0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de saisir une date.  <a href="#a4bf01fe3d4f4455f5031752444ffab0e">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a4bf01fe3d4f4455f5031752444ffab0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a799ce83f74df3ba2ea472cb2bfb3d264"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d76/projet_8c.html#a799ce83f74df3ba2ea472cb2bfb3d264">saisirTemps</a> (<a class="el" href="../../db/dd3/structTemps.html">Temps</a> *temps)</td></tr>
 <tr class="memdesc:a799ce83f74df3ba2ea472cb2bfb3d264"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de saisir un horaire.  <a href="#a799ce83f74df3ba2ea472cb2bfb3d264">Plus de détails...</a><br /></td></tr>
@@ -176,12 +177,13 @@ Fonctions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
 <tr class="memitem:a3cea73e6147670d286527880986a5116"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/d3f/structVol.html">Vol</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d76/projet_8c.html#a3cea73e6147670d286527880986a5116">vols</a> [<a class="el" href="../../dd/d76/projet_8c.html#a4843c11fbc1f89edb35a2792775451b5">VOLS_MAX</a>]</td></tr>
+<tr class="memdesc:a3cea73e6147670d286527880986a5116"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tableau de tout les vols.  <a href="#a3cea73e6147670d286527880986a5116">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a3cea73e6147670d286527880986a5116"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aea5232083282df7158217f6cf30d7c6b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d76/projet_8c.html#aea5232083282df7158217f6cf30d7c6b">nb_vols</a> = 0</td></tr>
-<tr class="memdesc:aea5232083282df7158217f6cf30d7c6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tableau de tout les vols.  <a href="#aea5232083282df7158217f6cf30d7c6b">Plus de détails...</a><br /></td></tr>
+<tr class="memdesc:aea5232083282df7158217f6cf30d7c6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nombre de vols enregistrés en mémoire.  <a href="#aea5232083282df7158217f6cf30d7c6b">Plus de détails...</a><br /></td></tr>
 <tr class="separator:aea5232083282df7158217f6cf30d7c6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac388dea1c212dd04f766354b662b68ce"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d76/projet_8c.html#ac388dea1c212dd04f766354b662b68ce">last_id_bagage</a> = 0</td></tr>
-<tr class="memdesc:ac388dea1c212dd04f766354b662b68ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nombre de vols enregistrés en mémoire.  <a href="#ac388dea1c212dd04f766354b662b68ce">Plus de détails...</a><br /></td></tr>
+<tr class="memdesc:ac388dea1c212dd04f766354b662b68ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dernier numéro de ticket bagage délivré  <a href="#ac388dea1c212dd04f766354b662b68ce">Plus de détails...</a><br /></td></tr>
 <tr class="separator:ac388dea1c212dd04f766354b662b68ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
@@ -225,6 +227,14 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Affiche le menu de l'aide. </p>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dd/d76/projet_8c_a6c01420aa3b32974d76d5fe198b1a55f_icgraph.png" border="0" usemap="#dd/d76/projet_8c_a6c01420aa3b32974d76d5fe198b1a55f_icgraph" alt=""/></div>
+<map name="dd/d76/projet_8c_a6c01420aa3b32974d76d5fe198b1a55f_icgraph" id="dd/d76/projet_8c_a6c01420aa3b32974d76d5fe198b1a55f_icgraph">
+<area shape="rect" id="node2" href="../../dd/d76/projet_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Fonction principale du projet. " alt="" coords="144,5,195,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -262,6 +272,15 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dd/d76/projet_8c_a112ee3d9bdb246be36be9f08ac45e56a_icgraph.png" border="0" usemap="#dd/d76/projet_8c_a112ee3d9bdb246be36be9f08ac45e56a_icgraph" alt=""/></div>
+<map name="dd/d76/projet_8c_a112ee3d9bdb246be36be9f08ac45e56a_icgraph" id="dd/d76/projet_8c_a112ee3d9bdb246be36be9f08ac45e56a_icgraph">
+<area shape="rect" id="node2" href="../../dd/d76/projet_8c.html#a03c46a83a4f2095b614b8611d53ed2bf" title="Permet d&#39;enregistrer un passager sur son vol. " alt="" coords="200,5,339,32"/>
+<area shape="rect" id="node3" href="../../dd/d76/projet_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Fonction principale du projet. " alt="" coords="387,5,437,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -287,6 +306,17 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="../../dd/d76/projet_8c_a28ca3d708a2af48631dc5746000b2042_cgraph.png" border="0" usemap="#dd/d76/projet_8c_a28ca3d708a2af48631dc5746000b2042_cgraph" alt=""/></div>
 <map name="dd/d76/projet_8c_a28ca3d708a2af48631dc5746000b2042_cgraph" id="dd/d76/projet_8c_a28ca3d708a2af48631dc5746000b2042_cgraph">
+<area shape="rect" id="node2" href="../../dd/d76/projet_8c.html#a12653e9c9b27170ffe8611eacdbf4332" title="Permet de sélectionner un vol. " alt="" coords="165,5,275,32"/>
+<area shape="rect" id="node4" href="../../dd/d76/projet_8c.html#a7773f05eade91be866a2e9e1a0fd05c1" title="Affiche les informations d&#39;un passager. " alt="" coords="160,56,280,83"/>
+<area shape="rect" id="node3" href="../../dd/d76/projet_8c.html#a8353acb67d0873be1faa01022fb13f2e" title="Permet d&#39;afficher tous les vols. " alt="" coords="328,5,419,32"/>
+</map>
+</div>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dd/d76/projet_8c_a28ca3d708a2af48631dc5746000b2042_icgraph.png" border="0" usemap="#dd/d76/projet_8c_a28ca3d708a2af48631dc5746000b2042_icgraph" alt=""/></div>
+<map name="dd/d76/projet_8c_a28ca3d708a2af48631dc5746000b2042_icgraph" id="dd/d76/projet_8c_a28ca3d708a2af48631dc5746000b2042_icgraph">
+<area shape="rect" id="node2" href="../../dd/d76/projet_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Fonction principale du projet. " alt="" coords="160,5,211,32"/>
 </map>
 </div>
 
@@ -315,6 +345,15 @@ Voici le graphe d'appel pour cette fonction :</div>
   </table>
   </dd>
 </dl>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dd/d76/projet_8c_a7773f05eade91be866a2e9e1a0fd05c1_icgraph.png" border="0" usemap="#dd/d76/projet_8c_a7773f05eade91be866a2e9e1a0fd05c1_icgraph" alt=""/></div>
+<map name="dd/d76/projet_8c_a7773f05eade91be866a2e9e1a0fd05c1_icgraph" id="dd/d76/projet_8c_a7773f05eade91be866a2e9e1a0fd05c1_icgraph">
+<area shape="rect" id="node2" href="../../dd/d76/projet_8c.html#a28ca3d708a2af48631dc5746000b2042" title="Afficher les infromations d&#39;un vol. " alt="" coords="173,5,280,32"/>
+<area shape="rect" id="node3" href="../../dd/d76/projet_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Fonction principale du projet. " alt="" coords="328,5,379,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -335,6 +374,18 @@ Voici le graphe d'appel pour cette fonction :</div>
 </div><div class="memdoc">
 
 <p>Permet d'afficher tous les vols. </p>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dd/d76/projet_8c_a8353acb67d0873be1faa01022fb13f2e_icgraph.png" border="0" usemap="#dd/d76/projet_8c_a8353acb67d0873be1faa01022fb13f2e_icgraph" alt=""/></div>
+<map name="dd/d76/projet_8c_a8353acb67d0873be1faa01022fb13f2e_icgraph" id="dd/d76/projet_8c_a8353acb67d0873be1faa01022fb13f2e_icgraph">
+<area shape="rect" id="node2" href="../../dd/d76/projet_8c.html#a12653e9c9b27170ffe8611eacdbf4332" title="Permet de sélectionner un vol. " alt="" coords="144,81,255,108"/>
+<area shape="rect" id="node4" href="../../dd/d76/projet_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Fonction principale du projet. " alt="" coords="467,81,517,108"/>
+<area shape="rect" id="node3" href="../../dd/d76/projet_8c.html#aaa79494f334784f4344fd167bd491590" title="On ajoute un passager à un vol. " alt="" coords="303,5,419,32"/>
+<area shape="rect" id="node5" href="../../dd/d76/projet_8c.html#a7df5bbf04b7cc3b025fbbd5b3b3017ce" title="Permet de faire decoller un avion. " alt="" coords="327,56,394,83"/>
+<area shape="rect" id="node6" href="../../dd/d76/projet_8c.html#a28ca3d708a2af48631dc5746000b2042" title="Afficher les infromations d&#39;un vol. " alt="" coords="307,107,414,133"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -360,6 +411,19 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="../../dd/d76/projet_8c_aaa79494f334784f4344fd167bd491590_cgraph.png" border="0" usemap="#dd/d76/projet_8c_aaa79494f334784f4344fd167bd491590_cgraph" alt=""/></div>
 <map name="dd/d76/projet_8c_aaa79494f334784f4344fd167bd491590_cgraph" id="dd/d76/projet_8c_aaa79494f334784f4344fd167bd491590_cgraph">
+<area shape="rect" id="node2" href="../../dd/d76/projet_8c.html#a12653e9c9b27170ffe8611eacdbf4332" title="Permet de sélectionner un vol. " alt="" coords="169,5,280,32"/>
+<area shape="rect" id="node4" href="../../dd/d76/projet_8c.html#a2dc1addfe76b2d399ec31d59d108b3f3" title="Saisie d&#39;un passager par l&#39;utilisateur. " alt="" coords="171,56,279,83"/>
+<area shape="rect" id="node6" href="../../dd/d76/projet_8c.html#a9cf924277af2f2752bf6073cdc22b630" title="Fonction qui génère un billet à un passager. " alt="" coords="177,107,272,133"/>
+<area shape="rect" id="node3" href="../../dd/d76/projet_8c.html#a8353acb67d0873be1faa01022fb13f2e" title="Permet d&#39;afficher tous les vols. " alt="" coords="328,5,419,32"/>
+<area shape="rect" id="node5" href="../../dd/d76/projet_8c.html#a4bf01fe3d4f4455f5031752444ffab0e" title="Permet de saisir une date. " alt="" coords="333,56,414,83"/>
+</map>
+</div>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dd/d76/projet_8c_aaa79494f334784f4344fd167bd491590_icgraph.png" border="0" usemap="#dd/d76/projet_8c_aaa79494f334784f4344fd167bd491590_icgraph" alt=""/></div>
+<map name="dd/d76/projet_8c_aaa79494f334784f4344fd167bd491590_icgraph" id="dd/d76/projet_8c_aaa79494f334784f4344fd167bd491590_icgraph">
+<area shape="rect" id="node2" href="../../dd/d76/projet_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Fonction principale du projet. " alt="" coords="169,5,220,32"/>
 </map>
 </div>
 
@@ -387,6 +451,17 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="../../dd/d76/projet_8c_aca3851e10188a3c073566e1333387e1d_cgraph.png" border="0" usemap="#dd/d76/projet_8c_aca3851e10188a3c073566e1333387e1d_cgraph" alt=""/></div>
 <map name="dd/d76/projet_8c_aca3851e10188a3c073566e1333387e1d_cgraph" id="dd/d76/projet_8c_aca3851e10188a3c073566e1333387e1d_cgraph">
+<area shape="rect" id="node2" href="../../dd/d76/projet_8c.html#a4bf01fe3d4f4455f5031752444ffab0e" title="Permet de saisir une date. " alt="" coords="158,5,239,32"/>
+<area shape="rect" id="node3" href="../../dd/d76/projet_8c.html#a799ce83f74df3ba2ea472cb2bfb3d264" title="Permet de saisir un horaire. " alt="" coords="152,56,245,83"/>
+<area shape="rect" id="node4" href="../../dd/d76/projet_8c.html#a591f9de54d288327053df8484e4e032e" title="Génération du numéro du vol aléatoirement. " alt="" coords="133,107,264,133"/>
+</map>
+</div>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dd/d76/projet_8c_aca3851e10188a3c073566e1333387e1d_icgraph.png" border="0" usemap="#dd/d76/projet_8c_aca3851e10188a3c073566e1333387e1d_icgraph" alt=""/></div>
+<map name="dd/d76/projet_8c_aca3851e10188a3c073566e1333387e1d_icgraph" id="dd/d76/projet_8c_aca3851e10188a3c073566e1333387e1d_icgraph">
+<area shape="rect" id="node2" href="../../dd/d76/projet_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Fonction principale du projet. " alt="" coords="133,5,184,32"/>
 </map>
 </div>
 
@@ -431,6 +506,16 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="../../dd/d76/projet_8c_a75e6165f64696079d00eba0b252a705f_cgraph.png" border="0" usemap="#dd/d76/projet_8c_a75e6165f64696079d00eba0b252a705f_cgraph" alt=""/></div>
 <map name="dd/d76/projet_8c_a75e6165f64696079d00eba0b252a705f_cgraph" id="dd/d76/projet_8c_a75e6165f64696079d00eba0b252a705f_cgraph">
+<area shape="rect" id="node2" href="../../dd/d76/projet_8c.html#a0c8ba9d4c94acbfcdf35826d76d09cc1" title="Permet de savoir si une place est libre dans un vol. " alt="" coords="147,5,228,32"/>
+</map>
+</div>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dd/d76/projet_8c_a75e6165f64696079d00eba0b252a705f_icgraph.png" border="0" usemap="#dd/d76/projet_8c_a75e6165f64696079d00eba0b252a705f_icgraph" alt=""/></div>
+<map name="dd/d76/projet_8c_a75e6165f64696079d00eba0b252a705f_icgraph" id="dd/d76/projet_8c_a75e6165f64696079d00eba0b252a705f_icgraph">
+<area shape="rect" id="node2" href="../../dd/d76/projet_8c.html#a03c46a83a4f2095b614b8611d53ed2bf" title="Permet d&#39;enregistrer un passager sur son vol. " alt="" coords="147,5,285,32"/>
+<area shape="rect" id="node3" href="../../dd/d76/projet_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Fonction principale du projet. " alt="" coords="333,5,384,32"/>
 </map>
 </div>
 
@@ -459,6 +544,16 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="../../dd/d76/projet_8c_a7df5bbf04b7cc3b025fbbd5b3b3017ce_cgraph.png" border="0" usemap="#dd/d76/projet_8c_a7df5bbf04b7cc3b025fbbd5b3b3017ce_cgraph" alt=""/></div>
 <map name="dd/d76/projet_8c_a7df5bbf04b7cc3b025fbbd5b3b3017ce_cgraph" id="dd/d76/projet_8c_a7df5bbf04b7cc3b025fbbd5b3b3017ce_cgraph">
+<area shape="rect" id="node2" href="../../dd/d76/projet_8c.html#a12653e9c9b27170ffe8611eacdbf4332" title="Permet de sélectionner un vol. " alt="" coords="120,5,231,32"/>
+<area shape="rect" id="node3" href="../../dd/d76/projet_8c.html#a8353acb67d0873be1faa01022fb13f2e" title="Permet d&#39;afficher tous les vols. " alt="" coords="279,5,369,32"/>
+</map>
+</div>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dd/d76/projet_8c_a7df5bbf04b7cc3b025fbbd5b3b3017ce_icgraph.png" border="0" usemap="#dd/d76/projet_8c_a7df5bbf04b7cc3b025fbbd5b3b3017ce_icgraph" alt=""/></div>
+<map name="dd/d76/projet_8c_a7df5bbf04b7cc3b025fbbd5b3b3017ce_icgraph" id="dd/d76/projet_8c_a7df5bbf04b7cc3b025fbbd5b3b3017ce_icgraph">
+<area shape="rect" id="node2" href="../../dd/d76/projet_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Fonction principale du projet. " alt="" coords="120,5,171,32"/>
 </map>
 </div>
 
@@ -487,6 +582,16 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="../../dd/d76/projet_8c_aeb692debeb4b381172b3b93b1d8fcfd5_cgraph.png" border="0" usemap="#dd/d76/projet_8c_aeb692debeb4b381172b3b93b1d8fcfd5_cgraph" alt=""/></div>
 <map name="dd/d76/projet_8c_aeb692debeb4b381172b3b93b1d8fcfd5_cgraph" id="dd/d76/projet_8c_aeb692debeb4b381172b3b93b1d8fcfd5_cgraph">
+<area shape="rect" id="node2" href="../../dd/d76/projet_8c.html#a23523aed07121a95f642adb75bb88e12" title="Trouve un passager selon un Nom ou un Numero de billet. " alt="" coords="161,5,279,32"/>
+<area shape="rect" id="node3" href="../../dd/d76/projet_8c.html#ad1c84140fc0ec3cfab79111d9f398198" title="Trouve le vol d&#39;un passager à oar. " alt="" coords="179,56,261,83"/>
+</map>
+</div>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dd/d76/projet_8c_aeb692debeb4b381172b3b93b1d8fcfd5_icgraph.png" border="0" usemap="#dd/d76/projet_8c_aeb692debeb4b381172b3b93b1d8fcfd5_icgraph" alt=""/></div>
+<map name="dd/d76/projet_8c_aeb692debeb4b381172b3b93b1d8fcfd5_icgraph" id="dd/d76/projet_8c_aeb692debeb4b381172b3b93b1d8fcfd5_icgraph">
+<area shape="rect" id="node2" href="../../dd/d76/projet_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Fonction principale du projet. " alt="" coords="161,5,212,32"/>
 </map>
 </div>
 
@@ -514,6 +619,20 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="../../dd/d76/projet_8c_a03c46a83a4f2095b614b8611d53ed2bf_cgraph.png" border="0" usemap="#dd/d76/projet_8c_a03c46a83a4f2095b614b8611d53ed2bf_cgraph" alt=""/></div>
 <map name="dd/d76/projet_8c_a03c46a83a4f2095b614b8611d53ed2bf_cgraph" id="dd/d76/projet_8c_a03c46a83a4f2095b614b8611d53ed2bf_cgraph">
+<area shape="rect" id="node2" href="../../dd/d76/projet_8c.html#a23523aed07121a95f642adb75bb88e12" title="Trouve un passager selon un Nom ou un Numero de billet. " alt="" coords="207,5,324,32"/>
+<area shape="rect" id="node3" href="../../dd/d76/projet_8c.html#ad1c84140fc0ec3cfab79111d9f398198" title="Trouve le vol d&#39;un passager à oar. " alt="" coords="225,56,306,83"/>
+<area shape="rect" id="node4" href="../../dd/d76/projet_8c.html#a513f6c3ea6f3e3734a502258b1233132" title="Permet d&#39;enregistrer les bagages d&#39;un passager lors de son Enregistrement. " alt="" coords="198,107,333,133"/>
+<area shape="rect" id="node5" href="../../dd/d76/projet_8c.html#a75e6165f64696079d00eba0b252a705f" title="Permet de choisir un siège parmi les siège libres. " alt="" coords="219,157,312,184"/>
+<area shape="rect" id="node7" href="../../dd/d76/projet_8c.html#a112ee3d9bdb246be36be9f08ac45e56a" title="Permet d&#39;afficher le boarding pass. " alt="" coords="192,208,339,235"/>
+<area shape="rect" id="node6" href="../../dd/d76/projet_8c.html#a0c8ba9d4c94acbfcdf35826d76d09cc1" title="Permet de savoir si une place est libre dans un vol. " alt="" coords="387,157,468,184"/>
+</map>
+</div>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dd/d76/projet_8c_a03c46a83a4f2095b614b8611d53ed2bf_icgraph.png" border="0" usemap="#dd/d76/projet_8c_a03c46a83a4f2095b614b8611d53ed2bf_icgraph" alt=""/></div>
+<map name="dd/d76/projet_8c_a03c46a83a4f2095b614b8611d53ed2bf_icgraph" id="dd/d76/projet_8c_a03c46a83a4f2095b614b8611d53ed2bf_icgraph">
+<area shape="rect" id="node2" href="../../dd/d76/projet_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Fonction principale du projet. " alt="" coords="192,5,243,32"/>
 </map>
 </div>
 
@@ -542,6 +661,15 @@ Voici le graphe d'appel pour cette fonction :</div>
   </table>
   </dd>
 </dl>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dd/d76/projet_8c_a513f6c3ea6f3e3734a502258b1233132_icgraph.png" border="0" usemap="#dd/d76/projet_8c_a513f6c3ea6f3e3734a502258b1233132_icgraph" alt=""/></div>
+<map name="dd/d76/projet_8c_a513f6c3ea6f3e3734a502258b1233132_icgraph" id="dd/d76/projet_8c_a513f6c3ea6f3e3734a502258b1233132_icgraph">
+<area shape="rect" id="node2" href="../../dd/d76/projet_8c.html#a03c46a83a4f2095b614b8611d53ed2bf" title="Permet d&#39;enregistrer un passager sur son vol. " alt="" coords="188,5,327,32"/>
+<area shape="rect" id="node3" href="../../dd/d76/projet_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Fonction principale du projet. " alt="" coords="375,5,425,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -562,6 +690,14 @@ Voici le graphe d'appel pour cette fonction :</div>
 </div><div class="memdoc">
 
 <p>Libère les pointeurs passagers stockés dans chaque vol. </p>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dd/d76/projet_8c_a05bc7c3bee3e164eda5c8419862329ae_icgraph.png" border="0" usemap="#dd/d76/projet_8c_a05bc7c3bee3e164eda5c8419862329ae_icgraph" alt=""/></div>
+<map name="dd/d76/projet_8c_a05bc7c3bee3e164eda5c8419862329ae_icgraph" id="dd/d76/projet_8c_a05bc7c3bee3e164eda5c8419862329ae_icgraph">
+<area shape="rect" id="node2" href="../../dd/d76/projet_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Fonction principale du projet. " alt="" coords="112,5,163,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -588,6 +724,15 @@ Voici le graphe d'appel pour cette fonction :</div>
   </table>
   </dd>
 </dl>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dd/d76/projet_8c_a9cf924277af2f2752bf6073cdc22b630_icgraph.png" border="0" usemap="#dd/d76/projet_8c_a9cf924277af2f2752bf6073cdc22b630_icgraph" alt=""/></div>
+<map name="dd/d76/projet_8c_a9cf924277af2f2752bf6073cdc22b630_icgraph" id="dd/d76/projet_8c_a9cf924277af2f2752bf6073cdc22b630_icgraph">
+<area shape="rect" id="node2" href="../../dd/d76/projet_8c.html#aaa79494f334784f4344fd167bd491590" title="On ajoute un passager à un vol. " alt="" coords="148,5,264,32"/>
+<area shape="rect" id="node3" href="../../dd/d76/projet_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Fonction principale du projet. " alt="" coords="312,5,363,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -614,6 +759,15 @@ Voici le graphe d'appel pour cette fonction :</div>
   </table>
   </dd>
 </dl>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dd/d76/projet_8c_a591f9de54d288327053df8484e4e032e_icgraph.png" border="0" usemap="#dd/d76/projet_8c_a591f9de54d288327053df8484e4e032e_icgraph" alt=""/></div>
+<map name="dd/d76/projet_8c_a591f9de54d288327053df8484e4e032e_icgraph" id="dd/d76/projet_8c_a591f9de54d288327053df8484e4e032e_icgraph">
+<area shape="rect" id="node2" href="../../dd/d76/projet_8c.html#aca3851e10188a3c073566e1333387e1d" title="Permet de creer un vol. " alt="" coords="184,5,264,32"/>
+<area shape="rect" id="node3" href="../../dd/d76/projet_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Fonction principale du projet. " alt="" coords="312,5,363,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -641,6 +795,32 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="../../dd/d76/projet_8c_a840291bc02cba5474a4cb46a9b9566fe_cgraph.png" border="0" usemap="#dd/d76/projet_8c_a840291bc02cba5474a4cb46a9b9566fe_cgraph" alt=""/></div>
 <map name="dd/d76/projet_8c_a840291bc02cba5474a4cb46a9b9566fe_cgraph" id="dd/d76/projet_8c_a840291bc02cba5474a4cb46a9b9566fe_cgraph">
+<area shape="rect" id="node2" href="../../dd/d76/projet_8c.html#aca3851e10188a3c073566e1333387e1d" title="Permet de creer un vol. " alt="" coords="133,81,213,108"/>
+<area shape="rect" id="node6" href="../../dd/d76/projet_8c.html#aaa79494f334784f4344fd167bd491590" title="On ajoute un passager à un vol. " alt="" coords="115,208,231,235"/>
+<area shape="rect" id="node8" href="../../dd/d76/projet_8c.html#a8353acb67d0873be1faa01022fb13f2e" title="Permet d&#39;afficher tous les vols. " alt="" coords="485,309,576,336"/>
+<area shape="rect" id="node11" href="../../dd/d76/projet_8c.html#a03c46a83a4f2095b614b8611d53ed2bf" title="Permet d&#39;enregistrer un passager sur son vol. " alt="" coords="104,563,243,589"/>
+<area shape="rect" id="node18" href="../../dd/d76/projet_8c.html#a1ee0d6389a4bf795d21f5ebfb2d6edc1" title="Faire passer la frontière pour un passager. " alt="" coords="114,512,233,539"/>
+<area shape="rect" id="node19" href="../../dd/d76/projet_8c.html#aaa70d6b9da9e182904d3f726f96afa9b" title="Passe un passager à la frontière. " alt="" coords="119,411,228,437"/>
+<area shape="rect" id="node20" href="../../dd/d76/projet_8c.html#aeb692debeb4b381172b3b93b1d8fcfd5" title="Embarquement d&#39;un passager. " alt="" coords="119,461,227,488"/>
+<area shape="rect" id="node21" href="../../dd/d76/projet_8c.html#a7df5bbf04b7cc3b025fbbd5b3b3017ce" title="Permet de faire decoller un avion. " alt="" coords="140,259,207,285"/>
+<area shape="rect" id="node22" href="../../dd/d76/projet_8c.html#a6c01420aa3b32974d76d5fe198b1a55f" title="Affiche le menu de l&#39;aide. " alt="" coords="128,613,219,640"/>
+<area shape="rect" id="node23" href="../../dd/d76/projet_8c.html#a28ca3d708a2af48631dc5746000b2042" title="Afficher les infromations d&#39;un vol. " alt="" coords="120,309,227,336"/>
+<area shape="rect" id="node25" href="../../dd/d76/projet_8c.html#a8c15898bebd9c5db9cd5211b7e63779b" title="Sauvegarder l&#39;instance du programme en cours. " alt="" coords="127,664,220,691"/>
+<area shape="rect" id="node26" href="../../dd/d76/projet_8c.html#a2944055409a235e93c1847497bf4a166" title="Permet de restaurer une instance à partir d&#39;un fichier. " alt="" coords="137,715,210,741"/>
+<area shape="rect" id="node27" href="../../dd/d76/projet_8c.html#a05bc7c3bee3e164eda5c8419862329ae" title="Libère les pointeurs passagers stockés dans chaque vol. " alt="" coords="144,765,203,792"/>
+<area shape="rect" id="node3" href="../../dd/d76/projet_8c.html#a4bf01fe3d4f4455f5031752444ffab0e" title="Permet de saisir une date. " alt="" coords="490,132,571,159"/>
+<area shape="rect" id="node4" href="../../dd/d76/projet_8c.html#a799ce83f74df3ba2ea472cb2bfb3d264" title="Permet de saisir un horaire. " alt="" coords="317,5,411,32"/>
+<area shape="rect" id="node5" href="../../dd/d76/projet_8c.html#a591f9de54d288327053df8484e4e032e" title="Génération du numéro du vol aléatoirement. " alt="" coords="299,56,429,83"/>
+<area shape="rect" id="node7" href="../../dd/d76/projet_8c.html#a12653e9c9b27170ffe8611eacdbf4332" title="Permet de sélectionner un vol. " alt="" coords="309,259,419,285"/>
+<area shape="rect" id="node9" href="../../dd/d76/projet_8c.html#a2dc1addfe76b2d399ec31d59d108b3f3" title="Saisie d&#39;un passager par l&#39;utilisateur. " alt="" coords="310,157,418,184"/>
+<area shape="rect" id="node10" href="../../dd/d76/projet_8c.html#a9cf924277af2f2752bf6073cdc22b630" title="Fonction qui génère un billet à un passager. " alt="" coords="317,208,411,235"/>
+<area shape="rect" id="node12" href="../../dd/d76/projet_8c.html#a23523aed07121a95f642adb75bb88e12" title="Trouve un passager selon un Nom ou un Numero de billet. " alt="" coords="305,461,423,488"/>
+<area shape="rect" id="node13" href="../../dd/d76/projet_8c.html#ad1c84140fc0ec3cfab79111d9f398198" title="Trouve le vol d&#39;un passager à oar. " alt="" coords="323,512,405,539"/>
+<area shape="rect" id="node14" href="../../dd/d76/projet_8c.html#a513f6c3ea6f3e3734a502258b1233132" title="Permet d&#39;enregistrer les bagages d&#39;un passager lors de son Enregistrement. " alt="" coords="297,563,431,589"/>
+<area shape="rect" id="node15" href="../../dd/d76/projet_8c.html#a75e6165f64696079d00eba0b252a705f" title="Permet de choisir un siège parmi les siège libres. " alt="" coords="317,613,411,640"/>
+<area shape="rect" id="node17" href="../../dd/d76/projet_8c.html#a112ee3d9bdb246be36be9f08ac45e56a" title="Permet d&#39;afficher le boarding pass. " alt="" coords="291,664,437,691"/>
+<area shape="rect" id="node16" href="../../dd/d76/projet_8c.html#a0c8ba9d4c94acbfcdf35826d76d09cc1" title="Permet de savoir si une place est libre dans un vol. " alt="" coords="490,613,571,640"/>
+<area shape="rect" id="node24" href="../../dd/d76/projet_8c.html#a7773f05eade91be866a2e9e1a0fd05c1" title="Affiche les informations d&#39;un passager. " alt="" coords="304,309,424,336"/>
 </map>
 </div>
 
@@ -668,6 +848,16 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="../../dd/d76/projet_8c_a1ee0d6389a4bf795d21f5ebfb2d6edc1_cgraph.png" border="0" usemap="#dd/d76/projet_8c_a1ee0d6389a4bf795d21f5ebfb2d6edc1_cgraph" alt=""/></div>
 <map name="dd/d76/projet_8c_a1ee0d6389a4bf795d21f5ebfb2d6edc1_cgraph" id="dd/d76/projet_8c_a1ee0d6389a4bf795d21f5ebfb2d6edc1_cgraph">
+<area shape="rect" id="node2" href="../../dd/d76/projet_8c.html#a23523aed07121a95f642adb75bb88e12" title="Trouve un passager selon un Nom ou un Numero de billet. " alt="" coords="172,5,289,32"/>
+<area shape="rect" id="node3" href="../../dd/d76/projet_8c.html#ad1c84140fc0ec3cfab79111d9f398198" title="Trouve le vol d&#39;un passager à oar. " alt="" coords="190,56,271,83"/>
+</map>
+</div>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dd/d76/projet_8c_a1ee0d6389a4bf795d21f5ebfb2d6edc1_icgraph.png" border="0" usemap="#dd/d76/projet_8c_a1ee0d6389a4bf795d21f5ebfb2d6edc1_icgraph" alt=""/></div>
+<map name="dd/d76/projet_8c_a1ee0d6389a4bf795d21f5ebfb2d6edc1_icgraph" id="dd/d76/projet_8c_a1ee0d6389a4bf795d21f5ebfb2d6edc1_icgraph">
+<area shape="rect" id="node2" href="../../dd/d76/projet_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Fonction principale du projet. " alt="" coords="172,5,223,32"/>
 </map>
 </div>
 
@@ -695,6 +885,15 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="../../dd/d76/projet_8c_aaa70d6b9da9e182904d3f726f96afa9b_cgraph.png" border="0" usemap="#dd/d76/projet_8c_aaa70d6b9da9e182904d3f726f96afa9b_cgraph" alt=""/></div>
 <map name="dd/d76/projet_8c_aaa70d6b9da9e182904d3f726f96afa9b_cgraph" id="dd/d76/projet_8c_aaa70d6b9da9e182904d3f726f96afa9b_cgraph">
+<area shape="rect" id="node2" href="../../dd/d76/projet_8c.html#a23523aed07121a95f642adb75bb88e12" title="Trouve un passager selon un Nom ou un Numero de billet. " alt="" coords="163,5,280,32"/>
+</map>
+</div>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dd/d76/projet_8c_aaa70d6b9da9e182904d3f726f96afa9b_icgraph.png" border="0" usemap="#dd/d76/projet_8c_aaa70d6b9da9e182904d3f726f96afa9b_icgraph" alt=""/></div>
+<map name="dd/d76/projet_8c_aaa70d6b9da9e182904d3f726f96afa9b_icgraph" id="dd/d76/projet_8c_aaa70d6b9da9e182904d3f726f96afa9b_icgraph">
+<area shape="rect" id="node2" href="../../dd/d76/projet_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Fonction principale du projet. " alt="" coords="163,5,213,32"/>
 </map>
 </div>
 
@@ -735,6 +934,16 @@ Voici le graphe d'appel pour cette fonction :</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Renvoie</dt><dd>1 pour un succes ou 0 pour un échec </dd></dl>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dd/d76/projet_8c_a0c8ba9d4c94acbfcdf35826d76d09cc1_icgraph.png" border="0" usemap="#dd/d76/projet_8c_a0c8ba9d4c94acbfcdf35826d76d09cc1_icgraph" alt=""/></div>
+<map name="dd/d76/projet_8c_a0c8ba9d4c94acbfcdf35826d76d09cc1_icgraph" id="dd/d76/projet_8c_a0c8ba9d4c94acbfcdf35826d76d09cc1_icgraph">
+<area shape="rect" id="node2" href="../../dd/d76/projet_8c.html#a75e6165f64696079d00eba0b252a705f" title="Permet de choisir un siège parmi les siège libres. " alt="" coords="135,5,228,32"/>
+<area shape="rect" id="node3" href="../../dd/d76/projet_8c.html#a03c46a83a4f2095b614b8611d53ed2bf" title="Permet d&#39;enregistrer un passager sur son vol. " alt="" coords="276,5,415,32"/>
+<area shape="rect" id="node4" href="../../dd/d76/projet_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Fonction principale du projet. " alt="" coords="463,5,513,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -756,6 +965,14 @@ Voici le graphe d'appel pour cette fonction :</div>
 
 <p>Permet de restaurer une instance à partir d'un fichier. </p>
 <dl class="section return"><dt>Renvoie</dt><dd>1 pour un succes ou 0 pour un échec </dd></dl>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dd/d76/projet_8c_a2944055409a235e93c1847497bf4a166_icgraph.png" border="0" usemap="#dd/d76/projet_8c_a2944055409a235e93c1847497bf4a166_icgraph" alt=""/></div>
+<map name="dd/d76/projet_8c_a2944055409a235e93c1847497bf4a166_icgraph" id="dd/d76/projet_8c_a2944055409a235e93c1847497bf4a166_icgraph">
+<area shape="rect" id="node2" href="../../dd/d76/projet_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Fonction principale du projet. " alt="" coords="127,5,177,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -775,13 +992,24 @@ Voici le graphe d'appel pour cette fonction :</div>
       </table>
 </div><div class="memdoc">
 
-<p>Dernier numéro de ticket bagage délivré </p>
-<p>Permet de saisir une date </p><dl class="params"><dt>Paramètres</dt><dd>
+<p>Permet de saisir une date. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
   <table class="params">
     <tr><td class="paramname">date</td><td>La date à écrire </td></tr>
   </table>
   </dd>
 </dl>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dd/d76/projet_8c_a4bf01fe3d4f4455f5031752444ffab0e_icgraph.png" border="0" usemap="#dd/d76/projet_8c_a4bf01fe3d4f4455f5031752444ffab0e_icgraph" alt=""/></div>
+<map name="dd/d76/projet_8c_a4bf01fe3d4f4455f5031752444ffab0e_icgraph" id="dd/d76/projet_8c_a4bf01fe3d4f4455f5031752444ffab0e_icgraph">
+<area shape="rect" id="node2" href="../../dd/d76/projet_8c.html#a2dc1addfe76b2d399ec31d59d108b3f3" title="Saisie d&#39;un passager par l&#39;utilisateur. " alt="" coords="135,5,243,32"/>
+<area shape="rect" id="node5" href="../../dd/d76/projet_8c.html#aca3851e10188a3c073566e1333387e1d" title="Permet de creer un vol. " alt="" coords="309,56,389,83"/>
+<area shape="rect" id="node3" href="../../dd/d76/projet_8c.html#aaa79494f334784f4344fd167bd491590" title="On ajoute un passager à un vol. " alt="" coords="291,5,407,32"/>
+<area shape="rect" id="node4" href="../../dd/d76/projet_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Fonction principale du projet. " alt="" coords="455,31,505,57"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -813,6 +1041,16 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="../../dd/d76/projet_8c_a2dc1addfe76b2d399ec31d59d108b3f3_cgraph.png" border="0" usemap="#dd/d76/projet_8c_a2dc1addfe76b2d399ec31d59d108b3f3_cgraph" alt=""/></div>
 <map name="dd/d76/projet_8c_a2dc1addfe76b2d399ec31d59d108b3f3_cgraph" id="dd/d76/projet_8c_a2dc1addfe76b2d399ec31d59d108b3f3_cgraph">
+<area shape="rect" id="node2" href="../../dd/d76/projet_8c.html#a4bf01fe3d4f4455f5031752444ffab0e" title="Permet de saisir une date. " alt="" coords="161,5,243,32"/>
+</map>
+</div>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dd/d76/projet_8c_a2dc1addfe76b2d399ec31d59d108b3f3_icgraph.png" border="0" usemap="#dd/d76/projet_8c_a2dc1addfe76b2d399ec31d59d108b3f3_icgraph" alt=""/></div>
+<map name="dd/d76/projet_8c_a2dc1addfe76b2d399ec31d59d108b3f3_icgraph" id="dd/d76/projet_8c_a2dc1addfe76b2d399ec31d59d108b3f3_icgraph">
+<area shape="rect" id="node2" href="../../dd/d76/projet_8c.html#aaa79494f334784f4344fd167bd491590" title="On ajoute un passager à un vol. " alt="" coords="161,5,277,32"/>
+<area shape="rect" id="node3" href="../../dd/d76/projet_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Fonction principale du projet. " alt="" coords="325,5,376,32"/>
 </map>
 </div>
 
@@ -841,6 +1079,15 @@ Voici le graphe d'appel pour cette fonction :</div>
   </table>
   </dd>
 </dl>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dd/d76/projet_8c_a799ce83f74df3ba2ea472cb2bfb3d264_icgraph.png" border="0" usemap="#dd/d76/projet_8c_a799ce83f74df3ba2ea472cb2bfb3d264_icgraph" alt=""/></div>
+<map name="dd/d76/projet_8c_a799ce83f74df3ba2ea472cb2bfb3d264_icgraph" id="dd/d76/projet_8c_a799ce83f74df3ba2ea472cb2bfb3d264_icgraph">
+<area shape="rect" id="node2" href="../../dd/d76/projet_8c.html#aca3851e10188a3c073566e1333387e1d" title="Permet de creer un vol. " alt="" coords="147,5,227,32"/>
+<area shape="rect" id="node3" href="../../dd/d76/projet_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Fonction principale du projet. " alt="" coords="275,5,325,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -862,6 +1109,14 @@ Voici le graphe d'appel pour cette fonction :</div>
 
 <p>Sauvegarder l'instance du programme en cours. </p>
 <dl class="section return"><dt>Renvoie</dt><dd>1 pour un succes ou 0 pour un échec </dd></dl>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dd/d76/projet_8c_a8c15898bebd9c5db9cd5211b7e63779b_icgraph.png" border="0" usemap="#dd/d76/projet_8c_a8c15898bebd9c5db9cd5211b7e63779b_icgraph" alt=""/></div>
+<map name="dd/d76/projet_8c_a8c15898bebd9c5db9cd5211b7e63779b_icgraph" id="dd/d76/projet_8c_a8c15898bebd9c5db9cd5211b7e63779b_icgraph">
+<area shape="rect" id="node2" href="../../dd/d76/projet_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Fonction principale du projet. " alt="" coords="147,5,197,32"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -888,6 +1143,18 @@ Voici le graphe d'appel pour cette fonction :</div>
 <div class="dyncontent">
 <div class="center"><img src="../../dd/d76/projet_8c_a12653e9c9b27170ffe8611eacdbf4332_cgraph.png" border="0" usemap="#dd/d76/projet_8c_a12653e9c9b27170ffe8611eacdbf4332_cgraph" alt=""/></div>
 <map name="dd/d76/projet_8c_a12653e9c9b27170ffe8611eacdbf4332_cgraph" id="dd/d76/projet_8c_a12653e9c9b27170ffe8611eacdbf4332_cgraph">
+<area shape="rect" id="node2" href="../../dd/d76/projet_8c.html#a8353acb67d0873be1faa01022fb13f2e" title="Permet d&#39;afficher tous les vols. " alt="" coords="164,5,255,32"/>
+</map>
+</div>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dd/d76/projet_8c_a12653e9c9b27170ffe8611eacdbf4332_icgraph.png" border="0" usemap="#dd/d76/projet_8c_a12653e9c9b27170ffe8611eacdbf4332_icgraph" alt=""/></div>
+<map name="dd/d76/projet_8c_a12653e9c9b27170ffe8611eacdbf4332_icgraph" id="dd/d76/projet_8c_a12653e9c9b27170ffe8611eacdbf4332_icgraph">
+<area shape="rect" id="node2" href="../../dd/d76/projet_8c.html#aaa79494f334784f4344fd167bd491590" title="On ajoute un passager à un vol. " alt="" coords="164,5,280,32"/>
+<area shape="rect" id="node4" href="../../dd/d76/projet_8c.html#a7df5bbf04b7cc3b025fbbd5b3b3017ce" title="Permet de faire decoller un avion. " alt="" coords="189,56,255,83"/>
+<area shape="rect" id="node5" href="../../dd/d76/projet_8c.html#a28ca3d708a2af48631dc5746000b2042" title="Afficher les infromations d&#39;un vol. " alt="" coords="169,107,275,133"/>
+<area shape="rect" id="node3" href="../../dd/d76/projet_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Fonction principale du projet. " alt="" coords="328,56,379,83"/>
 </map>
 </div>
 
@@ -911,6 +1178,18 @@ Voici le graphe d'appel pour cette fonction :</div>
 
 <p>Trouve un passager selon un Nom ou un Numero de billet. </p>
 <dl class="section return"><dt>Renvoie</dt><dd>Le passager sélectionner </dd></dl>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dd/d76/projet_8c_a23523aed07121a95f642adb75bb88e12_icgraph.png" border="0" usemap="#dd/d76/projet_8c_a23523aed07121a95f642adb75bb88e12_icgraph" alt=""/></div>
+<map name="dd/d76/projet_8c_a23523aed07121a95f642adb75bb88e12_icgraph" id="dd/d76/projet_8c_a23523aed07121a95f642adb75bb88e12_icgraph">
+<area shape="rect" id="node2" href="../../dd/d76/projet_8c.html#a03c46a83a4f2095b614b8611d53ed2bf" title="Permet d&#39;enregistrer un passager sur son vol. " alt="" coords="171,5,309,32"/>
+<area shape="rect" id="node4" href="../../dd/d76/projet_8c.html#a1ee0d6389a4bf795d21f5ebfb2d6edc1" title="Faire passer la frontière pour un passager. " alt="" coords="181,56,299,83"/>
+<area shape="rect" id="node5" href="../../dd/d76/projet_8c.html#aaa70d6b9da9e182904d3f726f96afa9b" title="Passe un passager à la frontière. " alt="" coords="185,107,295,133"/>
+<area shape="rect" id="node6" href="../../dd/d76/projet_8c.html#aeb692debeb4b381172b3b93b1d8fcfd5" title="Embarquement d&#39;un passager. " alt="" coords="186,157,294,184"/>
+<area shape="rect" id="node3" href="../../dd/d76/projet_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Fonction principale du projet. " alt="" coords="357,81,408,108"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -938,6 +1217,17 @@ Voici le graphe d'appel pour cette fonction :</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Renvoie</dt><dd>Le vol du passager </dd></dl>
+<div class="dynheader">
+Voici le graphe des appelants de cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dd/d76/projet_8c_ad1c84140fc0ec3cfab79111d9f398198_icgraph.png" border="0" usemap="#dd/d76/projet_8c_ad1c84140fc0ec3cfab79111d9f398198_icgraph" alt=""/></div>
+<map name="dd/d76/projet_8c_ad1c84140fc0ec3cfab79111d9f398198_icgraph" id="dd/d76/projet_8c_ad1c84140fc0ec3cfab79111d9f398198_icgraph">
+<area shape="rect" id="node2" href="../../dd/d76/projet_8c.html#a03c46a83a4f2095b614b8611d53ed2bf" title="Permet d&#39;enregistrer un passager sur son vol. " alt="" coords="135,5,273,32"/>
+<area shape="rect" id="node4" href="../../dd/d76/projet_8c.html#a1ee0d6389a4bf795d21f5ebfb2d6edc1" title="Faire passer la frontière pour un passager. " alt="" coords="145,56,263,83"/>
+<area shape="rect" id="node5" href="../../dd/d76/projet_8c.html#aeb692debeb4b381172b3b93b1d8fcfd5" title="Embarquement d&#39;un passager. " alt="" coords="150,107,258,133"/>
+<area shape="rect" id="node3" href="../../dd/d76/projet_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title="Fonction principale du projet. " alt="" coords="321,56,372,83"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -954,7 +1244,7 @@ Voici le graphe d'appel pour cette fonction :</div>
       </table>
 </div><div class="memdoc">
 
-<p>Nombre de vols enregistrés en mémoire. </p>
+<p>Dernier numéro de ticket bagage délivré </p>
 
 </div>
 </div>
@@ -970,7 +1260,7 @@ Voici le graphe d'appel pour cette fonction :</div>
       </table>
 </div><div class="memdoc">
 
-<p>Tableau de tout les vols. </p>
+<p>Nombre de vols enregistrés en mémoire. </p>
 
 </div>
 </div>
@@ -985,6 +1275,8 @@ Voici le graphe d'appel pour cette fonction :</div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Tableau de tout les vols. </p>
 
 </div>
 </div>

@@ -1,0 +1,12 @@
+digraph "Passager"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="Passager",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" bagages" ,fontname="Helvetica"];
+  Node2 [label="Bagage",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d7/d2f/structBagage.html",tooltip="Comporte le numéro de ticket du bagage et si il a été embarqué "];
+  Node3 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" siege" ,fontname="Helvetica"];
+  Node3 [label="Siege",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d9/ded/structSiege.html",tooltip="Associe un numéro de rangée et de colonne pour une place dans l&#39;avion. "];
+  Node4 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" date_naissance" ,fontname="Helvetica"];
+  Node4 [label="Date",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d9/ddb/structDate.html",tooltip="Structure de date. "];
+}

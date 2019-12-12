@@ -14,16 +14,17 @@
 #include <string.h>
 #include <time.h>
 #include "structures.c"
+/**
+ * @def VOLS_MAX
+ * @brief Constante du maximum de vols
+ */
 #define VOLS_MAX 255
 
 
-Vol vols[VOLS_MAX];
-int nb_vols = 0;
-int last_id_bagage = 0;
+Vol vols[VOLS_MAX]; /** Tableau de tout les vols **/
+int nb_vols = 0; /** Nombre de vols enregistrés en mémoire **/
+int last_id_bagage = 0; /** Dernier numéro de ticket bagage délivré **/
 
-/**
- * FIX BUGS
- */
 // TODO: Demander le passeport
 // TODO: Commenter le code
 
@@ -921,8 +922,7 @@ void fermer(void) {
 }
 
 /**
- * @fn main
- * @brief Fonction principale du projet
+* @brief Fonction principale du projet
  *
  * Gestion de la partie console avec laquelle l'utilisateur intéragit
  *
@@ -995,7 +995,6 @@ int main(void) {
       case 12: afficherInfoVol(); break;
       case 21: sauvegarder(); break;
       case 22: restaurer(); break;
-      case 99: ping(); break;
       case 100: fermer(); return 0;
       default:
         printf("\nLa commande n'a pas ete reconnue, vous pouvez consulter l'aide en"

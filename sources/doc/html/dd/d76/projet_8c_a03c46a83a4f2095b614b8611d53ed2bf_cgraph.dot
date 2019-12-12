@@ -1,0 +1,19 @@
+digraph "engeristrerPassager"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node26 [label="engeristrerPassager",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node26 -> Node27 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node27 [label="trouverPassager",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dd/d76/projet_8c.html#a23523aed07121a95f642adb75bb88e12",tooltip="Trouve un passager selon un Nom ou un Numero de billet. "];
+  Node26 -> Node28 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node28 [label="trouverVol",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dd/d76/projet_8c.html#ad1c84140fc0ec3cfab79111d9f398198",tooltip="Trouve le vol d&#39;un passager à oar. "];
+  Node26 -> Node29 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node29 [label="enregistrerBagages",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dd/d76/projet_8c.html#a513f6c3ea6f3e3734a502258b1233132",tooltip="Permet d&#39;enregistrer les bagages d&#39;un passager lors de son Enregistrement. "];
+  Node26 -> Node30 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node30 [label="choisirSiege",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dd/d76/projet_8c.html#a75e6165f64696079d00eba0b252a705f",tooltip="Permet de choisir un siège parmi les siège libres. "];
+  Node30 -> Node31 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node31 [label="placeLibre",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dd/d76/projet_8c.html#a0c8ba9d4c94acbfcdf35826d76d09cc1",tooltip="Permet de savoir si une place est libre dans un vol. "];
+  Node26 -> Node32 [color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node32 [label="afficherBoardingPass",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$dd/d76/projet_8c.html#a112ee3d9bdb246be36be9f08ac45e56a",tooltip="Permet d&#39;afficher le boarding pass. "];
+}

@@ -1,0 +1,999 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Gestion des passagers d&#39;un aeroport - NF05 projet: Référence du fichier projet.c</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Gestion des passagers d&#39;un aeroport - NF05 projet
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "../../search",false,'Recherche');
+</script>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('../../',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Fonctions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence du fichier projet.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Projet de Gestion des Passagers d'un Aéroport.  
+<a href="#details">Plus de détails...</a></p>
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;math.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;time.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="../../d5/db5/structures_8c.html">structures.c</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Graphe des dépendances par inclusion de projet.c:</div>
+<div class="dyncontent">
+<div class="center"><img src="../../d2/d10/projet_8c__incl.png" border="0" usemap="#projet_8c" alt=""/></div>
+<map name="projet_8c" id="projet_8c">
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a4843c11fbc1f89edb35a2792775451b5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d76/projet_8c.html#a4843c11fbc1f89edb35a2792775451b5">VOLS_MAX</a>&#160;&#160;&#160;255</td></tr>
+<tr class="memdesc:a4843c11fbc1f89edb35a2792775451b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constante du maximum de vols.  <a href="#a4843c11fbc1f89edb35a2792775451b5">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a4843c11fbc1f89edb35a2792775451b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a4bf01fe3d4f4455f5031752444ffab0e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d76/projet_8c.html#a4bf01fe3d4f4455f5031752444ffab0e">saisirDate</a> (<a class="el" href="../../d9/ddb/structDate.html">Date</a> *date)</td></tr>
+<tr class="memdesc:a4bf01fe3d4f4455f5031752444ffab0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Dernier numéro de ticket bagage délivré  <a href="#a4bf01fe3d4f4455f5031752444ffab0e">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a4bf01fe3d4f4455f5031752444ffab0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a799ce83f74df3ba2ea472cb2bfb3d264"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d76/projet_8c.html#a799ce83f74df3ba2ea472cb2bfb3d264">saisirTemps</a> (<a class="el" href="../../db/dd3/structTemps.html">Temps</a> *temps)</td></tr>
+<tr class="memdesc:a799ce83f74df3ba2ea472cb2bfb3d264"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de saisir un horaire.  <a href="#a799ce83f74df3ba2ea472cb2bfb3d264">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a799ce83f74df3ba2ea472cb2bfb3d264"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23523aed07121a95f642adb75bb88e12"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d2/d12/structPassager.html">Passager</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d76/projet_8c.html#a23523aed07121a95f642adb75bb88e12">trouverPassager</a> (void)</td></tr>
+<tr class="memdesc:a23523aed07121a95f642adb75bb88e12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trouve un passager selon un Nom ou un Numero de billet.  <a href="#a23523aed07121a95f642adb75bb88e12">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a23523aed07121a95f642adb75bb88e12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1c84140fc0ec3cfab79111d9f398198"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/d3f/structVol.html">Vol</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d76/projet_8c.html#ad1c84140fc0ec3cfab79111d9f398198">trouverVol</a> (<a class="el" href="../../d2/d12/structPassager.html">Passager</a> *passager)</td></tr>
+<tr class="memdesc:ad1c84140fc0ec3cfab79111d9f398198"><td class="mdescLeft">&#160;</td><td class="mdescRight">Trouve le vol d'un passager à oar.  <a href="#ad1c84140fc0ec3cfab79111d9f398198">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ad1c84140fc0ec3cfab79111d9f398198"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8353acb67d0873be1faa01022fb13f2e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d76/projet_8c.html#a8353acb67d0873be1faa01022fb13f2e">afficherVols</a> (void)</td></tr>
+<tr class="memdesc:a8353acb67d0873be1faa01022fb13f2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet d'afficher tous les vols.  <a href="#a8353acb67d0873be1faa01022fb13f2e">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a8353acb67d0873be1faa01022fb13f2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7773f05eade91be866a2e9e1a0fd05c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d76/projet_8c.html#a7773f05eade91be866a2e9e1a0fd05c1">afficherPassager</a> (<a class="el" href="../../d2/d12/structPassager.html">Passager</a> *passager)</td></tr>
+<tr class="memdesc:a7773f05eade91be866a2e9e1a0fd05c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affiche les informations d'un passager.  <a href="#a7773f05eade91be866a2e9e1a0fd05c1">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a7773f05eade91be866a2e9e1a0fd05c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12653e9c9b27170ffe8611eacdbf4332"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/d3f/structVol.html">Vol</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d76/projet_8c.html#a12653e9c9b27170ffe8611eacdbf4332">selectionnerVol</a> (void)</td></tr>
+<tr class="memdesc:a12653e9c9b27170ffe8611eacdbf4332"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de sélectionner un vol.  <a href="#a12653e9c9b27170ffe8611eacdbf4332">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a12653e9c9b27170ffe8611eacdbf4332"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9cf924277af2f2752bf6073cdc22b630"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d76/projet_8c.html#a9cf924277af2f2752bf6073cdc22b630">genererBillet</a> (<a class="el" href="../../d2/d12/structPassager.html">Passager</a> *passager)</td></tr>
+<tr class="memdesc:a9cf924277af2f2752bf6073cdc22b630"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction qui génère un billet à un passager.  <a href="#a9cf924277af2f2752bf6073cdc22b630">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a9cf924277af2f2752bf6073cdc22b630"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2dc1addfe76b2d399ec31d59d108b3f3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d76/projet_8c.html#a2dc1addfe76b2d399ec31d59d108b3f3">saisirPassager</a> (<a class="el" href="../../d2/d12/structPassager.html">Passager</a> *passager)</td></tr>
+<tr class="memdesc:a2dc1addfe76b2d399ec31d59d108b3f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saisie d'un passager par l'utilisateur.  <a href="#a2dc1addfe76b2d399ec31d59d108b3f3">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a2dc1addfe76b2d399ec31d59d108b3f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa79494f334784f4344fd167bd491590"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d76/projet_8c.html#aaa79494f334784f4344fd167bd491590">ajouterPassager</a> (void)</td></tr>
+<tr class="memdesc:aaa79494f334784f4344fd167bd491590"><td class="mdescLeft">&#160;</td><td class="mdescRight">On ajoute un passager à un vol.  <a href="#aaa79494f334784f4344fd167bd491590">Plus de détails...</a><br /></td></tr>
+<tr class="separator:aaa79494f334784f4344fd167bd491590"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a513f6c3ea6f3e3734a502258b1233132"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d76/projet_8c.html#a513f6c3ea6f3e3734a502258b1233132">enregistrerBagages</a> (<a class="el" href="../../d2/d12/structPassager.html">Passager</a> *passager)</td></tr>
+<tr class="memdesc:a513f6c3ea6f3e3734a502258b1233132"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet d'enregistrer les bagages d'un passager lors de son Enregistrement.  <a href="#a513f6c3ea6f3e3734a502258b1233132">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a513f6c3ea6f3e3734a502258b1233132"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a112ee3d9bdb246be36be9f08ac45e56a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d76/projet_8c.html#a112ee3d9bdb246be36be9f08ac45e56a">afficherBoardingPass</a> (<a class="el" href="../../d2/d12/structPassager.html">Passager</a> *passager, <a class="el" href="../../d1/d3f/structVol.html">Vol</a> *vol)</td></tr>
+<tr class="memdesc:a112ee3d9bdb246be36be9f08ac45e56a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet d'afficher le boarding pass.  <a href="#a112ee3d9bdb246be36be9f08ac45e56a">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a112ee3d9bdb246be36be9f08ac45e56a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c8ba9d4c94acbfcdf35826d76d09cc1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d76/projet_8c.html#a0c8ba9d4c94acbfcdf35826d76d09cc1">placeLibre</a> (<a class="el" href="../../d9/ded/structSiege.html">Siege</a> *place, <a class="el" href="../../d1/d3f/structVol.html">Vol</a> *vol)</td></tr>
+<tr class="memdesc:a0c8ba9d4c94acbfcdf35826d76d09cc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de savoir si une place est libre dans un vol.  <a href="#a0c8ba9d4c94acbfcdf35826d76d09cc1">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a0c8ba9d4c94acbfcdf35826d76d09cc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75e6165f64696079d00eba0b252a705f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d76/projet_8c.html#a75e6165f64696079d00eba0b252a705f">choisirSiege</a> (<a class="el" href="../../d2/d12/structPassager.html">Passager</a> *passager, <a class="el" href="../../d1/d3f/structVol.html">Vol</a> *vol)</td></tr>
+<tr class="memdesc:a75e6165f64696079d00eba0b252a705f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de choisir un siège parmi les siège libres.  <a href="#a75e6165f64696079d00eba0b252a705f">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a75e6165f64696079d00eba0b252a705f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03c46a83a4f2095b614b8611d53ed2bf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d76/projet_8c.html#a03c46a83a4f2095b614b8611d53ed2bf">engeristrerPassager</a> (void)</td></tr>
+<tr class="memdesc:a03c46a83a4f2095b614b8611d53ed2bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet d'enregistrer un passager sur son vol.  <a href="#a03c46a83a4f2095b614b8611d53ed2bf">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a03c46a83a4f2095b614b8611d53ed2bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ee0d6389a4bf795d21f5ebfb2d6edc1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d76/projet_8c.html#a1ee0d6389a4bf795d21f5ebfb2d6edc1">passerFrontieres</a> (void)</td></tr>
+<tr class="memdesc:a1ee0d6389a4bf795d21f5ebfb2d6edc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Faire passer la frontière pour un passager.  <a href="#a1ee0d6389a4bf795d21f5ebfb2d6edc1">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a1ee0d6389a4bf795d21f5ebfb2d6edc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa70d6b9da9e182904d3f726f96afa9b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d76/projet_8c.html#aaa70d6b9da9e182904d3f726f96afa9b">passerSecurite</a> (void)</td></tr>
+<tr class="memdesc:aaa70d6b9da9e182904d3f726f96afa9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Passe un passager à la frontière.  <a href="#aaa70d6b9da9e182904d3f726f96afa9b">Plus de détails...</a><br /></td></tr>
+<tr class="separator:aaa70d6b9da9e182904d3f726f96afa9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb692debeb4b381172b3b93b1d8fcfd5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d76/projet_8c.html#aeb692debeb4b381172b3b93b1d8fcfd5">embarquement</a> (void)</td></tr>
+<tr class="memdesc:aeb692debeb4b381172b3b93b1d8fcfd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Embarquement d'un passager.  <a href="#aeb692debeb4b381172b3b93b1d8fcfd5">Plus de détails...</a><br /></td></tr>
+<tr class="separator:aeb692debeb4b381172b3b93b1d8fcfd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7df5bbf04b7cc3b025fbbd5b3b3017ce"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d76/projet_8c.html#a7df5bbf04b7cc3b025fbbd5b3b3017ce">decoller</a> (void)</td></tr>
+<tr class="memdesc:a7df5bbf04b7cc3b025fbbd5b3b3017ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de faire decoller un avion.  <a href="#a7df5bbf04b7cc3b025fbbd5b3b3017ce">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a7df5bbf04b7cc3b025fbbd5b3b3017ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a591f9de54d288327053df8484e4e032e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d76/projet_8c.html#a591f9de54d288327053df8484e4e032e">genererNumeroVol</a> (char *numero)</td></tr>
+<tr class="memdesc:a591f9de54d288327053df8484e4e032e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Génération du numéro du vol aléatoirement.  <a href="#a591f9de54d288327053df8484e4e032e">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a591f9de54d288327053df8484e4e032e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca3851e10188a3c073566e1333387e1d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d76/projet_8c.html#aca3851e10188a3c073566e1333387e1d">ajouterVol</a> (void)</td></tr>
+<tr class="memdesc:aca3851e10188a3c073566e1333387e1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de creer un vol.  <a href="#aca3851e10188a3c073566e1333387e1d">Plus de détails...</a><br /></td></tr>
+<tr class="separator:aca3851e10188a3c073566e1333387e1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c01420aa3b32974d76d5fe198b1a55f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d76/projet_8c.html#a6c01420aa3b32974d76d5fe198b1a55f">afficherAide</a> (void)</td></tr>
+<tr class="memdesc:a6c01420aa3b32974d76d5fe198b1a55f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affiche le menu de l'aide.  <a href="#a6c01420aa3b32974d76d5fe198b1a55f">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a6c01420aa3b32974d76d5fe198b1a55f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28ca3d708a2af48631dc5746000b2042"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d76/projet_8c.html#a28ca3d708a2af48631dc5746000b2042">afficherInfoVol</a> (void)</td></tr>
+<tr class="memdesc:a28ca3d708a2af48631dc5746000b2042"><td class="mdescLeft">&#160;</td><td class="mdescRight">Afficher les infromations d'un vol.  <a href="#a28ca3d708a2af48631dc5746000b2042">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a28ca3d708a2af48631dc5746000b2042"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c15898bebd9c5db9cd5211b7e63779b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d76/projet_8c.html#a8c15898bebd9c5db9cd5211b7e63779b">sauvegarder</a> (void)</td></tr>
+<tr class="memdesc:a8c15898bebd9c5db9cd5211b7e63779b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sauvegarder l'instance du programme en cours.  <a href="#a8c15898bebd9c5db9cd5211b7e63779b">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a8c15898bebd9c5db9cd5211b7e63779b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2944055409a235e93c1847497bf4a166"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d76/projet_8c.html#a2944055409a235e93c1847497bf4a166">restaurer</a> (void)</td></tr>
+<tr class="memdesc:a2944055409a235e93c1847497bf4a166"><td class="mdescLeft">&#160;</td><td class="mdescRight">Permet de restaurer une instance à partir d'un fichier.  <a href="#a2944055409a235e93c1847497bf4a166">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a2944055409a235e93c1847497bf4a166"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05bc7c3bee3e164eda5c8419862329ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d76/projet_8c.html#a05bc7c3bee3e164eda5c8419862329ae">fermer</a> (void)</td></tr>
+<tr class="memdesc:a05bc7c3bee3e164eda5c8419862329ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Libère les pointeurs passagers stockés dans chaque vol.  <a href="#a05bc7c3bee3e164eda5c8419862329ae">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a05bc7c3bee3e164eda5c8419862329ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a840291bc02cba5474a4cb46a9b9566fe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d76/projet_8c.html#a840291bc02cba5474a4cb46a9b9566fe">main</a> (void)</td></tr>
+<tr class="memdesc:a840291bc02cba5474a4cb46a9b9566fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction principale du projet.  <a href="#a840291bc02cba5474a4cb46a9b9566fe">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a840291bc02cba5474a4cb46a9b9566fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a3cea73e6147670d286527880986a5116"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d1/d3f/structVol.html">Vol</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d76/projet_8c.html#a3cea73e6147670d286527880986a5116">vols</a> [<a class="el" href="../../dd/d76/projet_8c.html#a4843c11fbc1f89edb35a2792775451b5">VOLS_MAX</a>]</td></tr>
+<tr class="separator:a3cea73e6147670d286527880986a5116"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea5232083282df7158217f6cf30d7c6b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d76/projet_8c.html#aea5232083282df7158217f6cf30d7c6b">nb_vols</a> = 0</td></tr>
+<tr class="memdesc:aea5232083282df7158217f6cf30d7c6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tableau de tout les vols.  <a href="#aea5232083282df7158217f6cf30d7c6b">Plus de détails...</a><br /></td></tr>
+<tr class="separator:aea5232083282df7158217f6cf30d7c6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac388dea1c212dd04f766354b662b68ce"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../dd/d76/projet_8c.html#ac388dea1c212dd04f766354b662b68ce">last_id_bagage</a> = 0</td></tr>
+<tr class="memdesc:ac388dea1c212dd04f766354b662b68ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nombre de vols enregistrés en mémoire.  <a href="#ac388dea1c212dd04f766354b662b68ce">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ac388dea1c212dd04f766354b662b68ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Projet de Gestion des Passagers d'un Aéroport. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Marchand Mael &amp; Calixte Axel </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2019-12-12</dd></dl>
+<dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2019 </dd></dl>
+</div><h2 class="groupheader">Documentation des macros</h2>
+<a id="a4843c11fbc1f89edb35a2792775451b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4843c11fbc1f89edb35a2792775451b5">&#9670;&nbsp;</a></span>VOLS_MAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define VOLS_MAX&#160;&#160;&#160;255</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constante du maximum de vols. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des fonctions</h2>
+<a id="a6c01420aa3b32974d76d5fe198b1a55f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c01420aa3b32974d76d5fe198b1a55f">&#9670;&nbsp;</a></span>afficherAide()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void afficherAide </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Affiche le menu de l'aide. </p>
+
+</div>
+</div>
+<a id="a112ee3d9bdb246be36be9f08ac45e56a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a112ee3d9bdb246be36be9f08ac45e56a">&#9670;&nbsp;</a></span>afficherBoardingPass()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void afficherBoardingPass </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d2/d12/structPassager.html">Passager</a> *&#160;</td>
+          <td class="paramname"><em>passager</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d1/d3f/structVol.html">Vol</a> *&#160;</td>
+          <td class="paramname"><em>vol</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Permet d'afficher le boarding pass. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">passager</td><td>Le passager </td></tr>
+    <tr><td class="paramname">vol</td><td>Le vol du passager </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a28ca3d708a2af48631dc5746000b2042"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28ca3d708a2af48631dc5746000b2042">&#9670;&nbsp;</a></span>afficherInfoVol()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void afficherInfoVol </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Afficher les infromations d'un vol. </p>
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dd/d76/projet_8c_a28ca3d708a2af48631dc5746000b2042_cgraph.png" border="0" usemap="#dd/d76/projet_8c_a28ca3d708a2af48631dc5746000b2042_cgraph" alt=""/></div>
+<map name="dd/d76/projet_8c_a28ca3d708a2af48631dc5746000b2042_cgraph" id="dd/d76/projet_8c_a28ca3d708a2af48631dc5746000b2042_cgraph">
+</map>
+</div>
+
+</div>
+</div>
+<a id="a7773f05eade91be866a2e9e1a0fd05c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7773f05eade91be866a2e9e1a0fd05c1">&#9670;&nbsp;</a></span>afficherPassager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void afficherPassager </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d2/d12/structPassager.html">Passager</a> *&#160;</td>
+          <td class="paramname"><em>passager</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Affiche les informations d'un passager. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">passager</td><td><a class="el" href="../../d2/d12/structPassager.html" title="Comporte le nom, prénom, la nationalité, le billet et des int bouléens pour le bon fonctionnement du ...">Passager</a> à afficher </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8353acb67d0873be1faa01022fb13f2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8353acb67d0873be1faa01022fb13f2e">&#9670;&nbsp;</a></span>afficherVols()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void afficherVols </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Permet d'afficher tous les vols. </p>
+
+</div>
+</div>
+<a id="aaa79494f334784f4344fd167bd491590"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa79494f334784f4344fd167bd491590">&#9670;&nbsp;</a></span>ajouterPassager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ajouterPassager </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>On ajoute un passager à un vol. </p>
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dd/d76/projet_8c_aaa79494f334784f4344fd167bd491590_cgraph.png" border="0" usemap="#dd/d76/projet_8c_aaa79494f334784f4344fd167bd491590_cgraph" alt=""/></div>
+<map name="dd/d76/projet_8c_aaa79494f334784f4344fd167bd491590_cgraph" id="dd/d76/projet_8c_aaa79494f334784f4344fd167bd491590_cgraph">
+</map>
+</div>
+
+</div>
+</div>
+<a id="aca3851e10188a3c073566e1333387e1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca3851e10188a3c073566e1333387e1d">&#9670;&nbsp;</a></span>ajouterVol()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ajouterVol </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Permet de creer un vol. </p>
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dd/d76/projet_8c_aca3851e10188a3c073566e1333387e1d_cgraph.png" border="0" usemap="#dd/d76/projet_8c_aca3851e10188a3c073566e1333387e1d_cgraph" alt=""/></div>
+<map name="dd/d76/projet_8c_aca3851e10188a3c073566e1333387e1d_cgraph" id="dd/d76/projet_8c_aca3851e10188a3c073566e1333387e1d_cgraph">
+</map>
+</div>
+
+</div>
+</div>
+<a id="a75e6165f64696079d00eba0b252a705f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75e6165f64696079d00eba0b252a705f">&#9670;&nbsp;</a></span>choisirSiege()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int choisirSiege </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d2/d12/structPassager.html">Passager</a> *&#160;</td>
+          <td class="paramname"><em>passager</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d1/d3f/structVol.html">Vol</a> *&#160;</td>
+          <td class="paramname"><em>vol</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Permet de choisir un siège parmi les siège libres. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">passager</td><td><a class="el" href="../../d2/d12/structPassager.html" title="Comporte le nom, prénom, la nationalité, le billet et des int bouléens pour le bon fonctionnement du ...">Passager</a> qui doit choisir son siège </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 pour un succes ou 0 pour un échec </dd></dl>
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dd/d76/projet_8c_a75e6165f64696079d00eba0b252a705f_cgraph.png" border="0" usemap="#dd/d76/projet_8c_a75e6165f64696079d00eba0b252a705f_cgraph" alt=""/></div>
+<map name="dd/d76/projet_8c_a75e6165f64696079d00eba0b252a705f_cgraph" id="dd/d76/projet_8c_a75e6165f64696079d00eba0b252a705f_cgraph">
+</map>
+</div>
+
+</div>
+</div>
+<a id="a7df5bbf04b7cc3b025fbbd5b3b3017ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7df5bbf04b7cc3b025fbbd5b3b3017ce">&#9670;&nbsp;</a></span>decoller()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int decoller </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Permet de faire decoller un avion. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>1 pour un succes ou 0 pour un échec </dd></dl>
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dd/d76/projet_8c_a7df5bbf04b7cc3b025fbbd5b3b3017ce_cgraph.png" border="0" usemap="#dd/d76/projet_8c_a7df5bbf04b7cc3b025fbbd5b3b3017ce_cgraph" alt=""/></div>
+<map name="dd/d76/projet_8c_a7df5bbf04b7cc3b025fbbd5b3b3017ce_cgraph" id="dd/d76/projet_8c_a7df5bbf04b7cc3b025fbbd5b3b3017ce_cgraph">
+</map>
+</div>
+
+</div>
+</div>
+<a id="aeb692debeb4b381172b3b93b1d8fcfd5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb692debeb4b381172b3b93b1d8fcfd5">&#9670;&nbsp;</a></span>embarquement()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int embarquement </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Embarquement d'un passager. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>1 pour un succes ou 0 pour un échec </dd></dl>
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dd/d76/projet_8c_aeb692debeb4b381172b3b93b1d8fcfd5_cgraph.png" border="0" usemap="#dd/d76/projet_8c_aeb692debeb4b381172b3b93b1d8fcfd5_cgraph" alt=""/></div>
+<map name="dd/d76/projet_8c_aeb692debeb4b381172b3b93b1d8fcfd5_cgraph" id="dd/d76/projet_8c_aeb692debeb4b381172b3b93b1d8fcfd5_cgraph">
+</map>
+</div>
+
+</div>
+</div>
+<a id="a03c46a83a4f2095b614b8611d53ed2bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03c46a83a4f2095b614b8611d53ed2bf">&#9670;&nbsp;</a></span>engeristrerPassager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void engeristrerPassager </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Permet d'enregistrer un passager sur son vol. </p>
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dd/d76/projet_8c_a03c46a83a4f2095b614b8611d53ed2bf_cgraph.png" border="0" usemap="#dd/d76/projet_8c_a03c46a83a4f2095b614b8611d53ed2bf_cgraph" alt=""/></div>
+<map name="dd/d76/projet_8c_a03c46a83a4f2095b614b8611d53ed2bf_cgraph" id="dd/d76/projet_8c_a03c46a83a4f2095b614b8611d53ed2bf_cgraph">
+</map>
+</div>
+
+</div>
+</div>
+<a id="a513f6c3ea6f3e3734a502258b1233132"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a513f6c3ea6f3e3734a502258b1233132">&#9670;&nbsp;</a></span>enregistrerBagages()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void enregistrerBagages </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d2/d12/structPassager.html">Passager</a> *&#160;</td>
+          <td class="paramname"><em>passager</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Permet d'enregistrer les bagages d'un passager lors de son Enregistrement. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">passager</td><td>Le passafer qui doit enregistrer ses bagages </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a05bc7c3bee3e164eda5c8419862329ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05bc7c3bee3e164eda5c8419862329ae">&#9670;&nbsp;</a></span>fermer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void fermer </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Libère les pointeurs passagers stockés dans chaque vol. </p>
+
+</div>
+</div>
+<a id="a9cf924277af2f2752bf6073cdc22b630"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9cf924277af2f2752bf6073cdc22b630">&#9670;&nbsp;</a></span>genererBillet()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void genererBillet </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d2/d12/structPassager.html">Passager</a> *&#160;</td>
+          <td class="paramname"><em>passager</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction qui génère un billet à un passager. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">passager</td><td>Le passager sans billet </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a591f9de54d288327053df8484e4e032e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a591f9de54d288327053df8484e4e032e">&#9670;&nbsp;</a></span>genererNumeroVol()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void genererNumeroVol </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>numero</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Génération du numéro du vol aléatoirement. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">numero</td><td>Numéro de <a class="el" href="../../d1/d3f/structVol.html" title="Comporte le numéro de vol, la destination, le nombre de places libres, de places réservées, de colonnes et rangées (pour la taille de l&#39;avion). ">Vol</a> généré </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a840291bc02cba5474a4cb46a9b9566fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a840291bc02cba5474a4cb46a9b9566fe">&#9670;&nbsp;</a></span>main()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int main </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction principale du projet. </p>
+<p>Gestion de la partie console avec laquelle l'utilisateur intéragit</p>
+<dl class="section return"><dt>Renvoie</dt><dd>int </dd></dl>
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dd/d76/projet_8c_a840291bc02cba5474a4cb46a9b9566fe_cgraph.png" border="0" usemap="#dd/d76/projet_8c_a840291bc02cba5474a4cb46a9b9566fe_cgraph" alt=""/></div>
+<map name="dd/d76/projet_8c_a840291bc02cba5474a4cb46a9b9566fe_cgraph" id="dd/d76/projet_8c_a840291bc02cba5474a4cb46a9b9566fe_cgraph">
+</map>
+</div>
+
+</div>
+</div>
+<a id="a1ee0d6389a4bf795d21f5ebfb2d6edc1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ee0d6389a4bf795d21f5ebfb2d6edc1">&#9670;&nbsp;</a></span>passerFrontieres()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void passerFrontieres </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Faire passer la frontière pour un passager. </p>
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dd/d76/projet_8c_a1ee0d6389a4bf795d21f5ebfb2d6edc1_cgraph.png" border="0" usemap="#dd/d76/projet_8c_a1ee0d6389a4bf795d21f5ebfb2d6edc1_cgraph" alt=""/></div>
+<map name="dd/d76/projet_8c_a1ee0d6389a4bf795d21f5ebfb2d6edc1_cgraph" id="dd/d76/projet_8c_a1ee0d6389a4bf795d21f5ebfb2d6edc1_cgraph">
+</map>
+</div>
+
+</div>
+</div>
+<a id="aaa70d6b9da9e182904d3f726f96afa9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa70d6b9da9e182904d3f726f96afa9b">&#9670;&nbsp;</a></span>passerSecurite()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void passerSecurite </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Passe un passager à la frontière. </p>
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dd/d76/projet_8c_aaa70d6b9da9e182904d3f726f96afa9b_cgraph.png" border="0" usemap="#dd/d76/projet_8c_aaa70d6b9da9e182904d3f726f96afa9b_cgraph" alt=""/></div>
+<map name="dd/d76/projet_8c_aaa70d6b9da9e182904d3f726f96afa9b_cgraph" id="dd/d76/projet_8c_aaa70d6b9da9e182904d3f726f96afa9b_cgraph">
+</map>
+</div>
+
+</div>
+</div>
+<a id="a0c8ba9d4c94acbfcdf35826d76d09cc1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c8ba9d4c94acbfcdf35826d76d09cc1">&#9670;&nbsp;</a></span>placeLibre()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int placeLibre </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/ded/structSiege.html">Siege</a> *&#160;</td>
+          <td class="paramname"><em>place</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="../../d1/d3f/structVol.html">Vol</a> *&#160;</td>
+          <td class="paramname"><em>vol</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Permet de savoir si une place est libre dans un vol. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">place</td><td>Siège à tester </td></tr>
+    <tr><td class="paramname">vol</td><td><a class="el" href="../../d1/d3f/structVol.html" title="Comporte le numéro de vol, la destination, le nombre de places libres, de places réservées, de colonnes et rangées (pour la taille de l&#39;avion). ">Vol</a> dans lequel on va vérifier qu'il est libre </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>1 pour un succes ou 0 pour un échec </dd></dl>
+
+</div>
+</div>
+<a id="a2944055409a235e93c1847497bf4a166"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2944055409a235e93c1847497bf4a166">&#9670;&nbsp;</a></span>restaurer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int restaurer </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Permet de restaurer une instance à partir d'un fichier. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>1 pour un succes ou 0 pour un échec </dd></dl>
+
+</div>
+</div>
+<a id="a4bf01fe3d4f4455f5031752444ffab0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4bf01fe3d4f4455f5031752444ffab0e">&#9670;&nbsp;</a></span>saisirDate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void saisirDate </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d9/ddb/structDate.html">Date</a> *&#160;</td>
+          <td class="paramname"><em>date</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Dernier numéro de ticket bagage délivré </p>
+<p>Permet de saisir une date </p><dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">date</td><td>La date à écrire </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a2dc1addfe76b2d399ec31d59d108b3f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2dc1addfe76b2d399ec31d59d108b3f3">&#9670;&nbsp;</a></span>saisirPassager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void saisirPassager </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d2/d12/structPassager.html">Passager</a> *&#160;</td>
+          <td class="paramname"><em>passager</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Saisie d'un passager par l'utilisateur. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">passager</td><td>Le passager à saisir </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dd/d76/projet_8c_a2dc1addfe76b2d399ec31d59d108b3f3_cgraph.png" border="0" usemap="#dd/d76/projet_8c_a2dc1addfe76b2d399ec31d59d108b3f3_cgraph" alt=""/></div>
+<map name="dd/d76/projet_8c_a2dc1addfe76b2d399ec31d59d108b3f3_cgraph" id="dd/d76/projet_8c_a2dc1addfe76b2d399ec31d59d108b3f3_cgraph">
+</map>
+</div>
+
+</div>
+</div>
+<a id="a799ce83f74df3ba2ea472cb2bfb3d264"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a799ce83f74df3ba2ea472cb2bfb3d264">&#9670;&nbsp;</a></span>saisirTemps()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void saisirTemps </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../db/dd3/structTemps.html">Temps</a> *&#160;</td>
+          <td class="paramname"><em>temps</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Permet de saisir un horaire. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">temps</td><td>L'horaire à saisir </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8c15898bebd9c5db9cd5211b7e63779b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c15898bebd9c5db9cd5211b7e63779b">&#9670;&nbsp;</a></span>sauvegarder()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int sauvegarder </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sauvegarder l'instance du programme en cours. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>1 pour un succes ou 0 pour un échec </dd></dl>
+
+</div>
+</div>
+<a id="a12653e9c9b27170ffe8611eacdbf4332"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a12653e9c9b27170ffe8611eacdbf4332">&#9670;&nbsp;</a></span>selectionnerVol()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d1/d3f/structVol.html">Vol</a>* selectionnerVol </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Permet de sélectionner un vol. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>Le vol sélectionné </dd></dl>
+<div class="dynheader">
+Voici le graphe d'appel pour cette fonction :</div>
+<div class="dyncontent">
+<div class="center"><img src="../../dd/d76/projet_8c_a12653e9c9b27170ffe8611eacdbf4332_cgraph.png" border="0" usemap="#dd/d76/projet_8c_a12653e9c9b27170ffe8611eacdbf4332_cgraph" alt=""/></div>
+<map name="dd/d76/projet_8c_a12653e9c9b27170ffe8611eacdbf4332_cgraph" id="dd/d76/projet_8c_a12653e9c9b27170ffe8611eacdbf4332_cgraph">
+</map>
+</div>
+
+</div>
+</div>
+<a id="a23523aed07121a95f642adb75bb88e12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23523aed07121a95f642adb75bb88e12">&#9670;&nbsp;</a></span>trouverPassager()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d2/d12/structPassager.html">Passager</a>* trouverPassager </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Trouve un passager selon un Nom ou un Numero de billet. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>Le passager sélectionner </dd></dl>
+
+</div>
+</div>
+<a id="ad1c84140fc0ec3cfab79111d9f398198"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1c84140fc0ec3cfab79111d9f398198">&#9670;&nbsp;</a></span>trouverVol()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d1/d3f/structVol.html">Vol</a>* trouverVol </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="../../d2/d12/structPassager.html">Passager</a> *&#160;</td>
+          <td class="paramname"><em>passager</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Trouve le vol d'un passager à oar. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">passager</td><td>Le passager </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Le vol du passager </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Documentation des variables</h2>
+<a id="ac388dea1c212dd04f766354b662b68ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac388dea1c212dd04f766354b662b68ce">&#9670;&nbsp;</a></span>last_id_bagage</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int last_id_bagage = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Nombre de vols enregistrés en mémoire. </p>
+
+</div>
+</div>
+<a id="aea5232083282df7158217f6cf30d7c6b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea5232083282df7158217f6cf30d7c6b">&#9670;&nbsp;</a></span>nb_vols</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int nb_vols = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tableau de tout les vols. </p>
+
+</div>
+</div>
+<a id="a3cea73e6147670d286527880986a5116"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3cea73e6147670d286527880986a5116">&#9670;&nbsp;</a></span>vols</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="../../d1/d3f/structVol.html">Vol</a> vols[<a class="el" href="../../dd/d76/projet_8c.html#a4843c11fbc1f89edb35a2792775451b5">VOLS_MAX</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="../../doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
+</body>
+</html>

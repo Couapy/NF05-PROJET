@@ -1,3 +1,13 @@
+/**
+ * @file structures.c
+ * @author Marchand Mael & Calixte Axel
+ * @brief Fichier comportant toutes les structures utilisées pour le projet
+ * @version 1
+ * @date 2019-12-12
+ * 
+ * @copyright Copyright (c) 2019
+ * 
+ */
 #include <stdio.h>
 #include <stdlib.h>
 

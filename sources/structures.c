@@ -40,20 +40,20 @@ typedef struct {
  * La structure pasager intègre aussi les structures Date, Siege et Bagage.
  */
 typedef struct {
-  char nom[64];
-  char prenom[64];
-  char nationalite[25];
-  int visa;
-  int frontiere; // a passé la frontière : 1
-  int securite; // après avoir passer la securite : 1
-  Bagage bagages[2];
-  int nb_bagages;
-  int prioritaire;
-  unsigned long billet;
-  Date date_naissance;
-  Siege siege;
-  int enregistrer; // boarding pass enregistré
-  int embarquer;
+  char nom[64]; //!< Nom du passager
+  char prenom[64]; //!< Prénom du passager
+  char nationalite[25]; //!< Nationalité du passager
+  int visa; //!< 1 si le passager a un VISA, sinon c'est 0
+  int frontiere; //!< 1 si le passager a passé la frontière
+  int securite; //!<v 1 si le passager a passé la securite
+  Bagage bagages[2]; //!< Tableau de bagages du passager
+  int nb_bagages; //!< Nombre de bagages
+  int prioritaire; //!< 1 si le passager est prioritaire
+  unsigned long billet; //!< Le numéro de billet
+  Date date_naissance; //!< La date de naissance
+  Siege siege; //!< Le siège
+  int enregistrer; //!< 1 si le passager s'est enregistré, sinon c'est 0
+  int embarquer; //!< 1 si le passager est embarqué, sinon c'est 0
 } Passager;
 
 /**
@@ -62,17 +62,17 @@ typedef struct {
  * Vol intègre les structures de Date, Temps et Passager.
  */
 typedef struct {
-  char numero_vol[8];
-  char destination[128];
-  Date date;
-  Temps heure_depart;
-  Temps heure_arrivee;
-  int visa_requis;
-  int places_reservees;
-  int places_libres;
-  Passager *passagers[1024];
-  int sieges_rangee;
-  int sieges_colonne;
+  char numero_vol[8]; //!< Le numéro du vol
+  char destination[128]; //!< La destination de du vol
+  Date date; //!< La date du vol
+  Temps heure_depart; //!< Heure de départ
+  Temps heure_arrivee; //!< Heure d'arrivée
+  int visa_requis; //!< 1 si un VISA est requis, 0 sinon
+  int places_reservees; //!< Nombre de places réservées, ou simplement le nombre de passager dans le vol
+  int places_libres; //!< Le nombre de places libres dans
+  Passager *passagers[1024]; //!< Tableau de passagers
+  int sieges_rangee; //!< Nombre de sièges par rangée
+  int sieges_colonne; //!< Nombre de sièges par colonne
 } Vol;
 
 /**

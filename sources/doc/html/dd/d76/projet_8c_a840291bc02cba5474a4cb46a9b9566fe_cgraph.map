@@ -1,0 +1,28 @@
+<map id="main" name="main">
+<area shape="rect" id="node2" href="$dd/d76/projet_8c.html#aca3851e10188a3c073566e1333387e1d" title="Permet de creer un vol. " alt="" coords="133,81,213,108"/>
+<area shape="rect" id="node6" href="$dd/d76/projet_8c.html#aaa79494f334784f4344fd167bd491590" title="On ajoute un passager à un vol. " alt="" coords="115,208,231,235"/>
+<area shape="rect" id="node8" href="$dd/d76/projet_8c.html#a8353acb67d0873be1faa01022fb13f2e" title="Permet d&#39;afficher tous les vols. " alt="" coords="485,309,576,336"/>
+<area shape="rect" id="node11" href="$dd/d76/projet_8c.html#a03c46a83a4f2095b614b8611d53ed2bf" title="Permet d&#39;enregistrer un passager sur son vol. " alt="" coords="104,563,243,589"/>
+<area shape="rect" id="node18" href="$dd/d76/projet_8c.html#a1ee0d6389a4bf795d21f5ebfb2d6edc1" title="Faire passer la frontière pour un passager. " alt="" coords="114,512,233,539"/>
+<area shape="rect" id="node19" href="$dd/d76/projet_8c.html#aaa70d6b9da9e182904d3f726f96afa9b" title="Passe un passager à la frontière. " alt="" coords="119,411,228,437"/>
+<area shape="rect" id="node20" href="$dd/d76/projet_8c.html#aeb692debeb4b381172b3b93b1d8fcfd5" title="Embarquement d&#39;un passager. " alt="" coords="119,461,227,488"/>
+<area shape="rect" id="node21" href="$dd/d76/projet_8c.html#a7df5bbf04b7cc3b025fbbd5b3b3017ce" title="Permet de faire decoller un avion. " alt="" coords="140,259,207,285"/>
+<area shape="rect" id="node22" href="$dd/d76/projet_8c.html#a6c01420aa3b32974d76d5fe198b1a55f" title="Affiche le menu de l&#39;aide. " alt="" coords="128,613,219,640"/>
+<area shape="rect" id="node23" href="$dd/d76/projet_8c.html#a28ca3d708a2af48631dc5746000b2042" title="Afficher les infromations d&#39;un vol. " alt="" coords="120,309,227,336"/>
+<area shape="rect" id="node25" href="$dd/d76/projet_8c.html#a8c15898bebd9c5db9cd5211b7e63779b" title="Sauvegarder l&#39;instance du programme en cours. " alt="" coords="127,664,220,691"/>
+<area shape="rect" id="node26" href="$dd/d76/projet_8c.html#a2944055409a235e93c1847497bf4a166" title="Permet de restaurer une instance à partir d&#39;un fichier. " alt="" coords="137,715,210,741"/>
+<area shape="rect" id="node27" href="$dd/d76/projet_8c.html#a05bc7c3bee3e164eda5c8419862329ae" title="Libère les pointeurs passagers stockés dans chaque vol. " alt="" coords="144,765,203,792"/>
+<area shape="rect" id="node3" href="$dd/d76/projet_8c.html#a4bf01fe3d4f4455f5031752444ffab0e" title="Permet de saisir une date. " alt="" coords="490,132,571,159"/>
+<area shape="rect" id="node4" href="$dd/d76/projet_8c.html#a799ce83f74df3ba2ea472cb2bfb3d264" title="Permet de saisir un horaire. " alt="" coords="317,5,411,32"/>
+<area shape="rect" id="node5" href="$dd/d76/projet_8c.html#a591f9de54d288327053df8484e4e032e" title="Génération du numéro du vol aléatoirement. " alt="" coords="299,56,429,83"/>
+<area shape="rect" id="node7" href="$dd/d76/projet_8c.html#a12653e9c9b27170ffe8611eacdbf4332" title="Permet de sélectionner un vol. " alt="" coords="309,259,419,285"/>
+<area shape="rect" id="node9" href="$dd/d76/projet_8c.html#a2dc1addfe76b2d399ec31d59d108b3f3" title="Saisie d&#39;un passager par l&#39;utilisateur. " alt="" coords="310,157,418,184"/>
+<area shape="rect" id="node10" href="$dd/d76/projet_8c.html#a9cf924277af2f2752bf6073cdc22b630" title="Fonction qui génère un billet à un passager. " alt="" coords="317,208,411,235"/>
+<area shape="rect" id="node12" href="$dd/d76/projet_8c.html#a23523aed07121a95f642adb75bb88e12" title="Trouve un passager selon un Nom ou un Numero de billet. " alt="" coords="305,461,423,488"/>
+<area shape="rect" id="node13" href="$dd/d76/projet_8c.html#ad1c84140fc0ec3cfab79111d9f398198" title="Trouve le vol d&#39;un passager à oar. " alt="" coords="323,512,405,539"/>
+<area shape="rect" id="node14" href="$dd/d76/projet_8c.html#a513f6c3ea6f3e3734a502258b1233132" title="Permet d&#39;enregistrer les bagages d&#39;un passager lors de son Enregistrement. " alt="" coords="297,563,431,589"/>
+<area shape="rect" id="node15" href="$dd/d76/projet_8c.html#a75e6165f64696079d00eba0b252a705f" title="Permet de choisir un siège parmi les siège libres. " alt="" coords="317,613,411,640"/>
+<area shape="rect" id="node17" href="$dd/d76/projet_8c.html#a112ee3d9bdb246be36be9f08ac45e56a" title="Permet d&#39;afficher le boarding pass. " alt="" coords="291,664,437,691"/>
+<area shape="rect" id="node16" href="$dd/d76/projet_8c.html#a0c8ba9d4c94acbfcdf35826d76d09cc1" title="Permet de savoir si une place est libre dans un vol. " alt="" coords="490,613,571,640"/>
+<area shape="rect" id="node24" href="$dd/d76/projet_8c.html#a7773f05eade91be866a2e9e1a0fd05c1" title="Affiche les informations d&#39;un passager. " alt="" coords="304,309,424,336"/>
+</map>

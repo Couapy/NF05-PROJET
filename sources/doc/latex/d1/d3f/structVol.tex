@@ -1,0 +1,115 @@
+\hypertarget{structVol}{}\section{Référence de la structure Vol}
+\label{structVol}\index{Vol@{Vol}}
+
+
+Comporte le numéro de vol, la destination, le nombre de places libres, de places réservées, de colonnes et rangées (pour la taille de l\textquotesingle{}avion).  
+
+
+
+
+Graphe de collaboration de Vol\+:
+% FIG 0
+\subsection*{Champs de données}
+\begin{DoxyCompactItemize}
+\item 
+char \hyperlink{structVol_a232eef7acb107fe79c1f91cd08fa4f03}{numero\+\_\+vol} \mbox{[}8\mbox{]}
+\item 
+char \hyperlink{structVol_a1b7b37d7664fce7454e30b7ebbdb18a5}{destination} \mbox{[}128\mbox{]}
+\item 
+\hyperlink{structDate}{Date} \hyperlink{structVol_ae4f2e6f74614e8103f73fc16f3d345fb}{date}
+\item 
+\hyperlink{structTemps}{Temps} \hyperlink{structVol_a8f76dcdd0bc26f6f95a27df539dd76dc}{heure\+\_\+depart}
+\item 
+\hyperlink{structTemps}{Temps} \hyperlink{structVol_ae591d22a45cc86b4b85a329fd2203030}{heure\+\_\+arrivee}
+\item 
+int \hyperlink{structVol_a3995b340d68374bb5c7610735d5488d3}{visa\+\_\+requis}
+\item 
+int \hyperlink{structVol_a05ab0ca92475372af79a2146892c04fb}{places\+\_\+reservees}
+\item 
+int \hyperlink{structVol_a6e9793ce6360640ce08e2bc4cbcbdc5c}{places\+\_\+libres}
+\item 
+\hyperlink{structPassager}{Passager} $\ast$ \hyperlink{structVol_ae27fdb22adee0ed32a7046f20599ab85}{passagers} \mbox{[}1024\mbox{]}
+\item 
+int \hyperlink{structVol_a149b23d6ee40c47798d0fdbd953b2e1b}{sieges\+\_\+rangee}
+\item 
+int \hyperlink{structVol_a6ddd68e23a8395ab6e8eda27e1af7fc1}{sieges\+\_\+colonne}
+\end{DoxyCompactItemize}
+
+
+\subsection{Description détaillée}
+Comporte le numéro de vol, la destination, le nombre de places libres, de places réservées, de colonnes et rangées (pour la taille de l\textquotesingle{}avion). 
+
+\hyperlink{structVol}{Vol} intègre les structures de \hyperlink{structDate}{Date}, \hyperlink{structTemps}{Temps} et \hyperlink{structPassager}{Passager}. 
+
+\subsection{Documentation des champs}
+\mbox{\Hypertarget{structVol_ae4f2e6f74614e8103f73fc16f3d345fb}\label{structVol_ae4f2e6f74614e8103f73fc16f3d345fb}} 
+\index{Vol@{Vol}!date@{date}}
+\index{date@{date}!Vol@{Vol}}
+\subsubsection{\texorpdfstring{date}{date}}
+{\footnotesize\ttfamily \hyperlink{structDate}{Date} Vol\+::date}
+
+\mbox{\Hypertarget{structVol_a1b7b37d7664fce7454e30b7ebbdb18a5}\label{structVol_a1b7b37d7664fce7454e30b7ebbdb18a5}} 
+\index{Vol@{Vol}!destination@{destination}}
+\index{destination@{destination}!Vol@{Vol}}
+\subsubsection{\texorpdfstring{destination}{destination}}
+{\footnotesize\ttfamily char Vol\+::destination\mbox{[}128\mbox{]}}
+
+\mbox{\Hypertarget{structVol_ae591d22a45cc86b4b85a329fd2203030}\label{structVol_ae591d22a45cc86b4b85a329fd2203030}} 
+\index{Vol@{Vol}!heure\+\_\+arrivee@{heure\+\_\+arrivee}}
+\index{heure\+\_\+arrivee@{heure\+\_\+arrivee}!Vol@{Vol}}
+\subsubsection{\texorpdfstring{heure\+\_\+arrivee}{heure\_arrivee}}
+{\footnotesize\ttfamily \hyperlink{structTemps}{Temps} Vol\+::heure\+\_\+arrivee}
+
+\mbox{\Hypertarget{structVol_a8f76dcdd0bc26f6f95a27df539dd76dc}\label{structVol_a8f76dcdd0bc26f6f95a27df539dd76dc}} 
+\index{Vol@{Vol}!heure\+\_\+depart@{heure\+\_\+depart}}
+\index{heure\+\_\+depart@{heure\+\_\+depart}!Vol@{Vol}}
+\subsubsection{\texorpdfstring{heure\+\_\+depart}{heure\_depart}}
+{\footnotesize\ttfamily \hyperlink{structTemps}{Temps} Vol\+::heure\+\_\+depart}
+
+\mbox{\Hypertarget{structVol_a232eef7acb107fe79c1f91cd08fa4f03}\label{structVol_a232eef7acb107fe79c1f91cd08fa4f03}} 
+\index{Vol@{Vol}!numero\+\_\+vol@{numero\+\_\+vol}}
+\index{numero\+\_\+vol@{numero\+\_\+vol}!Vol@{Vol}}
+\subsubsection{\texorpdfstring{numero\+\_\+vol}{numero\_vol}}
+{\footnotesize\ttfamily char Vol\+::numero\+\_\+vol\mbox{[}8\mbox{]}}
+
+\mbox{\Hypertarget{structVol_ae27fdb22adee0ed32a7046f20599ab85}\label{structVol_ae27fdb22adee0ed32a7046f20599ab85}} 
+\index{Vol@{Vol}!passagers@{passagers}}
+\index{passagers@{passagers}!Vol@{Vol}}
+\subsubsection{\texorpdfstring{passagers}{passagers}}
+{\footnotesize\ttfamily \hyperlink{structPassager}{Passager}$\ast$ Vol\+::passagers\mbox{[}1024\mbox{]}}
+
+\mbox{\Hypertarget{structVol_a6e9793ce6360640ce08e2bc4cbcbdc5c}\label{structVol_a6e9793ce6360640ce08e2bc4cbcbdc5c}} 
+\index{Vol@{Vol}!places\+\_\+libres@{places\+\_\+libres}}
+\index{places\+\_\+libres@{places\+\_\+libres}!Vol@{Vol}}
+\subsubsection{\texorpdfstring{places\+\_\+libres}{places\_libres}}
+{\footnotesize\ttfamily int Vol\+::places\+\_\+libres}
+
+\mbox{\Hypertarget{structVol_a05ab0ca92475372af79a2146892c04fb}\label{structVol_a05ab0ca92475372af79a2146892c04fb}} 
+\index{Vol@{Vol}!places\+\_\+reservees@{places\+\_\+reservees}}
+\index{places\+\_\+reservees@{places\+\_\+reservees}!Vol@{Vol}}
+\subsubsection{\texorpdfstring{places\+\_\+reservees}{places\_reservees}}
+{\footnotesize\ttfamily int Vol\+::places\+\_\+reservees}
+
+\mbox{\Hypertarget{structVol_a6ddd68e23a8395ab6e8eda27e1af7fc1}\label{structVol_a6ddd68e23a8395ab6e8eda27e1af7fc1}} 
+\index{Vol@{Vol}!sieges\+\_\+colonne@{sieges\+\_\+colonne}}
+\index{sieges\+\_\+colonne@{sieges\+\_\+colonne}!Vol@{Vol}}
+\subsubsection{\texorpdfstring{sieges\+\_\+colonne}{sieges\_colonne}}
+{\footnotesize\ttfamily int Vol\+::sieges\+\_\+colonne}
+
+\mbox{\Hypertarget{structVol_a149b23d6ee40c47798d0fdbd953b2e1b}\label{structVol_a149b23d6ee40c47798d0fdbd953b2e1b}} 
+\index{Vol@{Vol}!sieges\+\_\+rangee@{sieges\+\_\+rangee}}
+\index{sieges\+\_\+rangee@{sieges\+\_\+rangee}!Vol@{Vol}}
+\subsubsection{\texorpdfstring{sieges\+\_\+rangee}{sieges\_rangee}}
+{\footnotesize\ttfamily int Vol\+::sieges\+\_\+rangee}
+
+\mbox{\Hypertarget{structVol_a3995b340d68374bb5c7610735d5488d3}\label{structVol_a3995b340d68374bb5c7610735d5488d3}} 
+\index{Vol@{Vol}!visa\+\_\+requis@{visa\+\_\+requis}}
+\index{visa\+\_\+requis@{visa\+\_\+requis}!Vol@{Vol}}
+\subsubsection{\texorpdfstring{visa\+\_\+requis}{visa\_requis}}
+{\footnotesize\ttfamily int Vol\+::visa\+\_\+requis}
+
+
+
+La documentation de cette structure a été générée à partir du fichier suivant \+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{structures_8c}{structures.\+c}\end{DoxyCompactItemize}

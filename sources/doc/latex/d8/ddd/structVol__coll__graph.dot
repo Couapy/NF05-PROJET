@@ -1,0 +1,17 @@
+digraph "Vol"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="{Vol\n|+ numero_vol\l+ destination\l+ visa_requis\l+ places_reservees\l+ places_libres\l+ sieges_rangee\l+ sieges_colonne\l|}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+  Node2 -> Node1 [color="grey25",fontsize="10",style="solid",label=" +passagers" ,arrowhead="odiamond"];
+  Node2 [label="{Passager\n|+ nom\l+ prenom\l+ nationalite\l+ visa\l+ frontiere\l+ securite\l+ nb_bagages\l+ prioritaire\l+ billet\l+ enregistrer\l+ embarquer\l|}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d2/d12/structPassager.html",tooltip="Comporte le nom, prénom, la nationalité, le billet et des int bouléens pour le bon fonctionnement du ..."];
+  Node3 -> Node2 [color="grey25",fontsize="10",style="solid",label=" +bagages" ,arrowhead="odiamond"];
+  Node3 [label="{Bagage\n|+ ticket\l+ embarque\l|}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d7/d2f/structBagage.html",tooltip="Comporte le numéro de ticket du bagage et si il a été embarqué "];
+  Node4 -> Node2 [color="grey25",fontsize="10",style="solid",label=" +siege" ,arrowhead="odiamond"];
+  Node4 [label="{Siege\n|+ rangee\l+ colonne\l|}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d9/ded/structSiege.html",tooltip="Associe un numéro de rangée et de colonne pour une place dans l&#39;avion. "];
+  Node5 -> Node2 [color="grey25",fontsize="10",style="solid",label=" +date_naissance" ,arrowhead="odiamond"];
+  Node5 [label="{Date\n|+ jour\l+ mois\l+ annee\l|}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$d9/ddb/structDate.html",tooltip="Structure de date, avec le jour, le mois et l&#39;année. "];
+  Node6 -> Node1 [color="grey25",fontsize="10",style="solid",label=" +heure_depart\n+heure_arrivee" ,arrowhead="odiamond"];
+  Node6 [label="{Temps\n|+ heure\l+ minutes\l|}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$db/dd3/structTemps.html",tooltip="Comporte un entier pour l&#39;heure et pour les minutes. "];
+  Node5 -> Node1 [color="grey25",fontsize="10",style="solid",label=" +date" ,arrowhead="odiamond"];
+}

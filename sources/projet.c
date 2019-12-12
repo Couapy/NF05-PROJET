@@ -1,12 +1,11 @@
 /**
- * @file fonctions.c
+ * @file projet.c
  * @author Marchand Mael & Calixte Axel
  * @brief Projet de Gestion des Passagers d'un Aéroport
  * @version 1
  * @date 2019-12-12
- * 
+ *
  * @copyright Copyright (c) 2019
- * 
  */
 
 #include <stdio.h>
@@ -924,10 +923,10 @@ void fermer(void) {
 /**
  * @fn main
  * @brief Fonction principale du projet
- * 
- * Gestion de la partie console avec laquelle l'utilisateur intéragit 
- * 
- * @return int 
+ *
+ * Gestion de la partie console avec laquelle l'utilisateur intéragit
+ *
+ * @return int
  */
 int main(void) {
   srand(time(NULL));

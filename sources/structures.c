@@ -1,3 +1,13 @@
+/**
+ * @file structures.c
+ * @author Marchand Mael & Calixte Axel
+ * @brief Fichier comportant toutes les structures utilisées pour le projet
+ * @version 1
+ * @date 2019-12-12
+ * 
+ * @copyright Copyright (c) 2019
+ * 
+ */
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -13,25 +23,25 @@ typedef struct {
  * Associe un numéro de rangée et de colonne pour une place dans l'avion
  */
 typedef struct {
-  int rangee;
-  int colonne;
+  int rangee; /*!< numéro de rangée */
+  int colonne; /*!< numéro de colonne */
 } Siege;
 
 /**
  * Structure de date, avec le jour, le mois et l'année
  */
 typedef struct {
-  int jour;
-  int mois;
-  int annee;
+  int jour; /*!< entier pour le jour */
+  int mois; /*!< entier pour le mois */
+  int annee; /*!< entier pour l'année */
 } Date;
 
 /**
  * Comporte un entier pour l'heure et pour les minutes
  */
 typedef struct {
-  int heure;
-  int minutes;
+  int heure; /*!< entier pour l'heure */
+  int minutes; /*!< entier pour les minutes */
 } Temps;
 
 /**
@@ -79,6 +89,6 @@ typedef struct {
  * Permet d'associer un numéro à une fonction pour la console
  */
 typedef struct {
-  int fonction;
-  char commande[24];
+  int fonction; /*!< entier de numéro de fonction */
+  char commande[24]; /*!< chaines de caratères associées à leur entier de fonction*/
 } Commande;

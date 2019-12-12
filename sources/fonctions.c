@@ -1,3 +1,14 @@
+/**
+ * @file fonctions.c
+ * @author Marchand Mael & Calixte Axel
+ * @brief Projet de Gestion des Passagers d'un Aéroport
+ * @version 1
+ * @date 2019-12-12
+ * 
+ * @copyright Copyright (c) 2019
+ * 
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -5,6 +16,7 @@
 #include <time.h>
 #include "structures.c"
 #define VOLS_MAX 255
+
 
 Vol vols[VOLS_MAX];
 int nb_vols = 0;
@@ -919,6 +931,14 @@ void ping(void) {
   printf("\n  PONG ! \n\n");
 }
 
+/**
+ * @fn main
+ * @brief Fonction principale du projet
+ * 
+ * Gestion de la partie console avec laquelle l'utilisateur intéragit 
+ * 
+ * @return int 
+ */
 int main(void) {
   srand(time(NULL));
   char commande[64];

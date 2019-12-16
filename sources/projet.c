@@ -1,21 +1,80 @@
-/*! \mainpage PLEGAT Documentation
+/*! \mainpage Projet NF05 - Gestion des passagers dans un aéroport
  *
  * \section intro_sec Introduction
  *
- * This is the Plegat documentation.
+ * Ce project a été réalisé dans le cadre du l'UE NF05 (Initiation à la programmation en C).
+ * Le sujet qui a été choisi est <i>Gestion des passagers dans un aéroport</i>
  *
- * \section install_sec Installation
+ * Ce programme vous permet de simuler la gestion d'un aéroport.
  *
- * \subsection tools_subsec Tools required&#58;
- * - Java Runtime Environment &#40;JRE&#41; 1.4.2 or later &#40;<small><a href="http&#58;//java.sun.com/">Java Web Site etc etc...
+ * \section run Execution du programme
+ * Lorsque vous executer le programme, vous utiliserez une interface en ligne de commande.
+ * Cette dernière contient des commandes et des alias.
+ * Par exemple :
+ *  - '0' pour afficher l'aide
+ *  - 'aide' pour afficher l'aide
  *
- * \subsection running Running the program
- * In a command window, etc etc...
+ * \section commands Commandes disponibles
  *
- * \section copyright Copyright and License
- * This license applies to etc etc...
+ * [1]   ajouter vol           : Ajouter un vol<br>
+ * [2]   ajouter passager      : Ajouter un passager a un vol<br>
+ * [3]   enregistrer           : Enregistrer un passage sur vol<br>
+ * [4]   passer frontiere      : Passer un passager a un la frontiere<br>
+ * [5]   passager securite     : Passer un passager a la securite<br>
+ * [6]   embarquer passager    : Embarquer un passager<br>
+ * [8]   embarquer bagages     : Embarquer les bagages d'un passager<br>
+ * [8]   decoller              : Faire decoller un avion<br>
+ * [11]  afficher vols         : Afficher tous les vols<br>
+ * [12]  afficher info vol     : Afficher les informations d'un vol<br>
+ * [21]  sauvegarder           : Sauvegarder l'instance<br>
+ * [21]  restaurer             : Restaurer l'instance<br>
+ * [0]   aide                  : Afficher l'aide<br>
+ * [100] fermer                : Fermer le programme<br>
  *
- * <BR><BR>
+ * \section guidelines Cahier des charges
+ *
+ * L’objectif du projet est de développer un logiciel qui permet de gérer les passagers dans
+ * un aéroport. Ce logiciel implémentera quelques fonctionalités qu’on trouve aujourd’hui dans
+ * les aéroports et qui sont définies ci-après.
+ * Le logiciel gère l’enregistrement et l’embarquement des vols. De ce fait, les passagers
+ * doivent avoir acheté un billet pour le vol à prendre.
+ * Le parcours d’un passager à prendre en compte est le suivant : le passager s’enregistre
+ * et dépose son bagage. Après le dépôt du ou des bagages, il passe les frontières, la sécurité
+ * et il embarque.
+ * Deux types de passagers sont à prendre en compte : les passagers sans privilège et les
+ * passagers “priority”.
+ * Le logiciel doit inclure les fonctionnalités suivantes. Si ces fonctionnalités nécessitent
+ * le développement d’autres fonctionnalités (tout type d’affichage : noms et prénoms des
+ * passagers, bagages, etc.) qui ne sont pas précisées, libre à vous d’ajouter ce que vous jugez
+ * nécessaire.
+ *  - Ajouter un passager sur un vol (cette étape est pour simuler l’achat du billet). Cette
+ * fonctionnalité génère un numéro de billet associé aux informations du passager (nom,
+ * prénom, date de naissance, numéro de passeport, destination, etc.). Le billet avec
+ * toutes les informations est à afficher.
+ *  - Enregistrer un passager en fournissant son nom ou son numéro de billet. Le boarding pass avec toutes les informations (Numéro de billet, nom, prénom, nombre de
+ * bagages, numéro de siège, privilège, etc.) est à afficher.
+ *   - L’enregistrement du passager génère un “boarding pass” et un ou plusieurs tickets bagages si le passager en dépose.
+ *   - Les passagers “priority” peuvent déposer deux bagages alors que les passagers
+ * sans privilège ne peuvent déposer qu’un seul au maximum.
+ *
+ *   - Le bagage d’un passager “priority” devra aussi ˆetre en mention “priority”.
+ *   - Le “boarding pass” devra inclure un siège qui est choisi automatiquement (de
+ * fa¸con aléatoire) ou à la demande du passager et selon les places disponibles dans
+ * l’avion.
+ *  - Faire passer le passager par les frontières et vérifier qu’il vérifie toutes les conditions
+ * pour rejoindre sa destination. A l’issue de cette étape, il faut afficher la nationalité `
+ * du passager, sa destination et s’il a besoin d’un visa.
+ *  - Faire passer le passager par sécurité (le passager devra respecter toutes les conditions
+ * pour le bagage en main sur les liquides et les objets à prendre en cabine – à retrouver
+ * sur internet). Le programme doit afficher les produits à retirer pour un passager.
+ *  - Embarquer les passagers sur l’avion. Les passagers “priority” sont prioritaires et
+ * devront tous passer avant les passagers sans privilège. De ce fait, si un passager
+ * “priority” n’a pas embarqué, tous les autres passagers sans privilège ne le peuvent
+ * pas. Il faut afficher l’état de remplissage de l’avion à la fin de l’embarquement et les
+ * passagers qui n’ont pas embarqué.
+ *  - Charger un ou plusieurs bagages dans l’avion.
+ *  - Vérifier que l’avion peut décoller en vérifiant que tous les passagers enregistrés ont
+ * embarqué et que tous les bagages sont chargés.
  *
  */
 
@@ -47,8 +106,19 @@ int nb_vols = 0; //!< Nombre de vols enregistrés en mémoire
 int last_id_bagage = 0; //!< Dernier numéro de ticket bagage délivré
 
 // TODO: Demander le passeport
-// TODO: Afficher (nom, pr´enom, date de naissance, num´ero de passeport, destination, etc.dans ajouterPassager
+// TODO: Afficher (nom, prénom, date de naissance, numéro de passeport, destination, etc.dans ajouterPassager
 // TODO: Commenter le code
+
+/**
+ * BONUS
+ *
+ *  Demander à l'utilisateur la période sur laquelle il veut les statistiques
+ *  afficher les graphs selon la semaine ou alors par jour
+ *
+ *  - Afficher le taux de remplissage des avions
+ *  - rapport entre les passagers prioraires et non prioraires
+ *  - le poids moyen des bagages des avions
+ */
 
 /**
  * Permet de saisir une date
@@ -67,7 +137,7 @@ void saisirDate(Date *date){
  * Permet de saisir un horaire
  * @param temps L'horaire à saisir
  */
-void saisirTemps(Temps *temps){
+void saisirHoraire(Temps *temps){
   printf(" > Heure : ");
   scanf("%d", &temps->heure);
   printf(" > Minutes : ");
@@ -78,7 +148,7 @@ void saisirTemps(Temps *temps){
  * Trouve un passager selon un Nom ou un Numero de billet
  * @return  Le passager sélectionner
  */
-Passager* trouverPassager(void) {
+Passager* selectionnerPassager(void) {
   char reponse[64];
   unsigned long billet = 0;
   int nb_passagers, id_passager, vol_passager, selection;
@@ -327,7 +397,8 @@ void enregistrerBagages(Passager *passager) {
   for (int i = 0; i < passager->nb_bagages; i++) {
     last_id_bagage++;
     passager->bagages[i].ticket = last_id_bagage;
-    passager->bagages[i].embarque = 1;
+    passager->bagages[i].embarque = 0;
+    printf("[INFO] Votre bagage n%d a pour numero de ticket %d\n", i+1, last_id_bagage);
   }
 }
 
@@ -457,7 +528,7 @@ void engeristrerPassager(void) {
       i++;
     }
     if (personne == 1) {
-      Passager *passager = trouverPassager();
+      Passager *passager = selectionnerPassager();
       if (passager->enregistrer == 0) {
         Vol *vol = trouverVol(passager);
 
@@ -482,7 +553,7 @@ void engeristrerPassager(void) {
  * Faire passer la frontière pour un passager
  */
 void passerFrontieres(void) {
-  Passager *passager = trouverPassager();
+  Passager *passager = selectionnerPassager();
   Vol *vol = trouverVol(passager);
   if (passager->frontiere == 0) {
     if (passager->enregistrer == 1) {
@@ -520,7 +591,7 @@ void passerFrontieres(void) {
  * Passe un passager à la frontière
  */
 void passerSecurite(void) {
-  Passager *passager = trouverPassager();
+  Passager *passager = selectionnerPassager();
   if (passager->frontiere == 1) {
     if (passager->securite == 0) {
       int interdit, reponse;
@@ -570,7 +641,7 @@ void passerSecurite(void) {
  * @return  1 pour un succes ou 0 pour un échec
  */
 int embarquement(void) {
-  Passager *passager = trouverPassager();
+  Passager *passager = selectionnerPassager();
   Vol *vol = trouverVol(passager);
 
   if (passager->frontiere != 1) {
@@ -596,6 +667,26 @@ int embarquement(void) {
   passager->embarquer = 1;
   printf("\n[SUCCESS] Vous avez embarque.\n\n");
   return 1;
+}
+
+/**
+ * Permet d'embarquer des bagages dans un avion
+ */
+void embarquerBagages(void) {
+  Passager *passager = selectionnerPassager();
+  printf("\n");
+  for (int i = 0; i < passager->nb_bagages; i++) {
+    if (passager->bagages[i].embarque != 1) {
+      passager->bagages[i].embarque = 1;
+      printf("[INFO] Le bagage #%d a ete embarque\n", passager->bagages[i].ticket);
+    } else {
+      printf("\a[ERROR] Le bagage #%d a deja ete embarque\n", passager->bagages[i].ticket);
+    }
+  }
+  if (passager->nb_bagages == 0) {
+    printf("\a[ERROR] Le passager n'a pas de bagages\n");
+  }
+  printf("\n");
 }
 
 /**
@@ -634,7 +725,7 @@ int decoller(void) {
       printf("[INFO] Tous les passagers sont embarques\n");
     }
 
-    // On cherche l'indice du vol dans le tableau vols pour le retirer
+    // On cherche l'indice du vol dans le tableau vols pour le retirer de la liste des vols
     int i = 0, trouve = 0;
     while (i < nb_vols && trouve == 0) {
       if (strcmp(vols[i].numero_vol, vol->numero_vol) == 0) {
@@ -682,9 +773,9 @@ void ajouterVol(void){
   printf("\nQuelle est la destination du vol ? ");
   scanf(" %s", vol->destination);
   printf("Choisissez votre heure de depart ?\n");
-  saisirTemps(&vol->heure_depart);
+  saisirHoraire(&vol->heure_depart);
   printf("Choisissez votre heure d'arrivee ?\n");
-  saisirTemps(&vol->heure_arrivee);
+  saisirHoraire(&vol->heure_arrivee);
   printf("Combien voulez-vous de sieges sur une rangee ? ");
   scanf(" %d", &vol->sieges_rangee);
   printf("Combien voulez-vous de sieges sur une colonne ? ");
@@ -716,8 +807,9 @@ void afficherAide(void) {
   "[3]   enregistrer           : Enregistrer un passage sur vol\n"
   "[4]   passer frontiere      : Passer un passager a un la frontiere\n"
   "[5]   passager securite     : Passer un passager a la securite\n"
-  "[6]   embarquer             : Embarquer un passager\n"
-  "[7]   decoller              : Faire decoller un avion\n\n"
+  "[6]   embarquer passager    : Embarquer un passager\n"
+  "[7]   embarquer bagages     : Embarquer les bagages d'un passager\n"
+  "[8]   decoller              : Faire decoller un avion\n\n"
   "[11]  afficher vols         : Afficher tous les vols\n"
   "[12]  afficher info vol     : Afficher les informations d'un vol\n\n"
   "[21]  sauvegarder           : Sauvegarder l'instance\n"
@@ -978,8 +1070,9 @@ int main(void) {
     { 3, "enregistrer" },
     { 4, "passer frontiere" },
     { 5, "passer securite" },
-    { 6, "embarquer" },
-    { 7, "decoller" },
+    { 6, "embarquer passager" },
+    { 7, "embarquer bagages" },
+    { 8, "decoller" },
     { 0, "aide" },
     { 11, "afficher vols" },
     { 12, "afficher info vol" },
@@ -1029,7 +1122,8 @@ int main(void) {
       case 4: passerFrontieres(); break;
       case 5: passerSecurite(); break;
       case 6: embarquement(); break;
-      case 7: decoller(); break;
+      case 7: embarquerBagages(); break;
+      case 8: decoller(); break;
       case 0: afficherAide(); break;
       case 11: afficherVols(); break;
       case 12: afficherInfoVol(); break;

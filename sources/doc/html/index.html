@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Gestion des passagers d&#39;un aeroport - NF05 projet: PLEGAT Documentation</title>
+<title>Gestion des passagers d&#39;un aeroport - NF05 projet: Projet NF05 - Gestion des passagers dans un aéroport</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -80,18 +80,52 @@ $(document).ready(function(){initNavTree('index.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">PLEGAT Documentation </div>  </div>
+<div class="title">Projet NF05 - Gestion des passagers dans un aéroport </div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><h1><a class="anchor" id="intro_sec"></a>
 Introduction</h1>
-<p>This is the Plegat documentation.</p>
-<h1><a class="anchor" id="install_sec"></a>
-Installation</h1>
-<h2><a class="anchor" id="tools_subsec"></a>
-Tools required&amp;#58;</h2>
-<ul>
-<li>Java Runtime Environment &amp;#40;JRE&amp;#41; 1.4.2 or later &amp;#40;<small><a href="http&amp;#58;//java.sun.com/">Java Web Site etc etc...  running Running the program In a command window, etc etc...  copyright Copyright and License This license applies to etc etc...  </a></small></li>
+<p>Ce project a été réalisé dans le cadre du l'UE NF05 (Initiation à la programmation en C). Le sujet qui a été choisi est <em>Gestion des passagers dans un aéroport</em></p>
+<p>Ce programme vous permet de simuler la gestion d'un aéroport.</p>
+<h1><a class="anchor" id="run"></a>
+Execution du programme</h1>
+<p>Lorsque vous executer le programme, vous utiliserez une interface en ligne de commande. Cette dernière contient des commandes et des alias. Par exemple :</p><ul>
+<li>'0' pour afficher l'aide</li>
+<li>'aide' pour afficher l'aide</li>
+</ul>
+<h1><a class="anchor" id="commands"></a>
+Commandes disponibles</h1>
+<p>[1] ajouter vol : Ajouter un vol<br />
+ [2] ajouter passager : Ajouter un passager a un vol<br />
+ [3] enregistrer : Enregistrer un passage sur vol<br />
+ [4] passer frontiere : Passer un passager a un la frontiere<br />
+ [5] passager securite : Passer un passager a la securite<br />
+ [6] embarquer passager : Embarquer un passager<br />
+ [8] embarquer bagages : Embarquer les bagages d'un passager<br />
+ [8] decoller : Faire decoller un avion<br />
+ [11] afficher vols : Afficher tous les vols<br />
+ [12] afficher info vol : Afficher les informations d'un vol<br />
+ [21] sauvegarder : Sauvegarder l'instance<br />
+ [21] restaurer : Restaurer l'instance<br />
+ [0] aide : Afficher l'aide<br />
+ [100] fermer : Fermer le programme<br />
+</p>
+<h1><a class="anchor" id="guidelines"></a>
+Cahier des charges</h1>
+<p>L’objectif du projet est de développer un logiciel qui permet de gérer les passagers dans un aéroport. Ce logiciel implémentera quelques fonctionalités qu’on trouve aujourd’hui dans les aéroports et qui sont définies ci-après. Le logiciel gère l’enregistrement et l’embarquement des vols. De ce fait, les passagers doivent avoir acheté un billet pour le vol à prendre. Le parcours d’un passager à prendre en compte est le suivant : le passager s’enregistre et dépose son bagage. Après le dépôt du ou des bagages, il passe les frontières, la sécurité et il embarque. Deux types de passagers sont à prendre en compte : les passagers sans privilège et les passagers “priority”. Le logiciel doit inclure les fonctionnalités suivantes. Si ces fonctionnalités nécessitent le développement d’autres fonctionnalités (tout type d’affichage : noms et prénoms des passagers, bagages, etc.) qui ne sont pas précisées, libre à vous d’ajouter ce que vous jugez nécessaire.</p><ul>
+<li>Ajouter un passager sur un vol (cette étape est pour simuler l’achat du billet). Cette fonctionnalité génère un numéro de billet associé aux informations du passager (nom, prénom, date de naissance, numéro de passeport, destination, etc.). Le billet avec toutes les informations est à afficher.</li>
+<li>Enregistrer un passager en fournissant son nom ou son numéro de billet. Le boarding pass avec toutes les informations (Numéro de billet, nom, prénom, nombre de bagages, numéro de siège, privilège, etc.) est à afficher.<ul>
+<li>L’enregistrement du passager génère un “boarding pass” et un ou plusieurs tickets bagages si le passager en dépose.</li>
+<li>Les passagers “priority” peuvent déposer deux bagages alors que les passagers sans privilège ne peuvent déposer qu’un seul au maximum.</li>
+<li>Le bagage d’un passager “priority” devra aussi ˆetre en mention “priority”.</li>
+<li>Le “boarding pass” devra inclure un siège qui est choisi automatiquement (de fa¸con aléatoire) ou à la demande du passager et selon les places disponibles dans l’avion.</li>
+</ul>
+</li>
+<li>Faire passer le passager par les frontières et vérifier qu’il vérifie toutes les conditions pour rejoindre sa destination. A l’issue de cette étape, il faut afficher la nationalité ` du passager, sa destination et s’il a besoin d’un visa.</li>
+<li>Faire passer le passager par sécurité (le passager devra respecter toutes les conditions pour le bagage en main sur les liquides et les objets à prendre en cabine – à retrouver sur internet). Le programme doit afficher les produits à retirer pour un passager.</li>
+<li>Embarquer les passagers sur l’avion. Les passagers “priority” sont prioritaires et devront tous passer avant les passagers sans privilège. De ce fait, si un passager “priority” n’a pas embarqué, tous les autres passagers sans privilège ne le peuvent pas. Il faut afficher l’état de remplissage de l’avion à la fin de l’embarquement et les passagers qui n’ont pas embarqué.</li>
+<li>Charger un ou plusieurs bagages dans l’avion.</li>
+<li>Vérifier que l’avion peut décoller en vérifiant que tous les passagers enregistrés ont embarqué et que tous les bagages sont chargés. </li>
 </ul>
 </div></div><!-- contents -->
 </div><!-- doc-content -->

@@ -3,5 +3,5 @@
 <area shape="rect" id="node3" href="$d7/d2f/structBagage.html" title="Comporte le numéro de ticket du bagage et si il a été embarqué " alt="" coords="5,13,96,105"/>
 <area shape="rect" id="node4" href="$d9/ded/structSiege.html" title="Associe un numéro de rangée et de colonne pour une place dans l&#39;avion. " alt="" coords="121,13,199,105"/>
 <area shape="rect" id="node5" href="$d9/ddb/structDate.html" title="Structure de date, avec le jour, le mois et l&#39;année. " alt="" coords="273,5,343,112"/>
-<area shape="rect" id="node6" href="$db/dd3/structTemps.html" title="Comporte un entier pour l&#39;heure et pour les minutes. " alt="" coords="420,241,500,333"/>
+<area shape="rect" id="node6" href="$da/dbd/structHoraire.html" title="Comporte un entier pour l&#39;heure et pour les minutes. " alt="" coords="420,241,500,333"/>
 </map>

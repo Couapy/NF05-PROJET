@@ -2,8 +2,8 @@ var structVol =
 [
     [ "date", "d1/d3f/structVol.html#ae4f2e6f74614e8103f73fc16f3d345fb", null ],
     [ "destination", "d1/d3f/structVol.html#a1b7b37d7664fce7454e30b7ebbdb18a5", null ],
-    [ "heure_arrivee", "d1/d3f/structVol.html#ae591d22a45cc86b4b85a329fd2203030", null ],
-    [ "heure_depart", "d1/d3f/structVol.html#a8f76dcdd0bc26f6f95a27df539dd76dc", null ],
+    [ "heure_arrivee", "d1/d3f/structVol.html#a2a3fc3533ba16db12e320d1b6d96ff8f", null ],
+    [ "heure_depart", "d1/d3f/structVol.html#a64826d1b4dc058a7f024f598116c675a", null ],
     [ "numero_vol", "d1/d3f/structVol.html#a232eef7acb107fe79c1f91cd08fa4f03", null ],
     [ "passagers", "d1/d3f/structVol.html#ae27fdb22adee0ed32a7046f20599ab85", null ],
     [ "places_libres", "d1/d3f/structVol.html#a6e9793ce6360640ce08e2bc4cbcbdc5c", null ],

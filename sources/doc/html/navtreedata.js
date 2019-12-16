@@ -1,13 +1,11 @@
 var NAVTREE =
 [
   [ "Gestion des passagers d'un aeroport - NF05 projet", "index.html", [
-    [ "PLEGAT Documentation", "index.html", [
+    [ "Projet NF05 - Gestion des passagers dans un aéroport", "index.html", [
       [ "Introduction", "index.html#intro_sec", null ],
-      [ "Installation", "index.html#install_sec", [
-        [ "Tools required&#58;", "index.html#tools_subsec", null ],
-        [ "Running the program", "index.html#running", null ]
-      ] ],
-      [ "Copyright and License", "index.html#copyright", null ]
+      [ "Execution du programme", "index.html#run", null ],
+      [ "Commandes disponibles", "index.html#commands", null ],
+      [ "Cahier des charges", "index.html#guidelines", null ]
     ] ],
     [ "Structures de données", "annotated.html", [
       [ "Structures de données", "annotated.html", "annotated_dup" ],

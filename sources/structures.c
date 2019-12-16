@@ -42,7 +42,7 @@ typedef struct {
 typedef struct {
   int heure; //!< entier pour l'heure
   int minutes; //!< entier pour les minutes
-} Temps;
+} Horaire;
 
 /**
  * Comporte le nom, prénom, la nationalité, le billet et des int bouléens pour
@@ -69,14 +69,14 @@ typedef struct {
 /**
  * Comporte le numéro de vol, la destination, le nombre de places libres,
  * de places réservées, de colonnes et rangées (pour la taille de l'avion).
- * Vol intègre les structures de Date, Temps et Passager.
+ * Vol intègre les structures de Date, Horaire et Passager.
  */
 typedef struct {
   char numero_vol[8]; //!< Le numéro du vol
   char destination[128]; //!< La destination de du vol
   Date date; //!< La date du vol
-  Temps heure_depart; //!< Heure de départ
-  Temps heure_arrivee; //!< Heure d'arrivée
+  Horaire heure_depart; //!< Heure de départ
+  Horaire heure_arrivee; //!< Heure d'arrivée
   int visa_requis; //!< 1 si un VISA est requis, 0 sinon
   int places_reservees; //!< Nombre de places réservées, ou simplement le nombre de passager dans le vol
   int places_libres; //!< Le nombre de places libres dans

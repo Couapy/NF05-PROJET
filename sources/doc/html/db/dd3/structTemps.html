@@ -9,6 +9,13 @@
 <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../jquery.js"></script>
 <script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../navtreedata.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/searchdata.js"></script>
 <script type="text/javascript" src="../../search/search.js"></script>
@@ -42,6 +49,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('db/dd3/structTemps.html','../../');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -56,7 +78,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-attribs">Champs de données</a>  </div>
@@ -76,8 +97,10 @@ Graphe de collaboration de Temps:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Champs de données</h2></td></tr>
 <tr class="memitem:a3b77d8e35f34055ca678df0fd98c94a8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dd3/structTemps.html#a3b77d8e35f34055ca678df0fd98c94a8">heure</a></td></tr>
+<tr class="memdesc:a3b77d8e35f34055ca678df0fd98c94a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">entier pour l'heure  <a href="#a3b77d8e35f34055ca678df0fd98c94a8">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a3b77d8e35f34055ca678df0fd98c94a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af8421b5894d8edcb6e35956c48a7c8a8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../db/dd3/structTemps.html#af8421b5894d8edcb6e35956c48a7c8a8">minutes</a></td></tr>
+<tr class="memdesc:af8421b5894d8edcb6e35956c48a7c8a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">entier pour les minutes  <a href="#af8421b5894d8edcb6e35956c48a7c8a8">Plus de détails...</a><br /></td></tr>
 <tr class="separator:af8421b5894d8edcb6e35956c48a7c8a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
@@ -95,6 +118,8 @@ Champs de données</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>entier pour l'heure </p>
+
 </div>
 </div>
 <a id="af8421b5894d8edcb6e35956c48a7c8a8"></a>
@@ -109,17 +134,23 @@ Champs de données</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>entier pour les minutes </p>
+
 </div>
 </div>
 <hr/>La documentation de cette structure a été générée à partir du fichier suivant :<ul>
 <li><a class="el" href="../../d5/db5/structures_8c.html">structures.c</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Généré par &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="../../doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="../../db/dd3/structTemps.html">Temps</a></li>
+    <li class="footer">Généré par
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

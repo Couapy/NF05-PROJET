@@ -9,6 +9,13 @@
 <link href="../../tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../jquery.js"></script>
 <script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../resize.js"></script>
+<script type="text/javascript" src="../../navtreedata.js"></script>
+<script type="text/javascript" src="../../navtree.js"></script>
+<script type="text/javascript">
+  $(document).ready(initResizable);
+</script>
 <link href="../../search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../search/searchdata.js"></script>
 <script type="text/javascript" src="../../search/search.js"></script>
@@ -42,6 +49,21 @@ $(function() {
 });
 </script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){initNavTree('d2/d12/structPassager.html','../../');});
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -56,7 +78,6 @@ $(function() {
 </iframe>
 </div>
 
-</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-attribs">Champs de données</a>  </div>
@@ -81,32 +102,46 @@ Graphe de collaboration de Passager:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Champs de données</h2></td></tr>
 <tr class="memitem:a7cef88f78adc1c6e2152de993d1c26d9"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d12/structPassager.html#a7cef88f78adc1c6e2152de993d1c26d9">nom</a> [64]</td></tr>
+<tr class="memdesc:a7cef88f78adc1c6e2152de993d1c26d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nom du passager.  <a href="#a7cef88f78adc1c6e2152de993d1c26d9">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a7cef88f78adc1c6e2152de993d1c26d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ada9d7b12765e2cca40a8996d09812f56"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d12/structPassager.html#ada9d7b12765e2cca40a8996d09812f56">prenom</a> [64]</td></tr>
+<tr class="memdesc:ada9d7b12765e2cca40a8996d09812f56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prénom du passager.  <a href="#ada9d7b12765e2cca40a8996d09812f56">Plus de détails...</a><br /></td></tr>
 <tr class="separator:ada9d7b12765e2cca40a8996d09812f56"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a83f1c73ed58910a8431e87dc8286ce2f"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d12/structPassager.html#a83f1c73ed58910a8431e87dc8286ce2f">nationalite</a> [25]</td></tr>
+<tr class="memdesc:a83f1c73ed58910a8431e87dc8286ce2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nationalité du passager.  <a href="#a83f1c73ed58910a8431e87dc8286ce2f">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a83f1c73ed58910a8431e87dc8286ce2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9452371d86a818c7587937c9ab8b985f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d12/structPassager.html#a9452371d86a818c7587937c9ab8b985f">visa</a></td></tr>
+<tr class="memdesc:a9452371d86a818c7587937c9ab8b985f"><td class="mdescLeft">&#160;</td><td class="mdescRight">1 si le passager a un VISA, sinon c'est 0  <a href="#a9452371d86a818c7587937c9ab8b985f">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a9452371d86a818c7587937c9ab8b985f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40f2d4995aaa79527e46741900aa1f66"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d12/structPassager.html#a40f2d4995aaa79527e46741900aa1f66">frontiere</a></td></tr>
+<tr class="memdesc:a40f2d4995aaa79527e46741900aa1f66"><td class="mdescLeft">&#160;</td><td class="mdescRight">1 si le passager a passé la frontière  <a href="#a40f2d4995aaa79527e46741900aa1f66">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a40f2d4995aaa79527e46741900aa1f66"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2bbbc29942279a434417750fa0c90a2a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d12/structPassager.html#a2bbbc29942279a434417750fa0c90a2a">securite</a></td></tr>
+<tr class="memdesc:a2bbbc29942279a434417750fa0c90a2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">v 1 si le passager a passé la securite  <a href="#a2bbbc29942279a434417750fa0c90a2a">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a2bbbc29942279a434417750fa0c90a2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a46e73dd0649c0605380c7e462eae1ca5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d7/d2f/structBagage.html">Bagage</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d12/structPassager.html#a46e73dd0649c0605380c7e462eae1ca5">bagages</a> [2]</td></tr>
+<tr class="memdesc:a46e73dd0649c0605380c7e462eae1ca5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tableau de bagages du passager.  <a href="#a46e73dd0649c0605380c7e462eae1ca5">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a46e73dd0649c0605380c7e462eae1ca5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a19258a68917220fe9dcaae3ffb9a9fb7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d12/structPassager.html#a19258a68917220fe9dcaae3ffb9a9fb7">nb_bagages</a></td></tr>
+<tr class="memdesc:a19258a68917220fe9dcaae3ffb9a9fb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Nombre de bagages.  <a href="#a19258a68917220fe9dcaae3ffb9a9fb7">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a19258a68917220fe9dcaae3ffb9a9fb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a516754a9134ff8de4a11dcaf520704cc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d12/structPassager.html#a516754a9134ff8de4a11dcaf520704cc">prioritaire</a></td></tr>
+<tr class="memdesc:a516754a9134ff8de4a11dcaf520704cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">1 si le passager est prioritaire  <a href="#a516754a9134ff8de4a11dcaf520704cc">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a516754a9134ff8de4a11dcaf520704cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a16af4487b4c8c88372382c2b2e29207c"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d12/structPassager.html#a16af4487b4c8c88372382c2b2e29207c">billet</a></td></tr>
+<tr class="memdesc:a16af4487b4c8c88372382c2b2e29207c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Le numéro de billet.  <a href="#a16af4487b4c8c88372382c2b2e29207c">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a16af4487b4c8c88372382c2b2e29207c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ddaceb5f0477dde1ddb0e5f7fa36f0e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/ddb/structDate.html">Date</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d12/structPassager.html#a0ddaceb5f0477dde1ddb0e5f7fa36f0e">date_naissance</a></td></tr>
+<tr class="memdesc:a0ddaceb5f0477dde1ddb0e5f7fa36f0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">La date de naissance.  <a href="#a0ddaceb5f0477dde1ddb0e5f7fa36f0e">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a0ddaceb5f0477dde1ddb0e5f7fa36f0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9c7893faf56c15fb959b8ce49ba507b7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="../../d9/ded/structSiege.html">Siege</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d12/structPassager.html#a9c7893faf56c15fb959b8ce49ba507b7">siege</a></td></tr>
+<tr class="memdesc:a9c7893faf56c15fb959b8ce49ba507b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Le siège.  <a href="#a9c7893faf56c15fb959b8ce49ba507b7">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a9c7893faf56c15fb959b8ce49ba507b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5373ad9b4bca52b09f32e79c2d6bcffe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d12/structPassager.html#a5373ad9b4bca52b09f32e79c2d6bcffe">enregistrer</a></td></tr>
+<tr class="memdesc:a5373ad9b4bca52b09f32e79c2d6bcffe"><td class="mdescLeft">&#160;</td><td class="mdescRight">1 si le passager s'est enregistré, sinon c'est 0  <a href="#a5373ad9b4bca52b09f32e79c2d6bcffe">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a5373ad9b4bca52b09f32e79c2d6bcffe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af6a1dac0de31dc6fd1bd60f728619b00"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d2/d12/structPassager.html#af6a1dac0de31dc6fd1bd60f728619b00">embarquer</a></td></tr>
+<tr class="memdesc:af6a1dac0de31dc6fd1bd60f728619b00"><td class="mdescLeft">&#160;</td><td class="mdescRight">1 si le passager est embarqué, sinon c'est 0  <a href="#af6a1dac0de31dc6fd1bd60f728619b00">Plus de détails...</a><br /></td></tr>
 <tr class="separator:af6a1dac0de31dc6fd1bd60f728619b00"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
@@ -125,6 +160,8 @@ Champs de données</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Tableau de bagages du passager. </p>
+
 </div>
 </div>
 <a id="a16af4487b4c8c88372382c2b2e29207c"></a>
@@ -138,6 +175,8 @@ Champs de données</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Le numéro de billet. </p>
 
 </div>
 </div>
@@ -153,6 +192,8 @@ Champs de données</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>La date de naissance. </p>
+
 </div>
 </div>
 <a id="af6a1dac0de31dc6fd1bd60f728619b00"></a>
@@ -166,6 +207,8 @@ Champs de données</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>1 si le passager est embarqué, sinon c'est 0 </p>
 
 </div>
 </div>
@@ -181,6 +224,8 @@ Champs de données</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>1 si le passager s'est enregistré, sinon c'est 0 </p>
+
 </div>
 </div>
 <a id="a40f2d4995aaa79527e46741900aa1f66"></a>
@@ -194,6 +239,8 @@ Champs de données</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>1 si le passager a passé la frontière </p>
 
 </div>
 </div>
@@ -209,6 +256,8 @@ Champs de données</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Nationalité du passager. </p>
+
 </div>
 </div>
 <a id="a19258a68917220fe9dcaae3ffb9a9fb7"></a>
@@ -222,6 +271,8 @@ Champs de données</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Nombre de bagages. </p>
 
 </div>
 </div>
@@ -237,6 +288,8 @@ Champs de données</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Nom du passager. </p>
+
 </div>
 </div>
 <a id="ada9d7b12765e2cca40a8996d09812f56"></a>
@@ -250,6 +303,8 @@ Champs de données</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Prénom du passager. </p>
 
 </div>
 </div>
@@ -265,6 +320,8 @@ Champs de données</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>1 si le passager est prioritaire </p>
+
 </div>
 </div>
 <a id="a2bbbc29942279a434417750fa0c90a2a"></a>
@@ -278,6 +335,8 @@ Champs de données</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>v 1 si le passager a passé la securite </p>
 
 </div>
 </div>
@@ -293,6 +352,8 @@ Champs de données</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Le siège. </p>
+
 </div>
 </div>
 <a id="a9452371d86a818c7587937c9ab8b985f"></a>
@@ -307,17 +368,23 @@ Champs de données</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>1 si le passager a un VISA, sinon c'est 0 </p>
+
 </div>
 </div>
 <hr/>La documentation de cette structure a été générée à partir du fichier suivant :<ul>
 <li><a class="el" href="../../d5/db5/structures_8c.html">structures.c</a></li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Généré par &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="../../doxygen.png" alt="doxygen"/>
-</a> 1.8.13
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="../../d2/d12/structPassager.html">Passager</a></li>
+    <li class="footer">Généré par
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="../../doxygen.png" alt="doxygen"/></a> 1.8.13 </li>
+  </ul>
+</div>
 </body>
 </html>

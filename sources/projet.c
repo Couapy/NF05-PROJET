@@ -1,3 +1,24 @@
+/*! \mainpage PLEGAT Documentation
+ *
+ * \section intro_sec Introduction
+ *
+ * This is the Plegat documentation.
+ *
+ * \section install_sec Installation
+ *
+ * \subsection tools_subsec Tools required&#58;
+ * - Java Runtime Environment &#40;JRE&#41; 1.4.2 or later &#40;<small><a href="http&#58;//java.sun.com/">Java Web Site etc etc...
+ *
+ * \subsection running Running the program
+ * In a command window, etc etc...
+ *
+ * \section copyright Copyright and License
+ * This license applies to etc etc...
+ *
+ * <BR><BR>
+ *
+ */
+
 /**
  * @file projet.c
  * @author Marchand Mael & Calixte Axel
@@ -353,7 +374,8 @@ int placeLibre(Siege *place, Vol *vol) {
     return 0;
   }
 
-  if (strcmp(string_place, "A1") > 0 && strcmp(string_place, place_max) < 0) {
+  if (1 <= place->rangee && place->rangee >= vol->sieges_rangee &&
+  1 <= place->colonne && place->colonne >= vol->sieges_colonne) {
     int i = 0, pastrouve = 1;
     while (i < vol->places_reservees && pastrouve == 1) {
       if (vol->passagers[i]->siege.rangee == place->rangee &&
@@ -394,8 +416,8 @@ int choisirSiege(Passager *passager, Vol *vol) {
       printf("\a[ERROR] La place est deja attribuee ou non valide\n");
     } else {
       do {
-        place.rangee = ((float)rand()/RAND_MAX) * vol->sieges_rangee;
-        place.colonne = ((float)rand()/RAND_MAX) * vol->sieges_colonne;
+        place.rangee = 1 + ((float)rand()/RAND_MAX) * vol->sieges_rangee;
+        place.colonne = 1 + ((float)rand()/RAND_MAX) * vol->sieges_colonne;
       } while (!placeLibre(&place, vol));
       passager->siege = place;
       printf("[INFO] Votre place est la %c%02d\n", '@' + place.rangee, place.colonne);

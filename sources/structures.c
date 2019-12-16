@@ -4,9 +4,9 @@
  * @brief Fichier comportant toutes les structures utilisées pour le projet
  * @version 1
  * @date 2019-12-12
- * 
+ *
  * @copyright Copyright (c) 2019
- * 
+ *
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -15,33 +15,33 @@
  * Comporte le numéro de ticket du bagage et si il a été embarqué
  */
 typedef struct {
-  int ticket; /*!< Ticket du bagage */
-  int embarque; /*!< Booléen qui indique si le bagage est embarqué */
+  int ticket; //!< Ticket du bagage
+  int embarque; //!< Booléen qui indique si le bagage est embarqué
 } Bagage;
 
 /**
  * Associe un numéro de rangée et de colonne pour une place dans l'avion
  */
 typedef struct {
-  int rangee; /*!< numéro de rangée */
-  int colonne; /*!< numéro de colonne */
+  int rangee; //!< numéro de rangée
+  int colonne; //!< numéro de colonne
 } Siege;
 
 /**
  * Structure de date, avec le jour, le mois et l'année
  */
 typedef struct {
-  int jour; /*!< entier pour le jour */
-  int mois; /*!< entier pour le mois */
-  int annee; /*!< entier pour l'année */
+  int jour; //!< entier pour le jour
+  int mois; //!< entier pour le mois
+  int annee; //!< entier pour l'année
 } Date;
 
 /**
  * Comporte un entier pour l'heure et pour les minutes
  */
 typedef struct {
-  int heure; /*!< entier pour l'heure */
-  int minutes; /*!< entier pour les minutes */
+  int heure; //!< entier pour l'heure
+  int minutes; //!< entier pour les minutes
 } Temps;
 
 /**
@@ -89,6 +89,6 @@ typedef struct {
  * Permet d'associer un numéro à une fonction pour la console
  */
 typedef struct {
-  int fonction; /*!< entier de numéro de fonction */
-  char commande[24]; /*!< chaines de caratères associées à leur entier de fonction*/
+  int fonction; //!< entier de numéro de fonction
+  char commande[24]; //!< chaines de caratères associées à leur entier de fonction
 } Commande;

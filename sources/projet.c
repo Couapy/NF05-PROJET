@@ -47,6 +47,7 @@ int nb_vols = 0; //!< Nombre de vols enregistrés en mémoire
 int last_id_bagage = 0; //!< Dernier numéro de ticket bagage délivré
 
 // TODO: Demander le passeport
+// TODO: Afficher (nom, pr´enom, date de naissance, num´ero de passeport, destination, etc.dans ajouterPassager
 // TODO: Commenter le code
 
 /**
@@ -288,7 +289,6 @@ void ajouterPassager(void) {
     if (vol->places_libres > 0) {
       Passager *passager = (Passager*)malloc(sizeof(Passager));
 
-      //On génère le passager
       saisirPassager(passager);
       genererBillet(passager);
 
@@ -337,21 +337,39 @@ void enregistrerBagages(Passager *passager) {
  * @param vol      Le vol du passager
  */
 void afficherBoardingPass(Passager *passager, Vol *vol) {
-  printf("Carte d'embarquement:\n\n");
+  char prioritaire[16];
+  if (passager->prioritaire == 1) {
+    strcpy(prioritaire, "PRIORITAIRE");
+  } else {
+    strcpy(prioritaire, "Non prioritaire");
+  }
   printf(
+    "Carte d'embarquement:\n\n"
     "  M/Mme %s %s\n"
-    "  Priorite: %d\n"
-    "  Numero billet: %lu\n",
+    "  Date de naissance : %02d/%02d/%04d\n"
+    "  %s\n"
+    "  Numero billet: %lu\n"
+    "  Place %c%02d\n"
+    "  Nombre de bagages : %d\n",
     passager->nom,
     passager->prenom,
-    passager->prioritaire,
-    passager->billet
+    passager->date_naissance.jour,
+    passager->date_naissance.mois,
+    passager->date_naissance.annee,
+    prioritaire,
+    passager->billet,
+    '@' + passager->siege.rangee,
+    passager->siege.colonne,
+    passager->nb_bagages
   );
   printf(
-    "  Vol numero: %s a destination de %s depuis Paris\n"
-    "  Depart: %dh%d / Arrivee prevue a : %dh%d\n",
+    "  Vol %s a destination de %s depuis Paris\n"
+    "  Date %02d/%02d/%04d / Depart: %dh%d / Arrivee prevue a : %dh%d\n",
     vol->numero_vol,
     vol->destination,
+    vol->date.jour,
+    vol->date.mois,
+    vol->date.annee,
     vol->heure_depart.heure, vol->heure_depart.minutes,
     vol->heure_arrivee.heure, vol->heure_arrivee.minutes
   );

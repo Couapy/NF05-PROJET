@@ -135,13 +135,13 @@ void saisirDate(Date *date){
 
 /**
  * Permet de saisir un horaire
- * @param temps L'horaire à saisir
+ * @param Horaire L'horaire à saisir
  */
-void saisirHoraire(Temps *temps){
+void saisirHoraire(Horaire *Horaire){
   printf(" > Heure : ");
-  scanf("%d", &temps->heure);
+  scanf("%d", &Horaire->heure);
   printf(" > Minutes : ");
-  scanf("%d", &temps->minutes);
+  scanf("%d", &Horaire->minutes);
 }
 
 /**
@@ -305,6 +305,7 @@ void genererBillet(Passager *passager) {
 
     billet = (float)rand()/RAND_MAX * pow(10, 10);
 
+    // on cherche si le numero de billet existe deja parmi tous les passager
     int i = 0, j;
     while (i < nb_vols && continuer == 0) {
       j = 0;
@@ -552,7 +553,7 @@ void engeristrerPassager(void) {
 /**
  * Faire passer la frontière pour un passager
  */
-void passerFrontieres(void) {
+void passerFrontieres(void) { // TODO: ajouter un tableau pour savoir si le passaeger doit avoir un visa
   Passager *passager = selectionnerPassager();
   Vol *vol = trouverVol(passager);
   if (passager->frontiere == 0) {

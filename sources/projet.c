@@ -100,14 +100,12 @@
  */
 #define VOLS_MAX 255
 
-
 Vol vols[VOLS_MAX]; //!< Tableau de tout les vols
 int nb_vols = 0; //!< Nombre de vols enregistrés en mémoire
 int last_id_bagage = 0; //!< Dernier numéro de ticket bagage délivré
 
 // TODO: Demander le passeport
 // TODO: Afficher (nom, prénom, date de naissance, numéro de passeport, destination, etc.dans ajouterPassager
-// TODO: Commenter le code
 
 /**
  * BONUS
@@ -285,7 +283,7 @@ Vol* selectionnerVol(void) {
     do {
       printf("Entrez le numero du vol : ");
       scanf(" %d", &numero);
-    } while(numero > nb_vols);
+    } while(numero > nb_vols || numero < 1);
 
     return &vols[numero-1];
   }
@@ -454,11 +452,6 @@ void afficherBoardingPass(Passager *passager, Vol *vol) {
  * @return       1 pour un succes ou 0 pour un échec
  */
 int placeLibre(Siege *place, Vol *vol) {
-  char place_max[4];
-  char string_place[4];
-  sprintf(place_max, "%c%d", place->rangee + '@', vol->sieges_colonne);
-  sprintf(string_place, "%c%d", place->rangee + '@', place->colonne);
-
   if (1 > place->rangee || place->rangee > vol->sieges_rangee ||
   1 > place->colonne || place->colonne > vol->sieges_colonne) {
     return 0;

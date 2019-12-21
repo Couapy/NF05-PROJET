@@ -104,20 +104,6 @@ Vol vols[VOLS_MAX]; //!< Tableau de tout les vols
 int nb_vols = 0; //!< Nombre de vols enregistrés en mémoire
 int last_id_bagage = 0; //!< Dernier numéro de ticket bagage délivré
 
-// TODO: Demander le passeport
-// TODO: Afficher (nom, prénom, date de naissance, numéro de passeport, destination, etc.dans ajouterPassager
-
-/**
- * BONUS
- *
- *  Demander à l'utilisateur la période sur laquelle il veut les statistiques
- *  afficher les graphs selon la semaine ou alors par jour
- *
- *  - Afficher le taux de remplissage des avions
- *  - rapport entre les passagers prioraires et non prioraires
- *  - le poids moyen des bagages des avions
- */
-
 /**
  * Permet de saisir une date
  * @param date La date à écrire
@@ -546,7 +532,7 @@ void engeristrerPassager(void) {
 /**
  * Faire passer la frontière pour un passager
  */
-void passerFrontieres(void) { // TODO: ajouter un tableau pour savoir si le passaeger doit avoir un visa
+void passerFrontieres(void) {
   Passager *passager = selectionnerPassager();
   Vol *vol = trouverVol(passager);
   if (passager->frontiere == 0) {
